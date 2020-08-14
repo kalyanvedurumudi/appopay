@@ -24,7 +24,7 @@ export class AuthService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
-    private notification: NzNotificationService,
+    private notification: NzNotificationService
   ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {

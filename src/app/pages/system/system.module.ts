@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { SharedModule } from 'src/app/shared.module'
 import { SystemRouterModule } from './system-routing.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 // system pages
 import { LoginComponent } from './login/login.component'
@@ -21,7 +22,7 @@ const COMPONENTS = [
 ]
 
 @NgModule({
-  imports: [SharedModule, SystemRouterModule, FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, SystemRouterModule, NgxSpinnerModule, FormsModule, ReactiveFormsModule],
   declarations: [...COMPONENTS],
 })
 export class SystemModule {}

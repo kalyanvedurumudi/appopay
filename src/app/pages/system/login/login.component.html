@@ -10,13 +10,13 @@
     <div class="text-muted text-center mb-4">
 
     </div>
-    <form nz-form [nzLayout]="'vertical'" [formGroup]="form" (ngSubmit)="submitForm()" role="form">
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="loginForm" (ngSubmit)="submitForm()" role="form">
       <div class="row">
         <div class="col-md-6">
           <nz-form-item>
-            <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="codeTpl">
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="codeTpl">
               <nz-select formControlName="country" nzShowSearch nzAllowClear nzPlaceHolder="Select Code">
-                <nz-option name="country" *ngFor="let cntry of filteredBanks | async " nzLabel="(+{{cntry.areacode}}) {{cntry.countryname}}" [nzValue]="cntry.id"></nz-option>
+                <nz-option name="country" *ngFor="let cntry of filteredBanks | async " nzLabel="(+{{cntry.areacode}}) {{cntry.countryname}}" [nzValue]="cntry.areacode"></nz-option>
               </nz-select>
               <ng-template #codeTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
@@ -28,15 +28,28 @@
         </div>
         <div class="col-md-6">
           <nz-form-item>
-            <nz-form-control nzErrorTip="Please input your Mobile Number">
+            <nz-form-control nzHasFeedback [nzErrorTip]="mobErr">
               <input type="text" formControlName="mobilenumber" nz-input nzSize="large" placeholder="Mobile Number" />
+              <ng-template #mobErr let-control>
+                <ng-container *ngIf="control.hasError('required'); else genErr">
+                  Please input your Mobile Number
+                </ng-container>
+                <ng-template #genErr>
+                  Please enter a valid Mobile Number
+                </ng-template>
+              </ng-template>
             </nz-form-control>
           </nz-form-item>
         </div>
       </div>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
-          <input type="text" formControlName="password" nz-input nzSize="large" placeholder="Password" />
+        <nz-form-control nzHasFeedback [nzErrorTip]="passErr">
+          <input type="password" formControlName="password" nz-input nzSize="large" placeholder="Password" />
+          <ng-template #passErr let-control>
+              <ng-container *ngIf="control.hasError('maxlength')">Password cannot exceed more than 20 characters</ng-container>
+              <ng-container *ngIf="control.hasError('minlength')">Password should be min of 5 characters</ng-container>
+              <ng-container *ngIf="control.hasError('required')">Required</ng-container>
+            </ng-template>
         </nz-form-control>
       </nz-form-item>
       <!--<nz-form-item>
@@ -53,7 +66,7 @@
 		   </nz-form-item>-->
       <nz-form-item>
         <nz-form-control>
-          <button nz-button nzType="primary" [nzSize]="'large'"
+          <button nz-button nzType="primary" [nzSize]="'large'" [disabled]="!loginForm.valid"
             class="text-center btn btn-success w-100 font-weight-bold font-size-18">
             Log In
           </button>

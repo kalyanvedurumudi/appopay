@@ -11,7 +11,7 @@ import * as fromSettings from './settings/reducers'
 
 export const reducers: ActionReducerMap<any> = {
   router: fromRouter.routerReducer,
-  settings: fromSettings.reducer,
+  settings: fromSettings.reducer
 }
 
 export function logger(reducer: ActionReducer<any>): ActionReducer<any> {

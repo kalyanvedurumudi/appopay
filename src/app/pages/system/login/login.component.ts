@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service'
 import { LocalStorageService } from 'ngx-webstorage';
-import { On } from '@ngrx/store';
 import { ApiProvider } from 'src/app/services/api-provider';
 import { ReplaySubject, Subject } from 'rxjs';
 import { Bank } from 'src/app/modal/common-modal';
-import { takeUntil } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
+
+import { USET_TYPE } from '@app/constants';
+import { NzNotificationService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'air-system-login',
@@ -14,23 +18,27 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  loginForm: FormGroup;
   countries: Array<any>;
   public filteredBanks: ReplaySubject<Bank[]> = new ReplaySubject<Bank[]>(1);
   protected _onDestroy = new Subject<void>();
 
 
-  constructor(private fb: FormBuilder,
-    public authService: AuthService,
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
     private storage: LocalStorageService,
-    private apiProvider: ApiProvider
+    private apiProvider: ApiProvider,
+    private notification: NzNotificationService,    
+    private spinner: NgxSpinnerService,
+    private router: Router
     ) {
       // email: ['admin@mediatec.org', [Validators.required, Validators.minLength(4)]],
       // password: ['mediatec', [Validators.required]],
 
-    this.form = fb.group({
+    this.loginForm = this.fb.group({
       mobilenumber: [null, Validators.compose([
-        Validators.required, Validators.maxLength(12), Validators.pattern("^[0-9]*$")
+        Validators.required, Validators.minLength(10), Validators.maxLength(12), Validators.pattern("^[0-9]*$")
       ])],
       password: [null, Validators.compose([
         Validators.required, Validators.minLength(5), Validators.maxLength(20)
@@ -45,30 +53,91 @@ export class LoginComponent implements OnInit {
   }
 
   get email() {
-    return this.form.controls.email
+    return this.loginForm.controls.email
   }
   get password() {
-    return this.form.controls.password
+    return this.loginForm.controls.password
   }
 
   submitForm(): void {
-    this.email.markAsDirty()
-    this.email.updateValueAndValidity()
-    this.password.markAsDirty()
-    this.password.updateValueAndValidity()
-    if (this.email.invalid || this.password.invalid) {
-      return
-    }
-    // const mobile = this.form.value.mobilenumber;
-    // const areacode = this.bankCtrl.value.areacode;
-    // const newnumber = areacode + mobile;
-    // const usertype = this.form.value.usertype;
-    // this.storage.store('USTYPE', usertype);
-    // this.spinner.show();
-    // this.apiProvider.getWithoutAuth('users/mobilemapping/' + newnumber + '/' + usertype + '').subscribe(
-    //   async validatedata => {
-    //   });
-    // this.authService.SignIn(this.email.value, this.password.value)
+    const mobile = this.loginForm.value.mobilenumber;
+    const areacode = this.loginForm.value.country;
+    const newnumber = areacode + mobile;
+    this.storage.store('USTYPE', USET_TYPE);
+    this.spinner.show();
+    this.apiProvider.getWithoutAuth('users/mobilemapping/' + newnumber + '/' + USET_TYPE + '').subscribe(
+      async validatedata => {
+        const uniquenumber = validatedata.result.uniquenumber;
+
+        const inputdata = {
+          username: uniquenumber,
+          password: this.loginForm.value.password,
+          grant_type: 'password'
+        };
+        this.apiProvider.login('oauth/token', inputdata).subscribe(
+          async resdata => {
+            const res = resdata;
+            if (resdata) {
+              this.storage.store('access_token', res.access_token);
+              const mobileno = this.loginForm.value.mobilenumber;
+
+              this.apiProvider.get('users/findbyMobile/' + mobileno + '/' + areacode + '/' + USET_TYPE).subscribe(
+                async userdata => {
+                  if (userdata.result) {
+                    this.spinner.hide();
+                    this.storage.store('userDetails', userdata.result);
+                    let accounts = [];
+                    if (userdata.result.customerdetails != null) {
+                      accounts = userdata.result.customerdetails.customeraccount;
+                    }
+                    const rolename = userdata.result.roles[0].name;
+                    console.log(rolename);
+                    if (accounts.length == 0) {
+                      this.storage.store('ROLE', 'ADMIN');
+                    } else {
+                      this.storage.store('ROLE', rolename);
+                    }
+                    if (rolename == 'MERCHANT') {
+                      this.storage.clear('isModify');
+                      this.storage.clear('umobilenumber');
+                      this.storage.clear('uphonecode');
+                      this.storage.store('isModify', 'Y');
+                      this.storage.store('umobilenumber', mobileno);
+                      this.storage.store('uphonecode', areacode);
+                      this.storage.clear('isdeal');
+                      this.storage.store('isdeal', userdata.result.customerdetails.isdeal);
+
+                    }
+                    // this.notificationMessageService.setMessage(true);
+                    // this.loginMessageService.setMessage(true);
+                    this.authService.SignIn(newnumber, inputdata.password);
+                  } else {
+                    this.spinner.hide();
+                    this.notification.warning('Warning', 'Please Enter correct mobile number or password.');
+                  }
+                }, async () => {
+                  this.spinner.hide();
+                  this.notification.error('Error', 'Some thing went wrong please try after sometime or contact admin');
+
+                });
+
+
+            } else {
+              this.spinner.hide();
+              this.notification.warning('Warning', 'Please Enter correct mobile number or password.');
+            }
+
+          }, async (error) => {
+            this.spinner.hide();
+            this.notification.error('Error', 'Some thing went wrong please try after sometime or contact admin');
+
+          });
+
+      }, async (error) => {
+        this.spinner.hide();
+        this.notification.error('Error', 'Some thing went wrong please try after sometime or contact admin');
+
+      });
   }
 
   async getCountry() {

@@ -13,6 +13,7 @@ import { NgProgressHttpModule } from '@ngx-progressbar/http'
 import { AngularFireModule } from '@angular/fire'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -72,6 +73,7 @@ const firebaseConfig = {
      */
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot(),
+    StoreDevtoolsModule.instrument(),
 
     /**
      * Nprogress Modules

@@ -1,0 +1,1 @@
+export const USET_TYPE = 'CUSTOMER';
