@@ -1,0 +1,59 @@
+<div>
+  <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
+    <i class="fe fe-grid mr-2"></i>
+    Dashboards
+  </div>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu class="darkDropdown">
+      <li nz-menu-group>
+        <span title>
+          <strong>Dashboards</strong>
+        </span>
+        <ul class="list-unstyled">
+          <li nz-menu-item>
+            <a routerLink="/dashboard/analytics">
+              <i class="fe fe-home mr-2"></i>
+              Analytics
+            </a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/dashboard/statistics">
+              <i class="fe fe-home mr-2"></i>
+              Statistics
+            </a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/dashboard/ecommerce">
+              <i class="fe fe-home mr-2"></i>
+              Ecommerce
+            </a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/dashboard/crypto">
+              <i class="fe fe-home mr-2"></i>
+              Crypto
+            </a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/dashboard/crypto-terminal">
+              <i class="fe fe-home mr-2"></i>
+              Crypto Terminal
+            </a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/dashboard/jira">
+              <i class="fe fe-home mr-2"></i>
+              Jira
+            </a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/dashboard/helpdesk">
+              <i class="fe fe-home mr-2"></i>
+              Helpdesk
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+</div>

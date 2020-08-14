@@ -1,0 +1,138 @@
+<div>
+  <div class="air__utils__heading">
+    <h5>Dashboard: Analytics</h5>
+  </div>
+  <div class="row">
+    <div class="col-xl-8 col-lg-6">
+ 
+    <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Please Choose Currency</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body mt-4">
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="dashboardForm" (ngSubmit)="submitForm(addCardForm.value)">
+        <div class="row">
+          	  
+	      
+          <div class="col-md-12 ">
+           <nz-form-item>
+   
+                    <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="isDefaultTpl">
+               <nz-select nzShowSearch formControlName="isDefault" nzAllowClear nzPlaceHolder="Currency" >
+      <nz-option nzLabel="Yes" nzValue="Yes"></nz-option>
+      <nz-option nzLabel="No" nzValue="No"></nz-option>
+ 
+    </nz-select>
+	<ng-template #isDefaultTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		 
+		
+        
+		  
+        </div>
+		
+      </form>
+    </div>
+    <div class="modal-footer">
+         <nz-form-item>
+          <nz-form-control>
+      
+            <button type="submit" class="btn btn-primary" >
+             CONFIRM
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+    </div>
+  </ng-template>
+      
+     
+    </div>
+  
+  </div>
+  
+    <div class="row">
+	
+	    <div class="col-lg-7">
+      <div class="card">
+        <div class="card-body">
+		
+		  <div class="row">
+		     <h6 class="text-uppercase text-dark font-weight-bold mb-3" style="margin-left: 23px;margin-top: 12px;">My Accounts</h6>
+          <h6 class="text-uppercase text-dark font-weight-bold mb-10" style="margin-left:20px;">
+       <button  class="btn btn-lg btn-outline-primary" (click)="open(content)">Create Account</button>
+          </h6>
+		   
+	   
+
+  </div>
+          <div class="air__utils__scrollTable mb-4">
+            <nz-table #basicTable  [nzShowPagination]="false" class="air__utils__scrollTable mb-4">
+              <thead>
+              <tr>
+                <th class="bg-transparent">Account Number</th>
+                <th class="bg-transparent">Balance</th>
+                <th class="bg-transparent">Cureency</th>
+                <th class="bg-transparent text-right">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr >
+                <td>cccccc</td>
+                <td>vvvvvv</td>
+                <td>
+                  <a  class="text-blue">
+                   dcddddddddddd
+                  </a>
+                </td>
+                <td class="text-right">
+              
+	  <button class="btn btn-lg btn-outline-primary" routerLink="/customers/transactionlist"> View</button>
+ 
+                </td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="card">
+        <div class="card-body">
+           <div class="row">
+		     <h6 class="text-uppercase text-dark font-weight-bold mb-3" style="margin-left: 23px;margin-top: 12px;">Deals & Offers</h6>
+          <h6 class="text-uppercase text-dark font-weight-bold mb-10" style="margin-left:20px;">
+      <a href="https://appopay.com/admin/#/pages/offers"> <button  class="btn btn-lg btn-outline-primary" >View Offers</button></a>
+          </h6>
+		   
+	   <div style="width: 840px; height: 500px; text-align:center;margin:0; padding:0;">
+  <ng-image-slider #nav
+    [images]="imageObject"
+    [infinite]="false"
+    [autoSlide]="1"
+    [imageSize]="{width: '100%', height: 300}"
+    slideImage="1"></ng-image-slider>
+</div>
+
+  </div>
+        
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

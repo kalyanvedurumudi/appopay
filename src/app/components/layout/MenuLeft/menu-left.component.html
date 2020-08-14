@@ -1,0 +1,125 @@
+<ng-container *ngFor="let item of objectKeys(renderedFlyoutItems)">
+  <ng-container *ngTemplateOutlet="flyoutTpl; context: {$implicit: renderedFlyoutItems[item]}"></ng-container>
+</ng-container>
+<div [ngClass]="{
+  air__menuLeft: true,
+  air__menuLeft__mobileToggled: isMobileMenuOpen,
+  air__menuLeft__toggled: isMenuCollapsed,
+  air__menuLeft__unfixed: isMenuUnfixed,
+  air__menuLeft__shadow: isMenuShadow,
+  air__menuLeft__flyout: menuType === 'flyout',
+  air__menuLeft__compact: menuType === 'compact',
+  air__menuLeft__blue: menuColor === 'blue',
+  air__menuLeft__white: menuColor === 'white',
+  air__menuLeft__gray: menuColor === 'gray',
+  air__menuFlyout__black: flyoutMenuColor === 'dark' && menuType !== 'default',
+  air__menuFlyout__white: flyoutMenuColor === 'white' && menuType !== 'default',
+  air__menuFlyout__gray: flyoutMenuColor === 'gray' && menuType !== 'default'
+}">
+  <div class="air__menuLeft__outer">
+    <a href="javascript: void(0);" class="air__menuLeft__mobileToggleButton" (click)="toggleMobileMenu()">
+      <span></span>
+    </a>
+    <a href="javascript: void(0);" class="air__menuLeft__toggleButton" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+    </a>
+    <a href="javascript: void(0);" class="air__menuLeft__logo">
+      <img src="assets/images/appopay.png"style="height:45px!important;" alt="Air UI" />
+
+    </a>
+    <a href="javascript: void(0);" class="air__menuLeft__user">
+      <div class="air__menuLeft__user__avatar">
+        <img src="assets/images/avatars/avatar.png" alt="David Beckham" />
+      </div>
+      <div class="air__menuLeft__user__name">Moe Alhazari</div>
+      <div class="air__menuLeft__user__role">Administrator</div>
+    </a>
+    <perfect-scrollbar>
+      <div class="air__menuLeft__container">
+        <ul class="air__menuLeft__list">
+          <!--<li class="air__menuLeft__category">
+            <span>Information</span>
+          </li>
+          <li class="air__menuLeft__item">
+            <a href="javascript: void(0);" class="air__menuLeft__link" (click)="toggleSettings()">
+              <i class="fe fe-settings air__menuLeft__icon"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li class="air__menuLeft__item">
+            <a href="https://docs.airuitemplate.com/" class="air__menuLeft__link" target="_blank"
+              rel="noopener noreferrer">
+              <i class="fe fe-compass air__menuLeft__icon"></i>
+              <span>Documentation</span>
+            </a>
+          </li>-->
+          <ng-container *ngFor="let item of menuData">
+            <ng-container *ngTemplateOutlet="itemTpl; context: {$implicit: item}"></ng-container>
+            <ng-container *ngTemplateOutlet="submenuTpl; context: {$implicit: item}"></ng-container>
+            <ng-container *ngTemplateOutlet="categoryTpl; context: {$implicit: item}"></ng-container>
+          </ng-container>
+        </ul>
+        <div class="air__menuLeft__banner">
+          <p>More components, more styles, more themes, and premium support!</p>
+          <a href="https://themeforest.net/item/air-ui-multi-concept-admin-template/24434456" target="_blank"
+            rel="noopener noreferrer" class="btn btn-white text-center d-block">Buy Air UI</a>
+        </div>
+      </div>
+    </perfect-scrollbar>
+  </div>
+</div>
+<a href="javascript: void(0);" class="air__menuLeft__backdrop" (click)="toggleMobileMenu()"></a>
+
+<ng-template #itemTpl let-item>
+  <ng-container *ngIf="!item.children && !item.category">
+    <li class="air__menuLeft__item" [ngClass]="{air__menuLeft__item__active: item.key === activeItem}">
+      <a [routerLink]="item.url ? item.url : 'javascript: void(0)'" class="air__menuLeft__link">
+        <i *ngIf="item.icon" class="air__menuLeft__icon" [ngClass]="item.icon"></i>
+        <span>{{ item.title }}</span>
+      </a>
+    </li>
+  </ng-container>
+</ng-template>
+<ng-template #submenuTpl let-item>
+  <ng-container *ngIf="item.children">
+    <li class="air__menuLeft__item air__menuLeft__submenu"
+      [ngClass]="{air__menuLeft__submenu__active: item.key === activeSubmenu}">
+      <a href="javascript: void(0);" class="air__menuLeft__link" (click)="handleSubmenuClick(item.key)"
+        (mouseenter)="handleFlyoutOver($event, item.key, item.children)" (mouseleave)="handleFlyoutOut(item.key)">
+        <i *ngIf="item.icon" class="air__menuLeft__icon" [ngClass]="item.icon"></i>
+        <span>{{ item.title }}</span>
+      </a>
+      <ul class="air__menuLeft__list">
+        <ng-container *ngFor="let item of item.children">
+          <ng-container *ngTemplateOutlet="itemTpl; context: {$implicit: item}"></ng-container>
+        </ng-container>
+      </ul>
+    </li>
+  </ng-container>
+</ng-template>
+<ng-template #categoryTpl let-item>
+  <ng-container *ngIf="item.category">
+    <li class="air__menuLeft__category">
+      <span>{{ item.title }}</span>
+    </li>
+  </ng-container>
+</ng-template>
+<ng-template #flyoutTpl let-item>
+  <div @flyoutAnimation [ngStyle]="{
+      left: item.itemDimensions.left + item.itemDimensions.width - 10 + 'px',
+      top: item.itemDimensions.top + 'px'
+    }" class="air__menuFlyout" [ngClass]="{
+    air__menuFlyoutLeft: menuLayoutType === 'left',
+    air__menuFlyout__black: flyoutMenuColor === 'dark',
+    air__menuFlyout__white: flyoutMenuColor === 'white',
+    air__menuFlyout__gray: flyoutMenuColor === 'gray'
+  }">
+    <ul class="air__menuLeft__list" (mouseenter)="handleFlyoutContainerOver(item.key)"
+      (mouseleave)="handleFlyoutOut(item.key)">
+      <ng-container *ngFor="let item of item.items">
+        <ng-container *ngTemplateOutlet="itemTpl; context: {$implicit: item}"></ng-container>
+      </ng-container>
+    </ul>
+  </div>
+</ng-template>

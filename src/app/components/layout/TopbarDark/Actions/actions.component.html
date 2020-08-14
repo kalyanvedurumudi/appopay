@@ -1,0 +1,13 @@
+<div>
+  <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menuDark">
+    <i class="icon fe fe-menu mr-2"></i>
+    {{ 'topBar.actions' | translate }}
+  </div>
+  <nz-dropdown-menu #menuDark="nzDropdownMenu">
+    <div class="card air__utils__shadow width-350 mb-0 darkDropdown">
+      <div class="card-body p-0">
+        <air-list-2></air-list-2>
+      </div>
+    </div>
+  </nz-dropdown-menu>
+</div>

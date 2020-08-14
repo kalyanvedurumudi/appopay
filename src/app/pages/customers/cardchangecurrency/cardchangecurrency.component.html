@@ -1,0 +1,557 @@
+<div>
+  <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+        Add Fund
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+        Card(USD) Change Currency
+      </a>
+    </li>
+  </ul>
+  <div class="divider mr-4 d-none d-xl-block"></div>
+
+  <button type="button" class="btn btn-primary  mr-auto text-nowrap d-none d-md-block" routerLink="/customers/cardbasecurrency">
+
+  Card(USD) Base Currency
+  </button>
+ 
+</div>
+<br><br>
+  
+      <div class="card">
+    <div class="card-body">
+    
+     <form nz-form [nzLayout]="'vertical'" [formGroup]="cardchangeCurrencyForm" (ngSubmit)="submitForm(cardchangeCurrencyForm.value)">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Account :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="accountTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="fromAccount" nzPlaceHolder="Please Select Account" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	  <ng-template #accountTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		
+         
+		 
+		      <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Enter Amount to be Added  :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Enter Amount to be Added!">
+            <input nz-input id="amountAdded" formControlName="amountAdded" placeholder="Enter Amount to be Added "/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		       <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Amount to be Credited  :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Amount to be Credited!">
+            <input nz-input id="amountCredited" formControlName="amountCredited" placeholder="Enter Amount to be Credited"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		     <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Full Name(AS ON CARD) :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Full Name(AS ON CARD)!">
+            <input nz-input id="fullName" formControlName="fullName" placeholder="Enter Full Name(AS ON CARD)"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div> 
+		     <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Card Number :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Card Number!">
+            <input nz-input id="cardNumber" formControlName="cardNumber" placeholder="Enter Card Number"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+          <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Expiration Month  :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Expiration Month!">
+            <input nz-input id="expMonth" formControlName="expMonth" placeholder="Enter Expiration Month"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+         <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Expiration Year :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Expiration Year!">
+            <input nz-input id="expYaer" formControlName="expYaer" placeholder="Enter Expiration  Year"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		      <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">CVV :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please Enter CVV!">
+            <input nz-input id="cvv" formControlName="cvv" placeholder="Enter CVV"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+          
+		 
+        </div>
+		    <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
+             RESET
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+              ADD FUND
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+  
+  
+  
+
+</div>
+
+<!--<div>
+
+       <nz-tabset>
+      <nz-tab nzTitle="Basic Information ">
+	  
+ <form nz-form [nzLayout]="'verical'">
+ 
+     <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="name" class="text-left"> Name</nz-form-label>
+          <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please enter Product  name!">
+            <input nz-input id="name" formControlName="name" placeholder="Product Name..."/>
+          </nz-form-control>
+		   </nz-form-item>
+		   
+		    <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="name" class="text-left"> Vendor</nz-form-label>
+                    <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please Select Vendor">
+            		 <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Vendor" >
+      <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+      <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+      <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+		       <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="name" class="text-left"> Categories:</nz-form-label>
+                    <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please enter Categories">
+          <nz-select
+      nzMode="multiple"
+      nzPlaceHolder="Search Categories"
+      nzAllowClear
+      nzShowSearch
+      nzServerSearch
+      [(ngModel)]="selectedUser"
+      (nzOnSearch)="onSearch($event)"
+    >
+      <ng-container *ngFor="let o of optionList">
+        <nz-option *ngIf="!isLoading" [nzValue]="o" [nzLabel]="o"></nz-option>
+      </ng-container>
+      <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+        <i nz-icon nzType="loading" class="loading-icon"></i> Loading Data...
+      </nz-option>
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+		       <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="name" class="text-left"> Price</nz-form-label>
+          <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please enter Price  name!">
+            <input nz-input id="price" type="number" formControlName="price" placeholder="Price..."/>
+          </nz-form-control>
+		   </nz-form-item>
+		
+		
+		     <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="name" class="text-left"> Full Description :</nz-form-label>
+          <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please enter Full Description">
+            <div>
+       
+      </div>
+          </nz-form-control>
+		   </nz-form-item>
+		   
+		        <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="name" class="text-left"> Status :</nz-form-label>
+          <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please enter Status">
+   <nz-radio-group >
+      <label nz-radio nzValue="Active">Active</label>
+      <label nz-radio nzValue="Disabled">Disabled</label>
+      <label nz-radio nzValue="Hidden">Hidden</label>
+      <label nz-radio nzValue="Disapproved">Disapproved</label>
+    </nz-radio-group>
+          </nz-form-control>
+		   </nz-form-item>
+		       <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="name" class="text-left"> Images</nz-form-label>
+                    <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please Upload Images">
+             
+    <nz-upload
+      nzType="drag"
+      [nzMultiple]="true"
+      [nzLimit]="2"
+      nzAction="https://jsonplaceholder.typicode.com/posts/">
+      <p class="ant-upload-drag-icon">
+        <i nz-icon type="inbox"></i>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+    </nz-upload>
+          </nz-form-control>
+	
+		   </nz-form-item>
+		   
+		   
+		     <h5 class="text-black mt-2 mb-3">
+              <strong>Option Settings </strong>
+            </h5>
+
+
+	    <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="name" class="text-left"> Option Type :</nz-form-label>
+                    <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please Select Option Type">
+               <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Option Type" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+		   
+		   
+		   	    <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="name" class="text-left"> Exception Type :</nz-form-label>
+                    <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please Exception Type">
+                   <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Exception  Type" >
+      <nz-option nzLabel="Forbidden" nzValue="forbidden"></nz-option>
+      <nz-option nzLabel="Allowed" nzValue="allowed"></nz-option>
+     
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+		   
+		   
+		       <h5 class="text-black mt-2 mb-3">
+              <strong>Pricing / Inventory   </strong>
+            </h5>
+			 <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> Code </nz-form-label>
+          <nz-form-control [nzSm]="20" [nzXs]="24" nzErrorTip="Please enter Code!">
+            <input nz-input id="code" formControlName="code" placeholder="Code..."/>
+          </nz-form-control>
+		   </nz-form-item>
+			
+			 		 <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> List Price($) </nz-form-label>
+          <nz-form-control [nzSm]="6" [nzXs]="24" nzErrorTip="Please enter List Price!">
+            <input nz-input type="number"  formControlName="listPrice" placeholder="List Price($)" id="listPrice"/>
+          </nz-form-control>
+		   </nz-form-item>
+		   
+		   	 <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> In Stock </nz-form-label>
+          <nz-form-control [nzSm]="4" [nzXs]="24" nzErrorTip="Please enter In stock items count!">
+            <input nz-input type="number"  formControlName="inStock" placeholder="In Stock :" id="inStock"/>
+          </nz-form-control>
+		   </nz-form-item>
+		   
+		   	   	 <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> Zero price action</nz-form-label>
+          <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please enter In stock items count!">
+           <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Dont allow customers to add the product to cart" >
+      <nz-option nzLabel="Dont allow customers to add the product to cart" nzValue="dontallow"></nz-option>
+      <nz-option nzLabel="Ask Customers to enter the price" nzValue="allowedpro"></nz-option>
+    </nz-select>
+          </nz-form-control>
+		   </nz-form-item>
+		   
+		   	   	 <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> Inventory </nz-form-label>
+          <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please enter In stock items count!">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Track without options" >
+      <nz-option nzLabel="Track without options" nzValue="trackwithout"></nz-option>
+      <nz-option nzLabel="Do not track" nzValue="donttack"></nz-option>
+     
+    </nz-select>
+          </nz-form-control>
+		   </nz-form-item>
+		   
+		    <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> Minimum order quantity</nz-form-label>
+          <nz-form-control [nzSm]="4" [nzXs]="24" nzErrorTip="Please enter Code!">
+               <input nz-input type="number" placeholder="Min order quantity:" id="maxorderquantity">
+          </nz-form-control>
+		   </nz-form-item>
+		      <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> Maximum order quantity</nz-form-label>
+          <nz-form-control [nzSm]="4" [nzXs]="24" nzErrorTip="Please enter Code!">
+                       <input nz-input type="number"placeholder="Max order quantity:" id="maxorderquantity">
+          </nz-form-control>
+		   </nz-form-item>
+		      <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> Quantity step:</nz-form-label>
+          <nz-form-control [nzSm]="4" [nzXs]="24" nzErrorTip="Please enter Code!">
+    <input nz-input type="number"placeholder="Quantity step:" id="quantitystep">
+          </nz-form-control>
+		   </nz-form-item>
+		      <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> List quantity count</nz-form-label>
+          <nz-form-control [nzSm]="4" [nzXs]="24" nzErrorTip="Please enter Code!">
+        <input nz-input type="number"placeholder="quantity count:" id="listquantitycount">
+          </nz-form-control>
+		   </nz-form-item>
+		    <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> Taxes</nz-form-label>
+          <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please enter Code!">
+    <nz-checkbox-group [(ngModel)]="contentTypes" [ngModelOptions]="{standalone: true}"></nz-checkbox-group>
+          </nz-form-control>
+		   </nz-form-item>
+		         <h5 class="text-black mt-2 mb-3">
+              <strong>Pricing / Inventory   </strong>
+            </h5>
+			    <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> User Groups:</nz-form-label>
+          <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please enter Code!">
+    <nz-checkbox-group [(ngModel)]="contentUsers" [ngModelOptions]="{standalone: true}"></nz-checkbox-group>
+          </nz-form-control>
+		   </nz-form-item>
+		   
+		   
+		     <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> Creation Date :</nz-form-label>
+          <nz-form-control [nzSm]="6" placeholder="Creation Date"[nzXs]="24" nzErrorTip="Please enter Creation Date!">
+  <nz-date-picker ></nz-date-picker>
+          </nz-form-control>
+		   </nz-form-item>
+		   
+		        <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="code" class="text-left"> Avail Since:</nz-form-label>
+          <nz-form-control [nzSm]="6"  [nzXs]="24" nzErrorTip="Please enter Avail Since:!">
+    
+			   <nz-date-picker [nzSize]="size" ></nz-date-picker>
+          </nz-form-control>
+		   </nz-form-item>
+		      <nz-form-item>
+    <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="name" class="text-left"> Out of stock actions :</nz-form-label>
+                    <nz-form-control [nzSm]="6" [nzXs]="24" nzErrorTip="Please Select Vendor">
+                     <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Dont allow customers to add the product to cart" >
+      <nz-option nzLabel="Dont allow customers to add the product to cart" nzValue="dontallow"></nz-option>
+      <nz-option nzLabel="Ask Customers to enter the price" nzValue="allowedpro"></nz-option>
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+    <nz-form-item>
+      <button class="btn btn-success btn-with-addon text-nowrap mt-3" type="submit">
+        <span class="btn-addon">
+          <i class="btn-addon-icon fe fe-plus-circle"></i>
+        </span>
+        Add Post
+      </button>
+    </nz-form-item>
+  </form>
+  
+      </nz-tab>
+	        <nz-tab nzTitle="Basic Information ">
+	  
+    <form nz-form [formGroup]="validateForm1" (ngSubmit)="submitForm1()">
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="full-name" class="text-left">Full Name</nz-form-label>
+          <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please input your full name!">
+            <input nz-input id="full-name" formControlName="fullName" placeholder="Your Fullname..."/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzFor="email" class="text-left">Email Address</nz-form-label>
+          <nz-form-control [nzSm]="12" [nzXs]="24" nzErrorTip="Please input your email adress!">
+            <input nz-input id="email" formControlName="email" placeholder="Your Email Address..." />
+          </nz-form-control>
+        </nz-form-item>
+  
+      
+      </form>
+  
+      </nz-tab>
+	        <nz-tab nzTitle="Basic Information ">
+	  
+ <form nz-form [nzLayout]="'verical'">
+    <nz-form-item>
+      <nz-form-label>Title</nz-form-label>
+      <nz-form-control>
+        <input nz-input placeholder="Post title">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Type</nz-form-label>
+      <nz-form-control>
+        <nz-checkbox-group [(ngModel)]="contentTypes" [ngModelOptions]="{standalone: true}"></nz-checkbox-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Category</nz-form-label>
+      <nz-form-control>
+        <nz-select style="width: 100%" nzMode="tags" nzPlaceHolder="Please select post categories">
+          <nz-option *ngFor="let option of categoriesTypes" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Content</nz-form-label>
+   
+    </nz-form-item>
+    <nz-upload
+      nzType="drag"
+      [nzMultiple]="true"
+      [nzLimit]="2"
+      nzAction="https://jsonplaceholder.typicode.com/posts/">
+      <p class="ant-upload-drag-icon">
+        <i nz-icon type="inbox"></i>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+    </nz-upload>
+    <nz-form-item>
+      <button class="btn btn-success btn-with-addon text-nowrap mt-3" type="submit">
+        <span class="btn-addon">
+          <i class="btn-addon-icon fe fe-plus-circle"></i>
+        </span>
+        Add Post
+      </button>
+    </nz-form-item>
+  </form>
+  
+      </nz-tab>
+	        <nz-tab nzTitle="Basic Information ">
+	  
+ <form nz-form [nzLayout]="'verical'">
+    <nz-form-item>
+      <nz-form-label>Title</nz-form-label>
+      <nz-form-control>
+        <input nz-input placeholder="Post title">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Type</nz-form-label>
+      <nz-form-control>
+        <nz-checkbox-group [(ngModel)]="contentTypes" [ngModelOptions]="{standalone: true}"></nz-checkbox-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Category</nz-form-label>
+      <nz-form-control>
+        <nz-select style="width: 100%" nzMode="tags" nzPlaceHolder="Please select post categories">
+          <nz-option *ngFor="let option of categoriesTypes" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Content</nz-form-label>
+     
+    </nz-form-item>
+    <nz-upload
+      nzType="drag"
+      [nzMultiple]="true"
+      [nzLimit]="2"
+      nzAction="https://jsonplaceholder.typicode.com/posts/">
+      <p class="ant-upload-drag-icon">
+        <i nz-icon type="inbox"></i>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+    </nz-upload>
+    <nz-form-item>
+      <button class="btn btn-success btn-with-addon text-nowrap mt-3" type="submit">
+        <span class="btn-addon">
+          <i class="btn-addon-icon fe fe-plus-circle"></i>
+        </span>
+        Add Post
+      </button>
+    </nz-form-item>
+  </form>
+  
+      </nz-tab>
+	        <nz-tab nzTitle="Basic Information ">
+	  
+ <form nz-form [nzLayout]="'verical'">
+   <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a person" [(ngModel)]="selectedValue">
+      <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+      <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+      <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+    </nz-select>
+    <nz-form-item>
+      <nz-form-label>Type</nz-form-label>
+      <nz-form-control>
+        <nz-checkbox-group [(ngModel)]="contentTypes" [ngModelOptions]="{standalone: true}"></nz-checkbox-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Category</nz-form-label>
+      <nz-form-control>
+        <nz-select style="width: 100%" nzMode="tags" nzPlaceHolder="Please select post categories">
+          <nz-option *ngFor="let option of categoriesTypes" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Content</nz-form-label>
+     
+    </nz-form-item>
+    <nz-upload
+      nzType="drag"
+      [nzMultiple]="true"
+      [nzLimit]="2"
+      nzAction="https://jsonplaceholder.typicode.com/posts/">
+      <p class="ant-upload-drag-icon">
+        <i nz-icon type="inbox"></i>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+    </nz-upload>
+    <nz-form-item>
+      <button class="btn btn-success btn-with-addon text-nowrap mt-3" type="submit">
+        <span class="btn-addon">
+          <i class="btn-addon-icon fe fe-plus-circle"></i>
+        </span>
+        Add Post
+      </button>
+    </nz-form-item>
+  </form>
+  
+      </nz-tab>
+
+    </nz-tabset>
+	
+ 
+  
+</div>-->
+	  
+   

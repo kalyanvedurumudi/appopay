@@ -1,0 +1,101 @@
+<div>
+   <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+Card Activation 
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+Card Activation 
+      </a>
+    </li>
+  </ul>
+
+
+ 
+</div>
+<br>
+  
+  
+      <div class="card">
+    <div class="card-body">
+    
+      <h4 class="mb-4">
+        <strong>Card Activation -( Status : ) </strong>
+      </h4>
+      <form nz-form [nzLayout]="'vertical'" [formGroup]="bankDepositsForm" (ngSubmit)="submitForm(bankDepositsForm.value)">
+        <div class="row">
+          
+          <div class="col-md-12">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Account :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="accountTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="fromAccount" nzPlaceHolder="Please Select Account" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	  <ng-template #accountTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+          
+		     <div class="col-md-12">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Last 4 Digits of Card Number :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="routerNumberTpl">
+            <input nz-input id="routingNumber" formControlName="routingNumber" placeholder="Last 4 Digits of Card Number"/>
+			      <ng-template #routerNumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+        
+		       <div class="col-md-12">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Last 4 Digits of Tax Id(ssn) :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="routerNumberTpl">
+            <input nz-input id="routingNumber" formControlName="routingNumber" placeholder="Last 4 Digits of Tax Id(ssn)"/>
+			      <ng-template #routerNumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		 
+        </div>
+		   <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
+             RESET
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+           SUBMIT
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+  
+  
+ 
+
+</div>

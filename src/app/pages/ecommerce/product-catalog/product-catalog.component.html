@@ -1,0 +1,11 @@
+<div>
+  <div class="air__utils__heading">
+    <h5>Ecommerce: Product Catalog</h5>
+  </div>
+  <div class="row">
+    <div class="col-xl-4 col-lg-6" *ngFor="let product of products">
+      <air-general-16 [isNew]="product.isNew" [isFavorite]="product.isFavorite" [image]="product.image"
+        [name]="product.name" [price]="product.price" [oldPrice]="product.oldPrice"></air-general-16>
+    </div>
+  </div>
+</div>

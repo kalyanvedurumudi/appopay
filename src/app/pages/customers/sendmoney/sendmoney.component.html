@@ -1,0 +1,994 @@
+<div>
+
+ <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+          Send Money
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+        Any Where Money Transfer
+      </a>
+    </li>
+  </ul>
+ 
+
+ 
+</div>
+<br> 
+<form nz-form [nzLayout]="'vertical'" [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm.value)">
+<div class="card">
+      <div class="card-body">
+	    <h4 class="mb-4">
+        <strong>Transfast</strong>
+      </h4>
+	     <h4 class="mb-4">
+        <strong>Select Transfer Type </strong>
+      </h4>
+          
+        <div class="row">
+          
+           <div class="col-md-12">
+           <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Transfer Type :</nz-form-label>
+                    <nz-form-control [nzSm]="24" [nzXs]="24"   [nzErrorTip]="transferTpl">
+               <nz-select nzPlaceHolder="Please Select Transfer Type" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #transferTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		   </div>
+		 
+		    </div>
+			 </div>
+  <div class="air__utils__heading">
+    <h5>
+      <span class="mr-3">Transfast Transfer</span>
+      <a href="https://getbootstrap.com/docs/4.3/components/card/" target="_blank" rel="noopener noreferrer"
+        class="btn btn-sm btn-light">
+        Location and Amount to Receive 
+        <i class="fe fe-corner-right-up"></i>
+      </a>
+    </h5>
+  </div>
+  <div class="row">
+    <div class="col-xl-6 col-lg-12">
+      <div class="card">
+        <div class="card-header card-header-flex">
+          <div class="d-flex flex-column justify-content-center mr-auto">
+            <h5 class="mb-0">Location and Amount to Receive </h5>
+          </div>
+   
+        </div>
+		
+        <div class="card-body">
+         
+        <div class="row">
+          
+          <div class="col-md-6">
+                     <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"   [nzErrorTip]="CountryTpl">
+               <nz-select  nzPlaceHolder="Select Country" >
+       <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #CountryTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+          <div class="col-md-6">
+             <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"   [nzErrorTip]="stateTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder="Select State" >
+   <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #stateTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		      <div class="col-md-6">
+            <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"   [nzErrorTip]="cityTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder="Select City" >
+        <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #cityTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		
+		      <div class="col-md-6">
+			       <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="paymentModeTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select Payment Mode of Delivery" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #paymentModeTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+      
+          </div>
+		  
+		       <div class="col-md-6">
+               <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="payerssenderCurrencyTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select Sender Currency" >
+     <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #payerssenderCurrencyTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		  
+		     <div class="col-md-6">
+                  <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="payersreceiverCurrencyTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select Receiver Currency" >
+   <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #payersreceiverCurrencyTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		 
+    
+    <div class="air__utils__heading">
+    <h5>
+      <span class="mr-6">Payers Location</span><br><br>
+      <a href="https://getbootstrap.com/docs/4.3/components/card/" target="_blank" rel="noopener noreferrer"
+        class="btn btn-sm btn-light">
+       Pick up cash at any of our locations. You are not to pre-select a location. 
+        <i class="fe fe-corner-right-up"></i>
+      </a>
+    </h5>
+  </div>
+		    
+		     <div class="col-md-6">
+          <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="PayersTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select Payers" >
+   <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #PayersTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		      
+		  
+		      <div class="col-md-6">
+             <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="PayersBranchTpl">
+               <nz-select nzShowSearch nzAllowClear   nzPlaceHolder=" Select Payers Branch" >
+        <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #PayersBranchTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		  
+		  
+		 
+		  
+		  
+		      <div class="col-md-6">
+          <nz-form-item>
+     
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="payerssendAmountTpl">
+            <input nz-input id="payerssendAmount" formControlName="payerssendAmount" placeholder="Send Amount"/>
+			  <ng-template #payerssendAmountTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		      <div class="col-md-6">
+           <nz-form-item>
+     
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="payersreceiverAmountTpl">
+            <input nz-input id="payersreceiverAmount" formControlName="payersreceiverAmount" placeholder="Receive Amount"/>
+			  <ng-template #payersreceiverAmountTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+ <br><br>
+	 <div class="air__utils__heading">
+    <h5>
+      <span class="mr-6">Receiver's Details</span>
+   
+    </h5>
+  </div>
+		      <div class="col-md-12">
+         <nz-form-item>
+     
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="receiversfirstNameTpl">
+            <input nz-input id="receiversfirstName" formControlName="receiversfirstName" placeholder="First Name"/>
+			  <ng-template #receiversfirstNameTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		      <div class="col-md-6">
+       <nz-form-item>
+     
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="receiverslastNameTpl">
+            <input nz-input id="receiverslastName" formControlName="receiverslastName" placeholder="Middle Name"/>
+			  <ng-template #receiverslastNameTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		      <div class="col-md-6">
+         <nz-form-item>
+     
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="receiverslastNameTpl">
+            <input nz-input id="receiverslastName" formControlName="receiverslastName" placeholder="Last Name"/>
+			  <ng-template #receiverslastNameTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		
+		
+		<br><br>
+	 <div class="air__utils__heading">
+    <h5>
+      <span class="mr-6">Address</span>
+   
+    </h5>
+  </div>
+		      <div class="col-md-12">
+        <nz-form-item>
+     
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="receiversAddressTpl">
+            <input nz-input id="receiversAddress" formControlName="receiversAddress" placeholder="Street Address"/>
+			  <ng-template #receiversAddressTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		    
+          <div class="col-md-6">
+             <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="countryTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select Country" >
+   <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #countryTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+          <div class="col-md-6">
+             <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="stateTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select State" >
+     <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #stateTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		      <div class="col-md-6">
+           <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="cityTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select City" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #cityTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		      <div class="col-md-6">
+           <nz-form-item>
+
+                     <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="townTpl">
+               <nz-select  nzShowSearch nzAllowClear  nzPlaceHolder=" Select Town" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #townTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		  
+		      <div class="col-md-12">
+         <nz-form-item>
+          
+     <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="receiverspostalCodeTpl">
+            <input nz-input id="receiverspostalCode" formControlName="receiverspostalCode" placeholder="Postal Code"/>
+			  <ng-template #receiverspostalCodeTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+
+		<br><br>
+	 <div class="air__utils__heading">
+    <h5>
+      <span class="mr-6">Additional Receiver's Details</span>
+   
+    </h5>
+  </div>
+		      <div class="col-md-12">
+           <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="sendersNumberTpl">
+            <input nz-input id="sendersNumber" formControlName="sendersNumber" placeholder="Mobile Number"/>
+			  <ng-template #sendersNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid  Mobile number
+            </ng-container>
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		    
+		  
+		      <div class="col-md-6">
+            <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="receiversEmailTpl">
+            <input nz-input id="receiversEmail" formControlName="receiversEmail" placeholder="Email"/>
+			  <ng-template #receiversEmailTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid Email
+            </ng-container>
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		        <div class="col-md-6">
+          <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="receiversworkNumberTpl">
+            <input nz-input id="receiversworkNumber" formControlName="receiversworkNumber" placeholder="Work Phone"/>
+			  <ng-template #receiversworkNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid Phone Number
+            </ng-container>
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		       <div class="col-md-6">
+        <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="receiversworkNumberTpl">
+            <input nz-input id="receivershomeNumber"  placeholder="Home Phone"/>
+			  <ng-template #receiversworkNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid Phone Number
+            </ng-container>
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		        <div class="col-md-6">
+         <nz-form-item>
+
+                     <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="receiversNatTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select Nationality" >
+    <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #receiversNatTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		      <div class="col-md-12">
+			       <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" >
+		
+          <textarea nz-input   placeholder="Ex. Description..."></textarea>
+			
+          </nz-form-control>
+        </nz-form-item>
+     
+          </div>
+		
+        </div>
+	
+    
+        </div>
+      </div>
+    
+  
+
+    </div>
+    <div class="col-xl-6 col-lg-12">
+      <div class="card">
+    
+        <div class="card-body">
+        <h4 class="mb-4">
+        <strong>Senders Details</strong>
+      </h4>
+	 
+    
+        <div class="row">
+     	      <div class="col-md-12">
+            <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="sendersfullNameTpl">
+            <input nz-input id="sendersfullName"  placeholder="First Name"/>
+			  <ng-template #sendersfullNameTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		        <div class="col-md-6">
+           <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="senderscardNumberTpl">
+            <input nz-input id="senderscardNumber"  placeholder="Loyalty Card Number"/>
+			  <ng-template #senderscardNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		       <div class="col-md-6">
+         <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="sendersdateTpl">
+            <input nz-input id="sendersdate"  placeholder="Date of Birth"/>
+			  <ng-template #sendersdateTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		  <div class="air__utils__heading">
+    <h5>
+      <span class="mr-6">Address</span>
+   
+    </h5>
+  </div>
+		      <div class="col-md-12">
+            <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="sendersAddressTpl">
+            <input nz-input id="sendersAddress" placeholder="Street Address"/>
+			  <ng-template #sendersAddressTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		    
+            
+          <div class="col-md-6">
+             <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="countryTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select Country" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #countryTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+          <div class="col-md-6">
+             <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="stateTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select State" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #stateTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		      <div class="col-md-6">
+           <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="cityTpl">
+               <nz-select nzShowSearch nzAllowClear   nzPlaceHolder=" Select City" >
+         <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #cityTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		     		      <div class="col-md-6">
+           <nz-form-item>
+
+                     <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="townTpl">
+               <nz-select nzShowSearch nzAllowClear   nzPlaceHolder=" Select Town" >
+       <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #townTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+
+
+		      <div class="col-md-6">
+        <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="sendersNumberTpl">
+            <input nz-input id="sendersNumber"  placeholder="Mobile Number"/>
+			  <ng-template #sendersNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid Mobile number
+            </ng-container>
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		    
+		  
+		      <div class="col-md-6">
+            <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="sendersEmailTpl">
+            <input nz-input id="sendersEmail"  placeholder="Email"/>
+			  <ng-template #sendersEmailTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid Email 
+            </ng-container>
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		        <div class="col-md-6">
+          <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="sendersworkNumberTpl">
+            <input nz-input id="sendersworkNumber"  placeholder="Work Phone"/>
+			  <ng-template #sendersworkNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid Phone Number 
+            </ng-container>
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		       <div class="col-md-6">
+         <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="sendershomeNumberTpl">
+            <input nz-input id="sendershomeNumber"  placeholder="Home Phone"/>
+			  <ng-template #sendershomeNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid Phone Number 
+            </ng-container>
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		        <div class="col-md-6">
+          <nz-form-item>
+
+                     <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="typeofIdTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="typeofId"  nzPlaceHolder=" Select Type of Identification" >
+   <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+    </nz-select>
+	<ng-template #typeofIdTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		       <div class="col-md-6">
+          <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="idNumTpl">
+            <input nz-input id="idNum" placeholder="Identification Number"/>
+			  <ng-template #idNumTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		       <div class="col-md-6">
+          <nz-form-item>
+        
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="idNumsTpl">
+            <input nz-input id="idExp" placeholder="DD/MM/YYYY"/>
+			  <ng-template #idNumsTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			
+			
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		      <div class="col-md-6">
+      <nz-form-item>
+
+                     <nz-form-control [nzSm]="24" [nzXs]="24"     [nzErrorTip]="natiTpl">
+               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder=" Select Nationality" >
+        <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #natiTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		  
+		  
+		 
+      <div class="card-body">
+	   <h4 class="mb-4">
+        <strong>Transfast</strong>
+      </h4><br><br>
+	      <div class="col-md-12">
+  
+          </div>
+		    <div class="col-md-12 text-right font-size-18 text-dark">
+
+   <div>
+      Send Amount : <span class="font-weight-bold"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$406,472.50</span>
+    </div>
+	 <div>
+      Receive Amount : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$406,472.50</span>
+    </div>
+	 <div>
+      Exchange Rate : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$406,472.50</span>
+    </div>
+	 <div>
+      Service Fee : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$406,472.50</span>
+    </div>
+    <div>
+      Taxes : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$81,294.50</span>
+    </div>
+	 <div>
+      USD Service Fees :  <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$81,294.50</span>
+    </div>
+	 <div>
+      Handling Amount : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$81,294.50</span>
+    </div>
+	 <div>
+      Total Payable : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$81,294.50</span>
+    </div>
+    
+ 
+  </div>
+		
+ </div>
+ </div>
+		
+        </div>
+      </div>
+    
+
+
+    </div>
+  </div>
+  	    </form>
+		
+		
+       <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" >
+             EXIT
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+             SUBMIT TRANSACTION
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+  
+</div>
+
+

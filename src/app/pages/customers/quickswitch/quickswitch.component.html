@@ -1,0 +1,90 @@
+<div>
+
+ <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+      Account
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+     Quick Switch
+      </a>
+    </li>
+  </ul>
+ 
+
+ 
+</div>
+<div class="card">
+      <div class="card-body">
+	    <h4 class="mb-4">
+        <strong>Quick Switch</strong>
+      </h4>
+	    
+          <form nz-form [nzLayout]="'vertical'">
+        <div class="row">
+          
+          <div class="col-md-12">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Transfer Type :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please Select Transfer Type">
+               <nz-select nzShowSearch nzAllowClear nzPlaceHolder=" Select Transfer Type" >
+      <nz-option nzLabel="transfer" nzValue="transfer"></nz-option>
+      <nz-option nzLabel="transfer1" nzValue="transfer1"></nz-option>
+ 
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		   </div>
+		   </form>
+		    </div>
+			 </div>
+  <div class="card">
+      <div class="card-body">
+	    <h4 class="mb-4">
+        <strong>Quick Switch for the card ending with xxxx - </strong>
+      </h4>
+	    
+          <form nz-form [nzLayout]="'vertical'">
+        
+          
+          <div class="col-md-6">
+         <nz-form-item>
+             <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Card ATM Status</nz-form-label>
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your Card POS Status!">
+            <nz-switch ></nz-switch>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		       <div class="col-md-6">
+         <nz-form-item>
+             <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Card POS Status</nz-form-label>
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your Card POS Status!">
+            <nz-switch ></nz-switch>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		   </form>
+		    </div>
+			 </div>
+
+  	 	     <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" >
+             EXIT
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+             SAVE 
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+  
+</div>
+
+

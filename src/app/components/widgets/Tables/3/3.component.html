@@ -1,0 +1,67 @@
+<div>
+  <div class="card-header card-header-flex">
+    <nz-tabset class="air-tabs" [nzSelectedIndex]="0">
+      <nz-tab nzTitle="History"></nz-tab>
+      <nz-tab nzTitle="Actions"></nz-tab>
+    </nz-tabset>
+    <div class="d-inline-flex align-items-center">
+      <a
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+        nzTrigger="click"
+        nzPlacement="bottomRight"
+        class="nav-link dropdown-toggle"
+        href="javascript:;"
+      >
+        Dropdown
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item><a href="javascript:;">Action</a></li>
+          <li nz-menu-item><a href="javascript:;">Another action</a></li>
+          <li nz-menu-item><a href="javascript:;">Something else here</a></li>
+          <li nz-menu-divider></li>
+          <li nz-menu-item><a href="javascript:;">Separated link</a></li>
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+  <div class="card-body">
+    <nz-table #basicTable [nzData]="tableData" [nzShowPagination]="false" class="air__utils__scrollTable mb-4">
+      <thead>
+      <tr>
+        <th class="bg-transparent width-50"></th>
+        <th class="bg-transparent">User Name</th>
+        <th class="bg-transparent">Location</th>
+        <th class="bg-transparent text-right"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>
+          <div class="air__utils__avatar">
+            <img [src]="data.avatar" alt="User" />
+          </div>
+        </td>
+        <td>
+          <div>{{data.userName.name}}</div>
+          <div class="text-gray-4">{{data.userName.position}}</div>
+        </td>
+        <td>
+          <a href="javascript: void(0);" class="text-blue">
+            {{data.location}}
+          </a>
+        </td>
+        <td class="text-right">
+          <button type="button" class="btn btn-primary mr-2">
+            <i class="fe fe-plus-circle"></i>
+          </button>
+          <button type="button" class="btn btn-light">
+            <i class="fe fe-settings text-blue"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

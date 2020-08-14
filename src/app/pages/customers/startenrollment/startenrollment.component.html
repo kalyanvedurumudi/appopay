@@ -1,0 +1,184 @@
+<div>
+   <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+      BankJet Enrollment Start 
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+      BankJet Enrollment Start 
+      </a>
+    </li>
+  </ul>
+
+
+ 
+</div>
+<br>
+  
+  
+      <div class="card">
+    <div class="card-body">
+    
+      <h4 class="mb-4">
+        <strong> BankJet Enrollment Start </strong>
+      </h4>
+      <form nz-form [nzLayout]="'vertical'" [formGroup]="bankDepositsForm" (ngSubmit)="submitForm(bankDepositsForm.value)">
+        <div class="row">
+             <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">First Name :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="routerNumberTpl">
+            <input nz-input id="routingNumber" formControlName="fromAccount" placeholder="First Name"/>
+			      <ng-template #routerNumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		     <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Last Name :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="routerNumberTpl">
+            <input nz-input id="routingNumber" formControlName="fromAccount" placeholder="Last Name"/>
+			      <ng-template #routerNumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		     <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Middle Name :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="routerNumberTpl">
+            <input nz-input id="routingNumber" formControlName="fromAccount" placeholder="Middle Name"/>
+			      <ng-template #routerNumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		       <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">User Name :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="routerNumberTpl">
+            <input nz-input id="routingNumber" formControlName="fromAccount" placeholder="User Name"/>
+			      <ng-template #routerNumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		       <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Card Pin (4digits) :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="routerNumberTpl">
+            <input nz-input id="routingNumber" formControlName="fromAccount" placeholder="Card Pin (4digits)"/>
+			      <ng-template #routerNumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		      <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Password :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="routerNumberTpl">
+            <input nz-input id="routingNumber" formControlName="fromAccount" placeholder="Password"/>
+			      <ng-template #routerNumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		     <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Password Hint :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="routerNumberTpl">
+            <input nz-input id="routingNumber" formControlName="fromAccount" placeholder="Password Hint"/>
+			      <ng-template #routerNumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+         
+		  
+		  
+		  
+		      <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Email :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="bankAccountNumberTpl">
+            <input nz-input id="accountNumber" formControlName="accountNumber" placeholder="Email"/>
+			  <ng-template #bankAccountNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid number
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('minlength')">
+             Account number has to be min 6 digits
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		 
+		  
+		
+		 
+        </div>
+		   <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
+            NEXT
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+             SUBMIT
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+  
+  
+ 
+
+</div>

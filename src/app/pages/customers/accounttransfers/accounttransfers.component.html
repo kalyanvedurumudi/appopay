@@ -1,0 +1,106 @@
+<div>
+   <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+        Account Transfers
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+        Account Transfers
+      </a>
+    </li>
+  </ul>
+
+ 
+</div>
+<br><br>
+  
+  
+      <div class="card">
+    <div class="card-body">
+    
+     <h4 class="mb-4">
+        <strong>Account To Account Transfer</strong>
+      </h4>
+     <form nz-form [nzLayout]="'vertical'" [formGroup]="accountTransfersForm" (ngSubmit)="submitForm(accountTransfersForm.value)">
+        <div class="row">
+               <div class="col-md-6">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> From Account :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="fromAccountTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="fromAccount" nzPlaceHolder="Please Select From Account" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	  <ng-template #fromAccountTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		    <div class="col-md-6">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> To Account :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="toAccountTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="toAccount" nzPlaceHolder="Please Select To Account" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	  <ng-template #toAccountTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		      
+             <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Amount To Be Transfered :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="amountTranferedTpl">
+            <input nz-input id="debitDate" formControlName="amountTranfered" placeholder="Amount To Be Transfered"/>
+			  <ng-template #amountTranferedTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		
+		  
+        </div>
+		    <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
+             RESET
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+             SUBMIT
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+  
+  
+ 
+
+</div>

@@ -1,0 +1,65 @@
+<div>
+  <div class="air__utils__heading">
+    <h5>
+      <span class="mr-3">Bootstrap Components</span>
+      <a
+        href="https://ng-bootstrap.github.io/#/getting-started"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="btn btn-sm btn-light"
+      >
+        Official Documentation
+        <i class="fe fe-corner-right-up"></i>
+      </a>
+    </h5>
+  </div>
+  <div class="mb-3">
+    <button
+      type="button"
+      *ngFor="let item of kit; let i = index"
+      [ngClass]="[selectedExampleIndex === i ? 'bg-primary text-white' : 'text-primary', 'btn', 'btn-light', 'mr-2', 'mb-2']"
+      (click)="setExample(i)"
+    >
+      {{ item.name }}
+    </button>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex align-items-baseline flex-wrap">
+        <h5 class="text-black mb-2 mr-2">
+          <strong>{{ example.name }}</strong>
+        </h5>
+        <a
+          [href]="example.link"
+          target="_blank"
+          class="air__utils__link air__utils__link__underlined"
+        >
+          Examples
+          <small>
+            <i class="icmn-link ml-1"></i>
+          </small>
+        </a>
+      </div>
+      <p>{{ example.description }}</p>
+      <div [ngSwitch]="selectedExampleIndex">
+        <air-bootstrap-alerts-example *ngSwitchCase="0"></air-bootstrap-alerts-example>
+        <air-bootstrap-buttons-example *ngSwitchCase="1"></air-bootstrap-buttons-example>
+        <air-bootstrap-carousel-example *ngSwitchCase="2"></air-bootstrap-carousel-example>
+        <air-bootstrap-collapse-example *ngSwitchCase="3"></air-bootstrap-collapse-example>
+        <air-bootstrap-datepicker-example *ngSwitchCase="4"></air-bootstrap-datepicker-example>
+        <air-bootstrap-dropdowns-example *ngSwitchCase="5"></air-bootstrap-dropdowns-example>
+        <air-bootstrap-modals-example *ngSwitchCase="6"></air-bootstrap-modals-example>
+        <air-bootstrap-pagination-example *ngSwitchCase="7"></air-bootstrap-pagination-example>
+        <air-bootstrap-popover-example *ngSwitchCase="8"></air-bootstrap-popover-example>
+        <air-bootstrap-progress-example *ngSwitchCase="9"></air-bootstrap-progress-example>
+        <air-bootstrap-rating-example *ngSwitchCase="10"></air-bootstrap-rating-example>
+        <air-bootstrap-tables-example *ngSwitchCase="11"></air-bootstrap-tables-example>
+        <air-bootstrap-tabs-example *ngSwitchCase="12"></air-bootstrap-tabs-example>
+        <air-bootstrap-timepicker-example *ngSwitchCase="13"></air-bootstrap-timepicker-example>
+        <air-bootstrap-toasts-example *ngSwitchCase="14"></air-bootstrap-toasts-example>
+        <air-bootstrap-tooltips-example *ngSwitchCase="15"></air-bootstrap-tooltips-example>
+        <air-bootstrap-typeahead-example *ngSwitchCase="16"></air-bootstrap-typeahead-example>
+      </div>
+    </div>
+  </div>
+</div>

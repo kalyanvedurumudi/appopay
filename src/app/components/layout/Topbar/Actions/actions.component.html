@@ -1,0 +1,15 @@
+<div>
+  <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
+    <i class="icon fe fe-menu"></i>
+    <span class="d-none d-xl-inline">
+      {{ 'topBar.actions' | translate }}
+    </span>
+  </div>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="card air__utils__shadow width-350">
+      <div class="card-body p-0">
+        <air-list-2></air-list-2>
+      </div>
+    </div>
+  </nz-dropdown-menu>
+</div>

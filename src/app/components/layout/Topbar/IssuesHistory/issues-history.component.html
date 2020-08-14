@@ -1,0 +1,50 @@
+<div>
+  <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
+    <i class="icon fe fe-book-open"></i>
+    <span class="d-none d-xl-inline">
+      {{ 'topBar.issuesHistory' | translate }}
+    </span>
+  </div>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <li nz-menu-group>
+        <span title>
+          <strong>Active</strong>
+        </span>
+        <ul class="list-unstyled">
+          <li nz-menu-item>
+            <a href="javascript: void(0);">
+              Project Management
+            </a>
+          </li>
+          <li nz-menu-item>
+            <a href="javascript: void(0);">
+              User Interface Development
+            </a>
+          </li>
+          <li nz-menu-item>
+            <a href="javascript: void(0);">
+              Documentation
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li nz-menu-group>
+        <span title>
+          <strong>Inactive</strong>
+        </span>
+        <ul class="list-unstyled">
+          <li nz-menu-item>
+            <a href="javascript: void(0);">Marketing</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-menu-divider></li>
+      <li nz-menu-item>
+        <a href="javascript: void(0);">
+          <i class="menuIcon fe fe-settings"></i> Settings
+        </a>
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+</div>

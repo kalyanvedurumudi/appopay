@@ -1,0 +1,25 @@
+@import 'src/assets/styles/mixins.scss';
+
+.searchContainer {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  color: $gray-4;
+  font-size: rem(17);
+  top: 50%;
+  transform: translateY(-50%);
+  left: rem(15);
+}
+
+.searchInput {
+  border: 1px solid $gray-2;
+  border-radius: 5px;
+  background-color: $white;
+  padding-left: rem(45);
+  padding-right: rem(20);
+  padding-top: rem(6);
+  padding-bottom: rem(5);
+  width: rem(260);
+}

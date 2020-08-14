@@ -1,0 +1,95 @@
+<div>
+   <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+     Card To Card Transfer
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+     Card To Card Transfer
+      </a>
+    </li>
+  </ul>
+  <div class="divider mr-4 d-none d-xl-block"></div>
+
+  
+ 
+</div>
+<br><br>
+  
+  
+      <div class="card">
+    <div class="card-body">
+    
+       <h4 class="mb-4">
+        <strong> Card To Card Transfer</strong>
+      </h4>
+     <form nz-form [nzLayout]="'vertical'" [formGroup]="topupAirtimeForm" (ngSubmit)="submitForm(topupAirtimeForm.value)">
+        <div class="row">
+           
+		  
+		       <div class="col-md-12">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Card Number :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="cardNumberTpl">
+            <input nz-input id="mobileNumber" formControlName="mobileNumber" placeholder="Enter Card Number "/>
+			  <ng-template #cardNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid number
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('minlength')">
+             Mobile number has to be min 8 digits
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+        
+	
+		 
+		       <div class="col-md-12">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Amount to Tarnsfer :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="cardNumberTpl">
+            <input nz-input id="mobileNumber" formControlName="mobileNumber" placeholder="Enter Amount to Tarnsfer "/>
+			  <ng-template #cardNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid number
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('minlength')">
+             Mobile number has to be min 8 digits
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+        </div>
+		    <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
+             RESET
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+             TRANSFER
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+  
+  
+ 
+
+</div>

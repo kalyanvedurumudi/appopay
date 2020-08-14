@@ -1,0 +1,34 @@
+<nz-table #filterTable [nzData]="listOfDisplayData" class="air__utils__scrollTable mb-4"
+          [nzScroll]="{x: '100%'}">
+  <thead (nzSortChange)="sort($event)" nzSingleSort>
+  <tr>
+    <th
+      nzShowSort
+      nzSortKey="name"
+      nzShowFilter
+      [nzFilters]="listOfName"
+      (nzFilterChange)="filter($event, searchAddress)"
+    >
+      Name
+    </th>
+    <th nzShowSort nzSortKey="age">Age</th>
+    <th
+      nzShowSort
+      nzSortKey="address"
+      nzShowFilter
+      [nzFilterMultiple]="false"
+      [nzFilters]="listOfAddress"
+      (nzFilterChange)="filter(listOfSearchName, $event)"
+    >
+      Address
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of filterTable.data">
+    <td>{{ data.name }}</td>
+    <td>{{ data.age }}</td>
+    <td>{{ data.address }}</td>
+  </tr>
+  </tbody>
+</nz-table>

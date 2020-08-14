@@ -1,0 +1,225 @@
+<div>
+
+ <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+        ACCOUNT SETTINGS
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+      ACCOUNT SETTINGS
+      </a>
+    </li>
+  </ul>
+ 
+
+ 
+</div>
+
+<div class="card">
+      <div class="card-body">
+	    <h4 class="mb-4">
+        <strong>Account Settings for card ending in xxxx </strong>
+      </h4>
+	     
+          <form nz-form [nzLayout]="'vertical'">
+        <div class="row">
+          
+          <div class="col-md-12">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Account Type :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip=" Select Account Type">
+               <nz-select nzShowSearch nzAllowClear nzPlaceHolder=" Select  Account Typ" >
+      <nz-option nzLabel="transfer" nzValue="transfer"></nz-option>
+      <nz-option nzLabel="transfer1" nzValue="transfer1"></nz-option>
+ 
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		
+		
+		  
+		  
+		   </div>
+		   </form>
+		    </div>
+			 </div>
+			 
+			 <div class="card">
+      <div class="card-body">
+	    <h4 class="mb-4">
+        <strong>Notification Limits  </strong>
+      </h4>
+	     
+          <form nz-form [nzLayout]="'vertical'">
+        <div class="row">
+              <div class="col-md-4">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your Low Balance!">
+            <nz-switch ></nz-switch>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+ 
+			 <div class="col-md-8">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your Low Balance!">
+            <input nz-input id="full-name"  placeholder="100.00"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		   </div>
+		   </form>
+		    </div>
+			 </div>
+			 
+			  <div class="card">
+      <div class="card-body">
+	    <h4 class="mb-4">
+        <strong>When i Active mycard , turn it off after </strong>
+      </h4>
+	     
+          <form nz-form [nzLayout]="'vertical'">
+        <div class="row">
+           
+          <div class="col-md-6">
+            <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Disable ATM">
+               <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Disable ATM" >
+      <nz-option nzLabel="country1" nzValue="country1"></nz-option>
+      <nz-option nzLabel="country2" nzValue="country2"></nz-option>
+ 
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		  
+          <div class="col-md-6">
+            <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Select Disable POS">
+               <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Disable POS" >
+      <nz-option nzLabel="country1" nzValue="country1"></nz-option>
+      <nz-option nzLabel="country2" nzValue="country2"></nz-option>
+ 
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		  
+		   </div>
+		   </form>
+		    </div>
+			 </div>
+
+
+  	 			 
+			  <div class="card">
+      <div class="card-body">
+	    <h4 class="mb-4">
+        <strong>When i Active mycard , turn it off after </strong>
+      </h4>
+	     
+          <form nz-form [nzLayout]="'vertical'">
+        <div class="row">
+           
+    
+			 <div class="col-md-6">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your ATM Limit Daily">
+            <input nz-input id="full-name"  placeholder="ATM Limit Daily"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+      
+			 <div class="col-md-6">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your ATM Limit Weekly">
+            <input nz-input id="full-name"  placeholder="ATM Limit Weekly"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		   <div class="col-md-6">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your POS Limit Daily!">
+            <input nz-input id="full-name"  placeholder="POS Limit Daily"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		   <div class="col-md-6">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your POS Limit Weekly!">
+            <input nz-input id="full-name"  placeholder="POS Limit Weekly"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		   </div>
+		   </form>
+		    </div>
+			 </div>
+			 
+			 <div class="card">
+      <div class="card-body">
+	    <h4 class="mb-4">
+        <strong>Select Charitable Cause  </strong>
+      </h4>
+	     
+          <form nz-form [nzLayout]="'vertical'">
+        <div class="row">
+          
+          <div class="col-md-12">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Charitable Cause :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip=" Select Charitable Cause">
+               <nz-select nzShowSearch nzAllowClear nzPlaceHolder=" Select Charitable Cause" >
+      <nz-option nzLabel="transfer" nzValue="transfer"></nz-option>
+      <nz-option nzLabel="transfer1" nzValue="transfer1"></nz-option>
+ 
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		
+		
+		  
+		  
+		   </div>
+		   </form>
+		    </div>
+			 </div>
+			 
+			     <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" >
+             EXIT
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+             SUBMIT 
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+  
+</div>
+
+

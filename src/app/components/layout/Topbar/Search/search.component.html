@@ -1,0 +1,19 @@
+<div>
+  <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
+    <div class="searchContainer">
+      <i class="searchIcon fe fe-search"></i>
+      <input class="searchInput" type="text" placeholder="{{ 'topBar.typeToSearch' | translate }}" />
+    </div>
+  </div>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="card air__utils__shadow width-330">
+      <div class="card-body p-1 height-350">
+        <perfect-scrollbar>
+          <div class="pt-4 px-4 pb-2">
+            <air-list-1></air-list-1>
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </div>
+  </nz-dropdown-menu>
+</div>

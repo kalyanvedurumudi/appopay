@@ -1,0 +1,13 @@
+@import 'src/assets/styles/mixins.scss';
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: rem(-30);
+}
+
+.item {
+  width: 50%;
+  margin-bottom: rem(25);
+}

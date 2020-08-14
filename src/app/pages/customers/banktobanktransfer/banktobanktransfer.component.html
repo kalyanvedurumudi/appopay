@@ -1,0 +1,326 @@
+<div>
+
+ <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+         Bank to Bank Transfer
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+       Bank to Bank (ACH) Transfer
+      </a>
+    </li>
+  </ul>
+ 
+
+ 
+</div>
+<br> 
+
+
+  <div class="row">
+    <div class="col-xl-6 col-lg-12">
+      <div class="card">
+	    <div class="row">
+        <div class="card-header card-header-flex">
+          <div class="d-flex flex-column justify-content-center mr-auto">
+            <h5 class="mb-0">Bank to Bank Transfer  </h5>
+			
+          </div>
+   
+        </div>
+		  <h5 style="float: right!important;margin-top: 11px;margin-right: 11px;">
+    
+	  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add Payee</button>
+    </h5>
+	  <h5 style="float: right!important;margin-top: 11px;">
+    
+	  <button class="btn btn-lg btn-outline-primary" (click)="open(lgcontent)">View Payee</button>
+    </h5>
+	</div>
+        <div class="card-body">
+		
+          <form nz-form [nzLayout]="'vertical'">
+        <div class="row">
+          
+         
+
+		    
+		     <div class="col-md-12">
+           <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Select Account">
+               <nz-select nzShowSearch nzAllowClear nzPlaceHolder=" Select Account" >
+      <nz-option nzLabel="payers" nzValue="payers"></nz-option>
+      <nz-option nzLabel="payers1" nzValue="payers1"></nz-option>
+ 
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		      
+		        <div class="col-md-12">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter Amount to Transfer!">
+            <input nz-input id="full-name"  placeholder="Amount to Transfer"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+
+		 
+	
+		       <div class="ml-3">
+       
+            <h5 class="mb-3">Trasnfer To </h5>
+        
+   
+        </div>
+		      <div class="col-md-12">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your Account Number!">
+            <input nz-input id="full-name"  placeholder=" Account Number"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		      <div class="col-md-12">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter  Routing Number!">
+            <input nz-input id="full-name"  placeholder="Routing Number"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+     <div class="col-md-12">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter  Debit Description!">
+            <input nz-input id="full-name"  placeholder="Debit Description"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+
+     <div class="col-md-12">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter  Credit Description!">
+            <input nz-input id="full-name"  placeholder="Credit Description"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+
+		 
+		
+        </div>
+	
+      </form>
+        </div>
+      </div>
+    
+       <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" >
+             CANCEL
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+             SUBMIT
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+
+    </div>
+    <div class="col-xl-6 col-lg-12">
+      <div class="card">
+    
+        <div class="card-body">
+        <h4 class="mb-4">
+        <strong>Account Details</strong>
+      </h4>
+	 
+          <form nz-form [nzLayout]="'vertical'">
+        <div class="row">
+     	
+		  
+
+ 
+       <div class="card-body">
+
+	      <div class="col-md-12">
+  
+          </div>
+		    <div class="col-md-12 text-right font-size-18 text-dark">
+
+   <div>
+    Account Balance : <span class="font-weight-bold"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0.000</span>
+    </div>
+	 <div>
+      Amount On-Hold : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0.000</span>
+    </div>
+	 <div>
+    Pending ACH Transfer : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0.000</span>
+    </div>
+
+    	 <div>
+   Available Balance  : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0.000</span>
+    </div>
+ 
+  </div>
+		
+ </div>
+ </div>
+		   </form>
+        </div>
+      </div>
+    
+
+  
+  
+
+    </div>
+  </div>
+  	 
+</div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Payee</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="addCardForm" (ngSubmit)="submitForm(addCardForm.value)">
+        <div class="row">
+          	  
+		     <div class="col-md-6">
+         <nz-form-item>
+       
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="payeenameTpl">
+            <input nz-input id="payeename" formControlName="payeename" placeholder="Payee Name"/>
+			      <ng-template #payeenameTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  	  
+		     <div class="col-md-6">
+         <nz-form-item>
+       
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="payeeAccountTpl">
+            <input nz-input id="ccExp" formControlName="ccExp" placeholder="Payee Account ID"/>
+			      <ng-template #payeeAccountTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  	  
+		     <div class="col-md-6">
+         <nz-form-item>
+       
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="cvvTpl">
+            <input nz-input id="cvv" formControlName="cvv" placeholder="Bank Routing Number"/>
+			      <ng-template #cvvTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		       <div class="col-md-6">
+         <nz-form-item>
+       
+          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="accounnumberTpl">
+            <input nz-input id="fullName" formControlName="fullName" placeholder="Bank Account Number"/>
+			      <ng-template #accounnumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+         
+
+		
+        
+		  
+        </div>
+		
+      </form>
+    </div>
+    <div class="modal-footer">
+         <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
+             CLOSE
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+              CONFIRM
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+    </div>
+  </ng-template>
+
+<ng-template #lgcontent let-modal >
+    <div class="modal-header" >
+      <h4 class="modal-title" id="modal-basic-title"> Payee List</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" >
+<table class="table ">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Payee Name</th>
+    <th scope="col">Account Number</th>
+    <th scope="col">Bank Routing Number</th>
+	   <th scope="col">Bank Account Number</th>
+	<th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="mb-4">
+  <td>xxxxxxx</td>
+   <td>xxxxxxx</td>
+    <td>xxxxxxx</td>
+    <td>xxxxxxxxxx</td>
+    <td>xxxxxxx</td>
+    <td>  <button  class="btn btn-primary" >
+              REMOVE
+            </button></td>
+  </tr>
+  </tbody>
+</table>
+    </div>
+    <div class="modal-footer">
+         <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" >
+             CLOSE
+            </button>
+          
+          </nz-form-control>
+        </nz-form-item>
+    </div>
+  </ng-template>

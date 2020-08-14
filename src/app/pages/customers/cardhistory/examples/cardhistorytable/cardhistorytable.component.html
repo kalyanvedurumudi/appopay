@@ -1,0 +1,65 @@
+   <div class="">
+    <h4 class="mb-4 ml-2">
+        <strong>My Card History</strong>
+      </h4>
+   <div class="form-group form-inline">
+   <input class="form-control ml-2" type="text" name="searchTerm" placeholder="search" />
+     </div> 
+  </div>
+<div class="table-operations">
+  <!--<button nz-button (click)="sort('age', 'descend')">Sort age</button>
+  <button nz-button (click)="resetFilters()">Clear filters</button>
+  <button nz-button (click)="resetSortAndFilters()">Clear filters and sorters</button>-->
+ 
+</div>
+<nz-table #filterTable [nzData]="listOfDisplayData"  class="air__utils__scrollTable mb-4"
+          [nzScroll]="{x: '100%'}">
+  <thead>
+  <tr>
+    <th
+      nzShowSort
+      nzShowFilter
+      [(nzSort)]="mapOfSort.name"
+      (nzSortChange)="sort('name', $event)"
+      [nzFilters]="listOfFilterName"
+      (nzFilterChange)="search($event, listOfSearchAddress)"
+    >
+      DATE OF ORIGIN
+	  </th>
+    <th nzShowSort [(nzSort)]="mapOfSort.age" (nzSortChange)="sort('age', $event)">DESCRIPTION</th>
+    <th
+      nzShowSort
+      nzShowFilter
+      [(nzSort)]="mapOfSort.address"
+      (nzSortChange)="sort('address', $event)"
+      [nzFilters]="listOfFilterAddress"
+      (nzFilterChange)="search(listOfSearchName, $event)"
+    >
+      CURRENCY
+    </th>
+	  <th
+      nzShowSort
+      nzShowFilter
+      [(nzSort)]="mapOfSort.address"
+      (nzSortChange)="sort('address', $event)"
+      [nzFilters]="listOfFilterAddress"
+      (nzFilterChange)="search(listOfSearchName, $event)"
+    >
+      AMOUNT
+    </th>
+	
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of filterTable.data">
+    <td>{{ data.name }}</td>
+    <td>{{ data.age }}</td>
+    <td>{{ data.address }}</td>
+	    <td>{{ data.name }}</td>
+   
+
+  
+  </tr>
+  </tbody>
+</nz-table>

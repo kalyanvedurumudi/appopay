@@ -1,0 +1,441 @@
+@import 'src/assets/styles/mixins.scss';
+
+// CHARTIST ANIMATED
+
+.chartist-animated ::ng-deep .ct-label.ct-horizontal.ct-start {
+  -webkit-box-align: flex-end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  text-anchor: start;
+}
+.chartist-animated ::ng-deep .ct-label.ct-horizontal.ct-end {
+  -webkit-box-align: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  text-anchor: start;
+}
+.chartist-animated ::ng-deep .ct-label.ct-vertical.ct-start {
+  -webkit-box-align: flex-end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-pack: flex-end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: flex-end;
+  justify-content: flex-end;
+  text-align: right;
+  text-anchor: end;
+}
+.chartist-animated ::ng-deep .ct-label.ct-vertical.ct-end {
+  -webkit-box-align: flex-end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  text-anchor: start;
+}
+.chartist-animated ::ng-deep .ct-chart-bar .ct-label.ct-horizontal.ct-start {
+  -webkit-box-align: flex-end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  text-anchor: start;
+}
+.chartist-animated ::ng-deep .ct-chart-bar .ct-label.ct-horizontal.ct-end {
+  -webkit-box-align: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  text-anchor: start;
+}
+.chartist-animated ::ng-deep .ct-chart-bar.ct-horizontal-bars .ct-label.ct-horizontal.ct-start {
+  -webkit-box-align: flex-end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  text-anchor: start;
+}
+.chartist-animated ::ng-deep .ct-chart-bar.ct-horizontal-bars .ct-label.ct-horizontal.ct-end {
+  -webkit-box-align: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  text-anchor: start;
+}
+.chartist-animated ::ng-deep .ct-chart-bar.ct-horizontal-bars .ct-label.ct-vertical.ct-start {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: flex-end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: flex-end;
+  justify-content: flex-end;
+  text-align: right;
+  text-anchor: end;
+}
+.chartist-animated ::ng-deep .ct-chart-bar.ct-horizontal-bars .ct-label.ct-vertical.ct-end {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  text-anchor: end;
+}
+.chartist-animated ::ng-deep .ct-grid {
+  stroke: #53494b;
+  stroke-width: 1px;
+  stroke-dasharray: 3px;
+}
+.chartist-animated ::ng-deep .ct-point {
+  stroke-width: 10px;
+  stroke-linecap: round;
+}
+.chartist-animated ::ng-deep .ct-line {
+  fill: none;
+  stroke-width: 4px;
+}
+.chartist-animated ::ng-deep .ct-area {
+  stroke: none;
+  fill-opacity: 0.1;
+}
+.chartist-animated ::ng-deep .ct-bar {
+  fill: none;
+  stroke-width: 10px;
+}
+.chartist-animated ::ng-deep .ct-slice-donut {
+  fill: none;
+  stroke-width: 60px;
+}
+.chartist-animated ::ng-deep .ct-series-a .ct-bar,
+.chartist-animated ::ng-deep .ct-series-a .ct-line,
+.chartist-animated ::ng-deep .ct-series-a .ct-point,
+.chartist-animated ::ng-deep .ct-series-a .ct-slice-donut {
+  stroke: $primary;
+}
+.chartist-animated ::ng-deep .ct-series-a .ct-area,
+.chartist-animated ::ng-deep .ct-series-a .ct-slice-pie {
+  fill: $primary;
+}
+.chartist-animated ::ng-deep .ct-series-b .ct-bar,
+.chartist-animated ::ng-deep .ct-series-b .ct-line,
+.chartist-animated ::ng-deep .ct-series-b .ct-point,
+.chartist-animated ::ng-deep .ct-series-b .ct-slice-donut {
+  stroke: #f05b4f;
+}
+.chartist-animated ::ng-deep .ct-series-b .ct-area,
+.chartist-animated ::ng-deep .ct-series-b .ct-slice-pie {
+  fill: #f05b4f;
+}
+.chartist-animated ::ng-deep .ct-series-c .ct-bar,
+.chartist-animated ::ng-deep .ct-series-c .ct-line,
+.chartist-animated ::ng-deep .ct-series-c .ct-point,
+.chartist-animated ::ng-deep .ct-series-c .ct-slice-donut {
+  stroke: #f4c63d;
+}
+.chartist-animated ::ng-deep .ct-series-c .ct-area,
+.chartist-animated ::ng-deep .ct-series-c .ct-slice-pie {
+  fill: #f4c63d;
+}
+.chartist-animated ::ng-deep .ct-series-d .ct-bar,
+.chartist-animated ::ng-deep .ct-series-d .ct-line,
+.chartist-animated ::ng-deep .ct-series-d .ct-point,
+.chartist-animated ::ng-deep .ct-series-d .ct-slice-donut {
+  stroke: #d17905;
+}
+.chartist-animated ::ng-deep .ct-series-d .ct-area,
+.chartist-animated ::ng-deep .ct-series-d .ct-slice-pie {
+  fill: #d17905;
+}
+.chartist-animated ::ng-deep .ct-series-e .ct-bar,
+.chartist-animated ::ng-deep .ct-series-e .ct-line,
+.chartist-animated ::ng-deep .ct-series-e .ct-point,
+.chartist-animated ::ng-deep .ct-series-e .ct-slice-donut {
+  stroke: #453d3f;
+}
+.chartist-animated ::ng-deep .ct-series-e .ct-area,
+.chartist-animated ::ng-deep .ct-series-e .ct-slice-pie {
+  fill: #453d3f;
+}
+.chartist-animated ::ng-deep .ct-series-f .ct-bar,
+.chartist-animated ::ng-deep .ct-series-f .ct-line,
+.chartist-animated ::ng-deep .ct-series-f .ct-point,
+.chartist-animated ::ng-deep .ct-series-f .ct-slice-donut {
+  stroke: #59922b;
+}
+.chartist-animated ::ng-deep .ct-series-f .ct-area,
+.chartist-animated ::ng-deep .ct-series-f .ct-slice-pie {
+  fill: #59922b;
+}
+.chartist-animated ::ng-deep .ct-series-g .ct-bar,
+.chartist-animated ::ng-deep .ct-series-g .ct-line,
+.chartist-animated ::ng-deep .ct-series-g .ct-point,
+.chartist-animated ::ng-deep .ct-series-g .ct-slice-donut {
+  stroke: #0544d3;
+}
+.chartist-animated ::ng-deep .ct-series-g .ct-area,
+.chartist-animated ::ng-deep .ct-series-g .ct-slice-pie {
+  fill: #0544d3;
+}
+.chartist-animated ::ng-deep .ct-series-h .ct-bar,
+.chartist-animated ::ng-deep .ct-series-h .ct-line,
+.chartist-animated ::ng-deep .ct-series-h .ct-point,
+.chartist-animated ::ng-deep .ct-series-h .ct-slice-donut {
+  stroke: #6b0392;
+}
+.chartist-animated ::ng-deep .ct-series-h .ct-area,
+.chartist-animated ::ng-deep .ct-series-h .ct-slice-pie {
+  fill: #6b0392;
+}
+.chartist-animated ::ng-deep .ct-series-i .ct-bar,
+.chartist-animated ::ng-deep .ct-series-i .ct-line,
+.chartist-animated ::ng-deep .ct-series-i .ct-point,
+.chartist-animated ::ng-deep .ct-series-i .ct-slice-donut {
+  stroke: #f05b4f;
+}
+.chartist-animated ::ng-deep .ct-series-i .ct-area,
+.chartist-animated ::ng-deep .ct-series-i .ct-slice-pie {
+  fill: #f05b4f;
+}
+.chartist-animated ::ng-deep .ct-series-j .ct-bar,
+.chartist-animated ::ng-deep .ct-series-j .ct-line,
+.chartist-animated ::ng-deep .ct-series-j .ct-point,
+.chartist-animated ::ng-deep .ct-series-j .ct-slice-donut {
+  stroke: #dda458;
+}
+.chartist-animated ::ng-deep .ct-series-j .ct-area,
+.chartist-animated ::ng-deep .ct-series-j .ct-slice-pie {
+  fill: #dda458;
+}
+.chartist-animated ::ng-deep .ct-series-k .ct-bar,
+.chartist-animated ::ng-deep .ct-series-k .ct-line,
+.chartist-animated ::ng-deep .ct-series-k .ct-point,
+.chartist-animated ::ng-deep .ct-series-k .ct-slice-donut {
+  stroke: #eacf7d;
+}
+.chartist-animated ::ng-deep .ct-series-k .ct-area,
+.chartist-animated ::ng-deep .ct-series-k .ct-slice-pie {
+  fill: #eacf7d;
+}
+.chartist-animated ::ng-deep .ct-series-l .ct-bar,
+.chartist-animated ::ng-deep .ct-series-l .ct-line,
+.chartist-animated ::ng-deep .ct-series-l .ct-point,
+.chartist-animated ::ng-deep .ct-series-l .ct-slice-donut {
+  stroke: #86797d;
+}
+.chartist-animated ::ng-deep .ct-series-l .ct-area,
+.chartist-animated ::ng-deep .ct-series-l .ct-slice-pie {
+  fill: #86797d;
+}
+.chartist-animated ::ng-deep .ct-series-m .ct-bar,
+.chartist-animated ::ng-deep .ct-series-m .ct-line,
+.chartist-animated ::ng-deep .ct-series-m .ct-point,
+.chartist-animated ::ng-deep .ct-series-m .ct-slice-donut {
+  stroke: #b2c326;
+}
+.chartist-animated ::ng-deep .ct-series-m .ct-area,
+.chartist-animated ::ng-deep .ct-series-m .ct-slice-pie {
+  fill: #b2c326;
+}
+.chartist-animated ::ng-deep .ct-series-n .ct-bar,
+.chartist-animated ::ng-deep .ct-series-n .ct-line,
+.chartist-animated ::ng-deep .ct-series-n .ct-point,
+.chartist-animated ::ng-deep .ct-series-n .ct-slice-donut {
+  stroke: #6188e2;
+}
+.chartist-animated ::ng-deep .ct-series-n .ct-area,
+.chartist-animated ::ng-deep .ct-series-n .ct-slice-pie {
+  fill: #6188e2;
+}
+.chartist-animated ::ng-deep .ct-series-o .ct-bar,
+.chartist-animated ::ng-deep .ct-series-o .ct-line,
+.chartist-animated ::ng-deep .ct-series-o .ct-point,
+.chartist-animated ::ng-deep .ct-series-o .ct-slice-donut {
+  stroke: #a748ca;
+}
+.chartist-animated ::ng-deep .ct-series-o .ct-area,
+.chartist-animated ::ng-deep .ct-series-o .ct-slice-pie {
+  fill: #a748ca;
+}
+.chartist-animated ::ng-deep .ct-series-a .ct-point {
+  stroke-width: 10px;
+  stroke-linecap: square;
+}
+.chartist-animated ::ng-deep .ct-series-a .ct-line {
+  fill: none;
+  stroke-width: 4px;
+  stroke-dasharray: 5px;
+  -webkit-animation: dashoffset 1s linear infinite;
+  -moz-animation: dashoffset 1s linear infinite;
+  -o-animation: dashoffset 1s linear infinite;
+  animation: dashoffset 1s linear infinite;
+}
+.chartist-animated ::ng-deep .ct-series-b .ct-point {
+  -webkit-animation: bouncing-stroke 0.5s ease infinite;
+  -moz-animation: bouncing-stroke 0.5s ease infinite;
+  -o-animation: bouncing-stroke 0.5s ease infinite;
+  animation: bouncing-stroke 0.5s ease infinite;
+}
+.chartist-animated ::ng-deep .ct-series-b .ct-line {
+  fill: none;
+  stroke-width: 3px;
+}
+.chartist-animated ::ng-deep .ct-series-c .ct-point {
+  -webkit-animation: exploding-stroke 1s ease-out infinite;
+  -moz-animation: exploding-stroke 1s ease-out infinite;
+  -o-animation: exploding-stroke 1s ease-out infinite;
+  animation: exploding-stroke 1s ease-out infinite;
+}
+.chartist-animated ::ng-deep .ct-series-c .ct-line {
+  fill: none;
+  stroke-width: 2px;
+  stroke-dasharray: 40px 3px;
+}
+@-webkit-keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -20px;
+  }
+}
+@-moz-keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -20px;
+  }
+}
+@-ms-keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -20px;
+  }
+}
+@keyframes dashoffset {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -20px;
+  }
+}
+@-webkit-keyframes bouncing-stroke {
+  0%,
+  100% {
+    stroke-width: 5px;
+  }
+  50% {
+    stroke-width: 10px;
+  }
+}
+@-moz-keyframes bouncing-stroke {
+  0%,
+  100% {
+    stroke-width: 5px;
+  }
+  50% {
+    stroke-width: 10px;
+  }
+}
+@-ms-keyframes bouncing-stroke {
+  0%,
+  100% {
+    stroke-width: 5px;
+  }
+  50% {
+    stroke-width: 10px;
+  }
+}
+@keyframes bouncing-stroke {
+  0%,
+  100% {
+    stroke-width: 5px;
+  }
+  50% {
+    stroke-width: 10px;
+  }
+}
+@-webkit-keyframes exploding-stroke {
+  0% {
+    stroke-width: 2px;
+    opacity: 1;
+  }
+  100% {
+    stroke-width: 20px;
+    opacity: 0;
+  }
+}
+@-moz-keyframes exploding-stroke {
+  0% {
+    stroke-width: 2px;
+    opacity: 1;
+  }
+  100% {
+    stroke-width: 20px;
+    opacity: 0;
+  }
+}
+@-ms-keyframes exploding-stroke {
+  0% {
+    stroke-width: 2px;
+    opacity: 1;
+  }
+  100% {
+    stroke-width: 20px;
+    opacity: 0;
+  }
+}
+@keyframes exploding-stroke {
+  0% {
+    stroke-width: 2px;
+    opacity: 1;
+  }
+  100% {
+    stroke-width: 20px;
+    opacity: 0;
+  }
+}

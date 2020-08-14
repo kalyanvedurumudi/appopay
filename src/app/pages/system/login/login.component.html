@@ -1,0 +1,96 @@
+<div class="auth">
+  <div class="pt-5 pb-5 d-flex align-items-end mt-auto">
+
+  </div>
+  <div class="pl-5 pr-5 pt-5 pb-5 bg-white container">
+    <div class="text-dark font-size-25 mb-2 text-center">
+      <img src="assets/images/appopay.png" style="height:45px!important;" alt="AIR UI Logo" /> </div>
+    <div class="text-dark font-size-25 mb-2 text-center">Welcome back </div>
+    <div class="text-dark font-size-20 mb-2 text-center"><b>Sign in with your credentials below.</b></div>
+    <div class="text-muted text-center mb-4">
+
+    </div>
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="form" (ngSubmit)="submitForm()" role="form">
+      <div class="row">
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="codeTpl">
+              <nz-select formControlName="country" nzShowSearch nzAllowClear nzPlaceHolder="Select Code">
+                <nz-option name="country" *ngFor="let cntry of filteredBanks | async " nzLabel="(+{{cntry.areacode}}) {{cntry.countryname}}" [nzValue]="cntry.id"></nz-option>
+              </nz-select>
+              <ng-template #codeTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Mobile Number">
+              <input type="text" formControlName="mobilenumber" nz-input nzSize="large" placeholder="Mobile Number" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <input type="text" formControlName="password" nz-input nzSize="large" placeholder="Password" />
+        </nz-form-control>
+      </nz-form-item>
+      <!--<nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Select Type of Identification">
+               <nz-select nzShowSearch nzAllowClear nzPlaceHolder=" User Role" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	
+          </nz-form-control>
+
+		   </nz-form-item>-->
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" [nzSize]="'large'"
+            class="text-center btn btn-success w-100 font-weight-bold font-size-18">
+            Log In
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    <!-- <a routerLink="/dashboard/analytics"
+      class="font-weight-bold font-size-18 text-dark btn btn-outline-light w-100 mb-3 googleSign"
+      style="background-image: url('assets/images/icons/google-logo.svg')">
+      Log in with Google
+    </a>-->
+    <div class="text-center">
+      <a routerLink="/system/forgot-password" class="text-blue font-weight-bold font-size-18">
+        Forgot password?
+      </a>
+    </div>
+    <div class="text-center font-size-18 pt-4 mb-auto">
+      Don't have an account?
+      <a routerLink="/system/register" class="font-weight-bold text-blue text-underlined"><u>Sign Up</u></a>
+    </div>
+  </div>
+
+  <div class="mt-auto pb-5 pt-5">
+    <ul class="list-unstyled d-flex mb-2 flex-wrap justify-content-center footerNav">
+      <li>
+        <a href="javascript: void(0);">Terms of Use</a>
+      </li>
+      <li>
+        <a href="javascript: void(0);">Compliance</a>
+      </li>
+      <li>
+        <a href="javascript: void(0);">Support</a>
+      </li>
+      <li>
+        <a href="javascript: void(0);">Contacts</a>
+      </li>
+    </ul>
+    <div class="text-gray-4 text-center">© 2019 Mediatec. All rights reserved.</div>
+  </div>
+</div>

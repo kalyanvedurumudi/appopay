@@ -1,0 +1,103 @@
+<div>
+  <div class="air__utils__heading">
+    <h5>
+      <span class="mr-3">Ant Design Components</span>
+      <a
+        href="https://ng.ant.design/docs/introduce/en"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="btn btn-sm btn-light"
+      >
+        Official Documentation
+        <i class="fe fe-corner-right-up"></i>
+      </a>
+    </h5>
+  </div>
+  <div class="mb-3">
+    <button
+      type="button"
+      *ngFor="let item of kit; let i = index"
+      [ngClass]="[selectedExampleIndex === i ? 'bg-primary text-white' : 'text-primary', 'btn', 'btn-light', 'mr-2', 'mb-2']"
+      (click)="setExample(i)"
+    >
+      {{ item.name }}
+    </button>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex align-items-baseline flex-wrap">
+        <h5 class="text-black mb-2 mr-2">
+          <strong>{{ example.name }}</strong>
+        </h5>
+        <a
+          [href]="example.link"
+          target="_blank"
+          class="air__utils__link air__utils__link__underlined"
+        >
+          Examples
+          <small>
+            <i class="icmn-link ml-1"></i>
+          </small>
+        </a>
+      </div>
+      <p>{{ example.description }}</p>
+      <div [ngSwitch]="selectedExampleIndex">
+        <air-antd-button-example *ngSwitchCase="0"></air-antd-button-example>
+        <air-antd-icon-example *ngSwitchCase="1"></air-antd-icon-example>
+        <air-antd-typography-example *ngSwitchCase="2"></air-antd-typography-example>
+        <air-antd-grid-example *ngSwitchCase="3"></air-antd-grid-example>
+        <air-antd-layout-example *ngSwitchCase="4"></air-antd-layout-example>
+        <air-antd-avatar-example *ngSwitchCase="5"></air-antd-avatar-example>
+        <air-antd-badge-example *ngSwitchCase="6"></air-antd-badge-example>
+        <air-antd-comment-example *ngSwitchCase="7"></air-antd-comment-example>
+        <air-antd-collapse-example *ngSwitchCase="8"></air-antd-collapse-example>
+        <air-antd-carousel-example *ngSwitchCase="9"></air-antd-carousel-example>
+        <air-antd-card-example *ngSwitchCase="10"></air-antd-card-example>
+        <air-antd-calendar-example *ngSwitchCase="11"></air-antd-calendar-example>
+        <air-antd-list-example *ngSwitchCase="12"></air-antd-list-example>
+        <air-antd-popover-example *ngSwitchCase="13"></air-antd-popover-example>
+        <air-antd-tree-example *ngSwitchCase="14"></air-antd-tree-example>
+        <air-antd-tooltip-example *ngSwitchCase="15"></air-antd-tooltip-example>
+        <air-antd-timeline-example *ngSwitchCase="16"></air-antd-timeline-example>
+        <air-antd-tag-example *ngSwitchCase="17"></air-antd-tag-example>
+        <air-antd-tabs-example *ngSwitchCase="18"></air-antd-tabs-example>
+        <air-antd-table-example *ngSwitchCase="19"></air-antd-table-example>
+        <air-antd-autocomplete-example *ngSwitchCase="20"></air-antd-autocomplete-example>
+        <air-antd-checkbox-example *ngSwitchCase="21"></air-antd-checkbox-example>
+        <air-antd-cascader-example *ngSwitchCase="22"></air-antd-cascader-example>
+        <air-antd-datepicker-example *ngSwitchCase="23"></air-antd-datepicker-example>
+        <air-antd-form-example *ngSwitchCase="24"></air-antd-form-example>
+        <air-antd-inputnumber-example *ngSwitchCase="25"></air-antd-inputnumber-example>
+        <air-antd-input-example *ngSwitchCase="26"></air-antd-input-example>
+        <air-antd-mention-example *ngSwitchCase="27"></air-antd-mention-example>
+        <air-antd-rate-example *ngSwitchCase="28"></air-antd-rate-example>
+        <air-antd-radio-example *ngSwitchCase="29"></air-antd-radio-example>
+        <air-antd-switch-example *ngSwitchCase="30"></air-antd-switch-example>
+        <air-antd-slider-example *ngSwitchCase="31"></air-antd-slider-example>
+        <air-antd-select-example *ngSwitchCase="32"></air-antd-select-example>
+        <air-antd-treeselect-example *ngSwitchCase="33"></air-antd-treeselect-example>
+        <air-antd-transfer-example *ngSwitchCase="34"></air-antd-transfer-example>
+        <air-antd-timepicker-example *ngSwitchCase="35"></air-antd-timepicker-example>
+        <air-antd-upload-example *ngSwitchCase="36"></air-antd-upload-example>
+        <air-antd-alert-example *ngSwitchCase="37"></air-antd-alert-example>
+        <air-antd-drawer-example *ngSwitchCase="38"></air-antd-drawer-example>
+        <air-antd-modal-example *ngSwitchCase="39"></air-antd-modal-example>
+        <air-antd-message-example *ngSwitchCase="40"></air-antd-message-example>
+        <air-antd-notification-example *ngSwitchCase="41"></air-antd-notification-example>
+        <air-antd-progress-example *ngSwitchCase="42"></air-antd-progress-example>
+        <air-antd-popconfirm-example *ngSwitchCase="43"></air-antd-popconfirm-example>
+        <air-antd-spin-example *ngSwitchCase="44"></air-antd-spin-example>
+        <air-antd-skeleton-example *ngSwitchCase="45"></air-antd-skeleton-example>
+        <air-antd-affix-example *ngSwitchCase="46"></air-antd-affix-example>
+        <air-antd-breadcrumb-example *ngSwitchCase="47"></air-antd-breadcrumb-example>
+        <air-antd-dropdown-example *ngSwitchCase="48"></air-antd-dropdown-example>
+        <air-antd-menu-example *ngSwitchCase="49"></air-antd-menu-example>
+        <air-antd-pagination-example *ngSwitchCase="50"></air-antd-pagination-example>
+        <air-antd-steps-example *ngSwitchCase="51"></air-antd-steps-example>
+        <air-antd-anchor-example *ngSwitchCase="52"></air-antd-anchor-example>
+        <air-antd-backtop-example *ngSwitchCase="53"></air-antd-backtop-example>
+        <air-antd-divider-example *ngSwitchCase="54"></air-antd-divider-example>
+      </div>
+    </div>
+  </div>
+</div>

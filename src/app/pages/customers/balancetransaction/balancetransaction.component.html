@@ -1,0 +1,227 @@
+<div>
+
+ <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+         Account Transactions 
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+       Account Transactions 
+      </a>
+    </li>
+  </ul>
+ 
+
+ 
+</div>
+<br> 
+
+
+  <div class="row">
+  
+    <div class="col-xl-6 col-lg-12">
+      <div class="card">
+        <div class="card-header card-header-flex">
+          <div class="d-flex flex-column justify-content-center mr-auto">
+            <h5 class="mb-0">Account Transactions  </h5>
+          </div>
+   
+        </div>
+		
+        <div class="card-body">
+          <form nz-form [nzLayout]="'vertical'">
+        <div class="row">
+          
+         
+
+		    
+		     <div class="col-md-12">
+           <nz-form-item>
+
+                    <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Select Account">
+               <nz-select nzShowSearch nzAllowClear nzPlaceHolder=" Select Account" >
+      <nz-option nzLabel="payers" nzValue="payers"></nz-option>
+      <nz-option nzLabel="payers1" nzValue="payers1"></nz-option>
+ 
+    </nz-select>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		      
+		  
+		 
+		  
+		  
+		      <div class="col-md-12">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your From Date!">
+            <input nz-input id="full-name"  placeholder="Select From Date"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		      <div class="col-md-12">
+         <nz-form-item>
+          
+          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter  To Date!">
+            <input nz-input id="full-name"  placeholder="Select To Date"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+
+		 
+		
+        </div>
+	
+      </form>
+        </div>
+      </div>
+         <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" >
+             SEARCH
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+             EXPORT
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+  
+
+    </div>
+	
+	
+	
+    <div class="col-xl-6 col-lg-12">
+      <div class="card">
+    
+        <div class="card-body">
+        <h4 class="mb-4">
+        <strong>Account Balance </strong>
+      </h4>
+	 
+          <form nz-form [nzLayout]="'vertical'">
+        <div class="row">
+     	
+		  
+		  	  	 
+      <div class="card-body">
+
+	      <div class="col-md-12">
+  
+          </div>
+		    <div class="col-md-12 text-right font-size-18 text-dark">
+
+   <div>
+      Account Balance : <span class="font-weight-bold"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$406,472.50</span>
+    </div>
+	 <div>
+    Amount On-Hold : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0.000</span>
+    </div>
+	 <div>
+    Pending ACH Transfer : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0.000</span>
+    </div>
+	 <div>
+      Available Balance  : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0.000</span>
+    </div>
+   
+ 
+  </div>
+		
+ </div>
+ 
+       <div class="card-body">
+  <h4 class="mb-4">
+        <strong>Account Details </strong>
+      </h4>
+	      <div class="col-md-12">
+  
+          </div>
+		    <div class="col-md-12 text-right font-size-18 text-dark">
+
+   <div>
+      Account Number : <span class="font-weight-bold"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0.000</span>
+    </div>
+	 <div>
+      Routing Number : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0.000</span>
+    </div>
+	 <div>
+     Bank Account Number : <span class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$0.000</span>
+    </div>
+
+    
+ 
+  </div>
+		
+ </div>
+ </div>
+		   </form>
+        </div>
+      </div>
+    
+
+
+
+    </div>
+	
+	  <div class="col-xl-12 col-lg-12">
+      <div class="card">
+        <div class="card-header card-header-flex">
+          <div class="d-flex flex-column justify-content-center mr-auto">
+            <h5 class="mb-0">Post  Transactions  </h5>
+          </div>
+   
+        </div>
+		
+        <div class="card-body">
+      <table class="table ">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Transaction ID</th>
+    <th scope="col">Reference Number</th>
+	<th scope="col">Transaction Date</th>
+		<th scope="col">Description</th>
+    <th scope="col">Deposit</th>
+	   <th scope="col">Withdrawl</th>
+	   <th scope="col">Balance</th>
+	<th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="mb-4">
+  <td>xxxxxxx</td>
+   <td>xxxxxxx</td>
+    <td>xxxxxxx</td>
+    <td>xxxxxxxxxx</td>
+    <td>xxxxxxx</td>
+	<td>xxxxxxxxxx</td>
+    <td>xxxxxxx</td>
+	<td>xxxxxxxxxx</td>
+    
+    <td>  <button  class="btn btn-primary" >
+              REMOVE
+            </button></td>
+  </tr>
+  </tbody>
+</table>
+        </div>
+      </div>
+    
+  
+
+    </div>
+	  
+  
+  </div>
+  	 
+</div>
+
+

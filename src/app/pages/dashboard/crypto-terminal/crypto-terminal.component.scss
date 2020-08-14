@@ -1,0 +1,73 @@
+@import 'src/assets/styles/mixins.scss';
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/* CRYPTO TERMINAL */
+
+.cryptoTerminal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  @media (max-width: $md-max-width) {
+    flex-direction: column;
+  }
+}
+
+.listContainer {
+  width: rem(90);
+  margin-right: rem(40);
+  flex-shrink: 0;
+
+  @media (max-width: $md-max-width) {
+    display: none;
+  }
+}
+
+.list {
+  position: sticky;
+  height: calc(100vh - 100px);
+  top: 30px;
+  overflow: hidden;
+}
+
+.item {
+  display: block;
+  text-align: center;
+  color: $black;
+
+  &:hover {
+    color: $black;
+    background-color: $gray-2;
+  }
+}
+
+.content {
+  flex-grow: 1;
+  min-width: 0;
+
+  .flex-fill {
+    @media (max-width: $xs-max-width) {
+      width: 50%;
+    }
+  }
+}
+
+.table {
+  ::ng-deep .ant-table {
+    border: none;
+  }
+}
+
+.form-label {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: rem(12);
+}
+
+.form {
+  margin-bottom: 1px;
+
+  ::ng-deep .ant-form-item {
+    margin-bottom: rem(5);
+  }
+}

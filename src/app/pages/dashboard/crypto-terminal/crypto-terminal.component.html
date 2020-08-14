@@ -1,0 +1,476 @@
+<div class="cryptoTerminal">
+  <nz-select nzShowSearch style="width: 100%" [(ngModel)]="selectedItem" class="d-lg-none mb-3">
+    <nz-option nzValue="btc" nzLabel="BTC" nzCustomContent>
+      BTC (Bitcoin)
+      <nz-tag [nzColor]="'blue'" class="ml-3">+11.7%</nz-tag>
+    </nz-option>
+    <nz-option nzValue="snt" nzLabel="SNT" nzCustomContent>
+      SNT (Status Network Token)
+      <nz-tag [nzColor]="'red'" class="ml-3">-2.3%</nz-tag>
+    </nz-option>
+    <nz-option nzValue="rads" nzLabel="RADS" nzCustomContent>
+      SNT (Status Network Token)
+      <nz-tag [nzColor]="'red'" class="ml-3">-7.2%</nz-tag>
+    </nz-option>
+    <nz-option nzValue="meme" nzLabel="MEME" nzCustomContent>
+      MEME (Memetic)
+      <nz-tag [nzColor]="'red'" class="ml-3">-11.7%</nz-tag>
+    </nz-option>
+    <nz-option nzValue="xmr" nzLabel="XMR" nzCustomContent>
+      XMR (Monero)
+      <nz-tag [nzColor]="'blue'" class="ml-3">67.5%</nz-tag>
+    </nz-option>
+    <nz-option nzValue="gld" nzLabel="GLD" nzCustomContent>
+      GLD (GoldCoin)
+      <nz-tag [nzColor]="'red'" class="ml-3">-22.9%</nz-tag>
+    </nz-option>
+    <nz-option nzValue="neo" nzLabel="NEO" nzCustomContent>
+      NEO (Neo)
+      <nz-tag [nzColor]="'red'" class="ml-3">-12.3%</nz-tag>
+    </nz-option>
+    <nz-option nzValue="btg" nzLabel="BTG" nzCustomContent>
+      BTG (Bitcoin Gold)
+      <nz-tag [nzColor]="'blue'" class="ml-3">+4.3%</nz-tag>
+    </nz-option>
+    <nz-option nzValue="xrp" nzLabel="XRP" nzCustomContent>
+      XRP (Ripple)
+      <nz-tag [nzColor]="'red'" class="ml-3">-4.2%</nz-tag>
+    </nz-option>
+    <nz-option nzValue="zec" nzLabel="ZEC" nzCustomContent>
+      ZEC (ZCash)
+      <nz-tag [nzColor]="'red'" class="ml-3">-1.7%</nz-tag>
+    </nz-option>
+    <nz-option nzValue="zcl" nzLabel="ZCL" nzCustomContent>
+      ZCL (ZClassic)
+      <nz-tag [nzColor]="'red'" class="ml-3">-2.8%</nz-tag>
+    </nz-option>
+  </nz-select>
+  <div class="listContainer" #boundary>
+    <div class="scroll-container h-100">
+      <div #spacer></div>
+      <div class="rounded bg-gray-1 list" stickyThing [spacer]="spacer" [boundary]="boundary" [marginTop]="30">
+        <perfect-scrollbar>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">RVN</div>
+            <div class="text-success font-size-14 align-text-bottom">5.2% <span>↑</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1 bg-gray-3">
+            <div class="font-size-16 text-uppercase">BTC</div>
+            <div class="text-success font-size-14 align-text-bottom">1.4% <span>↑</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">XRP</div>
+            <div class="text-danger font-size-14 align-text-bottom">5.2% <span>↓</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">ADA</div>
+            <div class="text-success font-size-14 align-text-bottom">6.8% <span>↑</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">BSV</div>
+            <div class="text-success font-size-14 align-text-bottom">8.9% <span>↑</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">TUSD</div>
+            <div class="text-danger font-size-14 align-text-bottom">5.2% <span>↓</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">MTL</div>
+            <div class="text-success font-size-14 align-text-bottom">8.9% <span>↑</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">RVN</div>
+            <div class="text-success font-size-14 align-text-bottom">5.2% <span>↑</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">BTC</div>
+            <div class="text-success font-size-14 align-text-bottom">1.4% <span>↑</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">XRP</div>
+            <div class="text-danger font-size-14 align-text-bottom">5.2% <span>↓</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">ADA</div>
+            <div class="text-success font-size-14 align-text-bottom">6.8% <span>↑</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">BSV</div>
+            <div class="text-success font-size-14 align-text-bottom">8.9% <span>↑</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">TUSD</div>
+            <div class="text-danger font-size-14 align-text-bottom">5.2% <span>↓</span></div>
+          </a>
+          <a href="javascript: void(0);" class="item p-1">
+            <div class="font-size-16 text-uppercase">MTL</div>
+            <div class="text-success font-size-14 align-text-bottom">8.9% <span>↑</span></div>
+          </a>
+        </perfect-scrollbar>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="d-flex mb-3 flex-wrap">
+      <div class="d-flex align-items-center flex-nowrap flex-fill pr-2">
+        <div class="mr-3">
+          <img src="assets/images/icons/bitcoin.png" alt="Bitcoin">
+        </div>
+        <div>
+          <div class="font-weight-bold text-dark font-size-18 text-nowrap">BTC-USD</div>
+          <div class="font-size-14 text-gray-6 mt-n1">Bitcoin</div>
+        </div>
+      </div>
+      <div class="w-100 d-xl-none mb-2"></div>
+      <div class="text-left text-xl-right flex-fill px-sm-2">
+        <div class="font-weight-bold text-nowrap">$ <span class="text-success font-size-18">10144.87</span></div>
+        <div class="text-uppercase font-size-14 mt-n1">Last</div>
+      </div>
+      <div class="text-left text-xl-right flex-fill px-sm-2">
+        <div class="font-weight-bold text-nowrap">$ <span class="text-danger font-size-18">10144.65</span></div>
+        <div class="text-uppercase font-size-14 mt-n1">BID</div>
+      </div>
+      <div class="w-100 d-sm-none"></div>
+      <div class="text-left text-xl-right flex-fill px-sm-2">
+        <div class="font-weight-bold text-nowrap">$ <span class="text-danger font-size-18">10144.65</span></div>
+        <div class="text-uppercase font-size-14 mt-n1">ASK</div>
+      </div>
+      <div class="text-left text-xl-right flex-fill px-sm-2">
+        <div class="font-weight-bold text-nowrap">$ <span class="text-danger font-size-18">4180496.22</span></div>
+        <div class="text-uppercase font-size-14 mt-n1">Volume</div>
+      </div>
+      <div class="w-100 d-xl-none mb-2"></div>
+      <div class="text-left text-xl-right flex-fill align-self-center">
+        <button class="btn btn-success btn-with-addon text-nowrap">
+          <span class="btn-addon">
+            <i class="btn-addon-icon fe fe-plus-circle"></i>
+          </span>
+          Add Deposit
+        </button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header card-header-flex">
+        <nz-tabset class="air-tabs mr-auto" [nzSelectedIndex]="0">
+          <nz-tab nzTitle="MARKET CHART"></nz-tab>
+          <nz-tab nzTitle="DEPTH CHART"></nz-tab>
+        </nz-tabset>
+        <div class="d-inline-flex align-items-center">
+          <a nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click" nzPlacement="bottomRight"
+             class="nav-link dropdown-toggle" href="javascript:;">
+            30m
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item><a href="javascript:;">Action</a></li>
+              <li nz-menu-item><a href="javascript:;">Another action</a></li>
+              <li nz-menu-item><a href="javascript:;">Something else here</a></li>
+              <li nz-menu-divider></li>
+              <li nz-menu-item><a href="javascript:;">Separated link</a></li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+        <div class="d-inline-flex align-items-center">
+          <a nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click" nzPlacement="bottomRight"
+             class="nav-link dropdown-toggle" href="javascript:;">
+            Views
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item><a href="javascript:;">Action</a></li>
+              <li nz-menu-item><a href="javascript:;">Another action</a></li>
+              <li nz-menu-item><a href="javascript:;">Something else here</a></li>
+              <li nz-menu-divider></li>
+              <li nz-menu-item><a href="javascript:;">Separated link</a></li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+      </div>
+      <div class="card-body">
+        <nvd3 [options]="cryptoGraphOptions" [data]="cryptoGraphData"></nvd3>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="mb-2">Order Book</h5>
+        <div class="d-block d-xl-flex">
+          <div class="flex-grow-1">
+            <nz-table #orderBookSellTable nzSize="small" [nzData]="orderBookSell" class="table air__utils__scrollTable" [nzScroll]="{x: '100%'}">
+              <thead>
+              <tr>
+                <th class="text-right">SUM</th>
+                <th class="text-right">Total</th>
+                <th class="text-right">Size</th>
+                <th class="text-right">BID</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of orderBookSellTable.data" class="text-right">
+                <td>{{item.sum}}</td>
+                <td>{{item.total}}</td>
+                <td>{{item.size}}</td>
+                <td [ngStyle]="{'color': '#00a45b'}">{{item.bid}}</td>
+                <td>
+                  <a href="javascript: void(0);" class="utils__link--blue mr-2">
+                    <strong>SELL</strong>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </div>
+          <div class="width-250 mx-auto mx-xl-4">
+            <form nz-form nzLayout="vertical" class="form">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-radio-group [(ngModel)]="actionType" [ngStyle]="{'width': '100%', 'text-align': 'center'}" [ngModelOptions]="{standalone: true}">
+                    <label nz-radio-button nzValue="buy" [ngStyle]="{'width': '50%', 'text-align': 'center'}">BUY</label>
+                    <label nz-radio-button nzValue="sell" [ngStyle]="{'width': '50%', 'text-align': 'center'}">SELL</label>
+                  </nz-radio-group>
+                </nz-form-control>
+              </nz-form-item>
+              <div *ngIf="actionType === 'buy'">
+                <span class="form-label">ORDER TYPE</span>
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-select [(ngModel)]="orderType" [ngModelOptions]="{standalone: true}">
+                      <nz-option nzValue="limit" nzLabel="Limit (Default)"></nz-option>
+                      <nz-option nzValue="conditional" nzLabel="Conditional"></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+                <span class="form-label">QUANTITY (BTC)</span>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input type="text" nz-input [ngModel]="'0.00000000'" [ngModelOptions]="{standalone: true}">
+                  </nz-form-control>
+                </nz-form-item>
+                <span class="form-label">BID PRICE</span>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input type="text" nz-input [ngModel]="'0.00645198'" [ngModelOptions]="{standalone: true}">
+                  </nz-form-control>
+                </nz-form-item>
+                <span class="form-label">TOTAL</span>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input type="text" nz-input [ngModel]="'0.00000000'" [ngModelOptions]="{standalone: true}">
+                  </nz-form-control>
+                </nz-form-item>
+                <span class="form-label">TIME IN FORCE</span>
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-select [(ngModel)]="timeInForce" [ngModelOptions]="{standalone: true}">
+                      <nz-option nzValue="good" nzLabel="Good &#39;Til Cancelled (Default)"></nz-option>
+                      <nz-option nzValue="immediate" nzLabel="Immediate or Cancel"></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+                <button class="btn btn-success" style="width: 100%;">
+                  <strong>BUY BTC</strong>
+                </button>
+                <div class="my-3 text-center">
+                  <div>
+                    <strong>Available Balance</strong>
+                  </div>
+                  <div>12.92520000 BTC</div>
+                  <div>1450.00 USD</div>
+                  <div>
+                    <a href="javascript: void(0);" class="utils__link--blue utils__link--underlined">
+                      <strong>Max Buy</strong>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="actionType === 'sell'">
+                <span class="form-label">ORDER TYPE</span>
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-select [(ngModel)]="orderType" [ngModelOptions]="{standalone: true}">
+                      <nz-option nzValue="limit" nzLabel="Limit (Default)"></nz-option>
+                      <nz-option nzValue="conditional" nzLabel="Conditional"></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+                <span class="form-label">QUANTITY (BTC)</span>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input type="text" nz-input [ngModel]="'0.00000000'" [ngModelOptions]="{standalone: true}">
+                  </nz-form-control>
+                </nz-form-item>
+                <span class="form-label">ASK PRICE</span>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input type="text" nz-input [ngModel]="'0.00645198'" [ngModelOptions]="{standalone: true}">
+                  </nz-form-control>
+                </nz-form-item>
+                <span class="form-label">TOTAL</span>
+                <nz-form-item>
+                  <nz-form-control>
+                    <input type="text" nz-input [ngModel]="'0.00000000'" [ngModelOptions]="{standalone: true}">
+                  </nz-form-control>
+                </nz-form-item>
+                <span class="form-label">TIME IN FORCE</span>
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-select [(ngModel)]="timeInForce" [ngModelOptions]="{standalone: true}">
+                      <nz-option nzValue="good" nzLabel="Good &#39;Til Cancelled (Default)"></nz-option>
+                      <nz-option nzValue="immediate" nzLabel="Immediate or Cancel"></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+                <button class="btn btn-danger" style="width: 100%;">
+                  <strong>SELL BTC</strong>
+                </button>
+                <div class="my-3 text-center">
+                  <div>
+                    <strong>Available Balance</strong>
+                  </div>
+                  <div>12.92520000 BTC</div>
+                  <div>1450.00 USD</div>
+                  <div>
+                    <a href="javascript: void(0);" class="utils__link--blue utils__link--underlined">
+                      <strong>Max Sell</strong>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="flex-grow-1">
+            <nz-table #orderBookBuyTable [nzData]="orderBookBuy" nzSize="small" class="table air__utils__scrollTable">
+              <thead>
+              <tr>
+                <th></th>
+                <th>ASK</th>
+                <th>Size</th>
+                <th>Total</th>
+                <th>SUM</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of orderBookBuyTable.data" class="text-left">
+                <td class="text-left">
+                  <a href="javascript: void(0);" class="utils__link--blue ml-2">
+                    <strong>BUY</strong>
+                  </a>
+                </td>
+                <td class="text-left" [ngStyle]="{'color': '#f75535'}">
+                  {{item.ask}}
+                </td>
+                <td class="text-left">{{item.size}}</td>
+                <td class="text-left">{{item.total}}</td>
+                <td class="text-left">{{item.sum}}</td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="mb-2">Market History</h5>
+        <div class="text-nowrap">
+          <nz-table #marketHistoryTable nzSize="small" [nzData]="marketHistoryData"
+                    class="table air__utils__scrollTable">
+            <thead>
+            <tr>
+              <th>Date</th>
+              <th>BUY/SELL</th>
+              <th>BID/ASK</th>
+              <th>Units Total</th>
+              <th>Total Cost</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of marketHistoryTable.data">
+              <td>{{item.orderDate}}</td>
+              <td [ngClass]="[item.type === 'SELL' ? 'text-danger' : 'text-success']">{{item.type}}</td>
+              <td>{{item.bidAsk}}</td>
+              <td>{{item.unitsTotal}}</td>
+              <td>{{item.totalCost}}</td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="mb-2">My Open Orders</h5>
+        <a href="javascript: void(0);" *ngIf="!openOrdersLoaded" (click)="handleLoadOpenOrders()">
+          <nz-spin [nzSpinning]="openOrdersLoading">
+            <nz-alert [nzType]="'info'" [nzDescription]="'Click to view open order details'">
+            </nz-alert>
+          </nz-spin>
+        </a>
+        <nz-table *ngIf="openOrdersLoaded" #openOrdersTable nzSize="small" [nzData]="myOpenOrdersData"
+                  class="table air__utils__scrollTable">
+          <thead>
+          <tr>
+            <th>Order Date</th>
+            <th>Open Date</th>
+            <th>Type</th>
+            <th>Bid/Ask</th>
+            <th>Filled</th>
+            <th>Units Total</th>
+            <th>Actual Rate</th>
+            <th>Est. Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of openOrdersTable.data">
+            <td>{{item.orderDate}}</td>
+            <td>{{item.openDate}}</td>
+            <td [ngClass]="[item.type === 'SELL' ? 'text-danger' : 'text-success']">{{item.type}}</td>
+            <td>{{item.bidAsk}}</td>
+            <td>{{item.filled}}</td>
+            <td>{{item.unitsTotal}}</td>
+            <td>{{item.actualRate}}</td>
+            <td>{{item.estTotal}}</td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="mb-2">My Order History</h5>
+        <a href="javascript: void(0);" *ngIf="!orderHistoryLoaded" (click)="handleLoadOrderHistory()">
+          <nz-spin [nzSpinning]="orderHistoryLoading">
+            <nz-alert [nzType]="'info'" [nzDescription]="'Click to view open order details'">
+            </nz-alert>
+          </nz-spin>
+        </a>
+        <nz-table *ngIf="orderHistoryLoaded" #historyOrdersTable nzSize="small" [nzData]="myOpenOrdersData" class="table air__utils__scrollTable">
+          <thead>
+          <tr>
+            <th>Order Date</th>
+            <th>Open Date</th>
+            <th>Type</th>
+            <th>Bid/Ask</th>
+            <th>Filled</th>
+            <th>Units Total</th>
+            <th>Actual Rate</th>
+            <th>Est. Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of historyOrdersTable.data">
+            <td>{{item.orderDate}}</td>
+            <td>{{item.openDate}}</td>
+            <td [ngClass]="[item.type === 'SELL' ? 'text-danger' : 'text-success']">{{item.type}}</td>
+            <td>{{item.bidAsk}}</td>
+            <td>{{item.filled}}</td>
+            <td>{{item.unitsTotal}}</td>
+            <td>{{item.actualRate}}</td>
+            <td>{{item.estTotal}}</td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </div>
+</div>

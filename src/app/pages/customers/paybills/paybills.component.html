@@ -1,0 +1,167 @@
+<div>
+   <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+       Payments
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+      Pay Bills
+      </a>
+    </li>
+  </ul>
+
+
+
+ 
+</div>
+<br><br>
+  
+  
+      <div class="card">
+    <div class="card-body">
+    
+     <h4 class="mb-4">
+        <strong>Bill Payment</strong>
+      </h4>
+     <form nz-form [nzLayout]="'vertical'" [formGroup]="payBillsForm" (ngSubmit)="submitForm(payBillsForm.value)">
+        <div class="row">
+               <div class="col-md-6">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Service Type :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="serviceTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="serviceType" nzPlaceHolder="Please Select Service Type" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	  <ng-template #serviceTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+          <div class="col-md-6">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Account :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="accountTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="fromAccount" nzPlaceHolder="Please Select Account" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	  <ng-template #accountTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		
+              <div class="col-md-6">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Country :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="countryTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="country" nzPlaceHolder="Please Select Country" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	  <ng-template #countryTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		
+		 
+		      <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Amount to Pay(Example(1.00)  :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Enter Amount to Pay(Example(1.00)!">
+            <input nz-input id="amountPay" formControlName="amountPay" placeholder="Enter Amount to Pay(Example(1.00) "/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		     
+		    <div class="col-md-6">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Service Providers :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="serviceProvTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="serviceProviders" nzPlaceHolder="Please Select Service Providers" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	  <ng-template #serviceProvTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		  
+		     <div class="col-md-6">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Provider Product :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="providerTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="providerProduct" nzPlaceHolder="Please Select Provider Product" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	  <ng-template #providerTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+        </div>
+		    <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
+             RESET
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+              SUBMIT
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+  
+  
+ 
+
+</div>

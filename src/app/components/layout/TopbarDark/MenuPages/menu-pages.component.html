@@ -1,0 +1,37 @@
+<div>
+  <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
+    <i class="icon fe fe-menu mr-2"></i>
+    Pages
+  </div>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu [nzMode]="'vertical'" style="width: 200px;">
+      <ng-container *ngFor="let item of menuData">
+        <ng-container *ngIf="!item.category && item.children">
+          <li nz-submenu>
+            <span title>
+              <i class="mr-2" [ngClass]="item.icon"></i>
+              {{ item.title }}
+            </span>
+            <ul class="list-unstyled">
+              <ng-container *ngFor="let subItem of item.children">
+                <li nz-menu-item>
+                  <a [routerLink]="subItem.url">
+                    {{ subItem.title }}
+                  </a>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="!item.category && item.url">
+          <li nz-menu-item>
+            <a [routerLink]="item.url">
+              <i class="mr-2" [ngClass]="item.icon"></i>
+              {{ item.title }}
+            </a>
+          </li>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </nz-dropdown-menu>
+</div>

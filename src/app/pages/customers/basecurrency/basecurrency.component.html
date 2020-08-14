@@ -1,0 +1,266 @@
+<div>
+   <div class="subbar">
+  <ul class="breadcrumbList mr-4">
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink">
+        Add Fund
+      </a>
+    </li>
+    <li class="breadcrumbItem">
+      <a href="#" class="breadcrumbLink breadcrumbLink__current">
+       Base(USD) Currency
+      </a>
+    </li>
+  </ul>
+  <div class="divider mr-4 d-none d-xl-block"></div>
+
+  <button type="button" class="btn btn-primary  mr-auto text-nowrap d-none d-md-block" routerLink="/customers/changecurrency">
+
+   Change(USD) Currency
+  </button>
+ 
+</div>
+<br><br>
+  
+  
+      <div class="card">
+    <div class="card-body">
+    
+	
+      <form nz-form [nzLayout]="'vertical'" [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm.value)">
+        <div class="row">
+          
+          <div class="col-md-6">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Account :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="accountTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="fromAccount" nzPlaceHolder="Please Select Account" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	  <ng-template #accountTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+          <div class="col-md-6">
+           <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Country :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="countryTpl">
+               <nz-select nzShowSearch formControlName="country" nzAllowClear nzPlaceHolder="Please Select Country" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #countryTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		     <div class="col-md-6">
+           <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Bank Name :</nz-form-label>
+                    <nz-form-control [nzSm]="18"  [nzXs]="24" [nzErrorTip]="bankNameTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="bankName" nzPlaceHolder="Please Select Bank Name" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+		<ng-template #bankNameTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+	
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		  
+		     <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Bank Code :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="routerNumberTpl">
+            <input nz-input id="routingNumber" formControlName="routingNumber" placeholder="Routing Number/Bank Code"/>
+			      <ng-template #routerNumberTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+        
+         <div class="col-md-6">
+            <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Bank Currency :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="bankCurrencyTpl">
+               <nz-select nzShowSearch nzAllowClear  formControlName="bankCurrency"  nzPlaceHolder="Please Select Bank Currency" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+		<ng-template #bankCurrencyTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+          <div class="col-md-6">
+           <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Account Type :</nz-form-label>
+                    <nz-form-control [nzSm]="18" [nzXs]="24"   [nzErrorTip]="accountTypeTpl">
+               <nz-select nzShowSearch nzAllowClear formControlName="accountType" nzPlaceHolder="Please Select Account Type" >
+      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+ 
+    </nz-select>
+	<ng-template #accountTypeTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+
+
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+	
+		   </nz-form-item>
+          </div>
+		  
+		  
+		      <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Account Holder Name :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="accountHolderTpl">
+            <input nz-input id="accountholderName" formControlName="accountholderName" placeholder="Account Holder Name"/>
+			  <ng-template #accountHolderTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		  
+		      <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Bank Account Number :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="bankAccountNumberTpl">
+            <input nz-input id="accountNumber" formControlName="accountNumber" placeholder="Bank Account Number"/>
+			  <ng-template #bankAccountNumberTpl let-control>
+          
+            <ng-container *ngIf="control.hasError('required')">
+            Required
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid number
+            </ng-container>
+			  <ng-container *ngIf="control.hasError('minlength')">
+             Account number has to be min 6 digits
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		 
+		  
+		  
+		      <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Debit Date :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="debitDateTpl">
+            <input nz-input id="debitDate" formControlName="debitDate" placeholder="Debit Date"/>
+			  <ng-template #debitDateTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		  
+		      <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Enter Amount :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="enterAmountTpl">
+            <input nz-input id="enterAmount" formControlName="enterAmount" placeholder="Enter Amount"/>
+			  <ng-template #enterAmountTpl let-control>
+           
+            <ng-container *ngIf="control.hasError('required')">
+              Required 
+            </ng-container>
+          </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		      <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Conversion Rate :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Conversion Rate!">
+            <input nz-input id="full-name" formControlName="fullName" placeholder="Conversion Rate"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+		  
+		       <div class="col-md-6">
+         <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Amount to be Credited  :</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Amount to be Credited!">
+            <input nz-input id="full-name" formControlName="fullName" placeholder="Amount to be Credited"/>
+          </nz-form-control>
+        </nz-form-item>
+          </div>
+        </div>
+		   <nz-form-item>
+          <nz-form-control>
+              <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
+             RESET
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" >
+              ADD FUND
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+  
+  
+ 
+
+</div>
