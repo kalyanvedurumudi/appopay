@@ -48,8 +48,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.storage.clear();
-    this.getCountry();
+    if (this.authService.isLoggedIn) {
+      this.router.navigate(['dashboard/analytics']);      
+    } else {
+      this.storage.clear();
+      this.getCountry();
+
+    }
   }
 
   get email() {
@@ -110,7 +115,11 @@ export class LoginComponent implements OnInit {
                     }
                     // this.notificationMessageService.setMessage(true);
                     // this.loginMessageService.setMessage(true);
-                    this.authService.SignIn(newnumber, inputdata.password);
+                    this.router.navigate(['dashboard/analytics']);
+                    this.notification.success(
+                      'Logged In',
+                      'You have successfully logged in to AppoPay - Payments & Money Transfer Admin Template!',
+                    )
                   } else {
                     this.spinner.hide();
                     this.notification.warning('Warning', 'Please Enter correct mobile number or password.');

@@ -1,72 +1,53 @@
-   <div class="row">
+<div class="row">
 
-   <div class="form-group form-inline">
-   <input class="form-control ml-2" type="text" name="searchTerm" placeholder="search" />
-     </div> 
+  <div class="form-group form-inline">
+    <input class="form-control ml-2" type="text" name="searchTerm" placeholder="search" [formControl]="searchCtrl" />
   </div>
-<div class="table-operations">
-  <!--<button nz-button (click)="sort('age', 'descend')">Sort age</button>
-  <button nz-button (click)="resetFilters()">Clear filters</button>
-  <button nz-button (click)="resetSortAndFilters()">Clear filters and sorters</button>-->
- 
 </div>
-<nz-table #filterTable [nzData]="listOfDisplayData"  class="air__utils__scrollTable mb-4"
-          [nzScroll]="{x: '100%'}">
+<div class="table-operations">
+
+</div>
+<nz-table #filterTable [nzData]="claimrequests" class="air__utils__scrollTable mb-4" [nzScroll]="{x: '100%'}">
   <thead>
-  <tr>
-    <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.name"
-      (nzSortChange)="sort('name', $event)"
-      [nzFilters]="listOfFilterName"
-      (nzFilterChange)="search($event, listOfSearchAddress)"
-    >
-      TRANSACTION ID
-    </th>
-    <th nzShowSort [(nzSort)]="mapOfSort.age" (nzSortChange)="sort('age', $event)">DESCRIPTION</th>
-    <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      CLAIM AMOUNT
-    </th>
-	  <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      CURRENCY CODE 
-    </th>
-		  <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      IS CLAIMED 
-    </th>
-			  
-  </tr>
+    <tr>
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.transactionid" (nzSortChange)="sort('transactionid', $event)">
+        TRANSACTION ID
+      </th>
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.messagetext" (nzSortChange)="sort('messagetext', $event)">DESCRIPTION
+      </th>
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.transferamount" (nzSortChange)="sort('transferamount', $event)">
+        CLAIM AMOUNT
+      </th>
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.currencycode" (nzSortChange)="sort('currencycode', $event)">
+        CURRENCY CODE
+      </th>
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.isclaimtext" (nzSortChange)="sort('isclaimtext', $event)">
+        IS CLAIMED
+      </th>
+      <th id=''>
+
+      </th>
+
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of filterTable.data">
-    <td>{{ data.name }}</td>
-    <td>{{ data.age }}</td>
-    <td>{{ data.address }}</td>
-	    <td>{{ data.name }}</td>
-    <td>{{ data.age }}</td>
-   
-  
-  </tr>
+    <tr *ngFor="let data of filterTable.data">
+      <td>{{ data.transactionid }}</td>
+      <td>{{ data.messagetext }}</td>
+      <td>{{ data.transferamount }}</td>
+      <td>{{ data.currencycode }}</td>
+      <td>{{ data.isclaimtext }}</td>
+      <td>
+        <em class="icon fe fe-menu" nz-popover nzPopoverTitle="Confirm Claim" 
+          nzPopoverTrigger="click" [nzPopoverContent]="contentTemplate">
+        </em>
+        <ng-template #contentTemplate>
+          <ul class="list-unstyled">
+            <li class="air__menuTop__item"><a (click)="confirmClaim('BASE', data)"> USD Currency </a></li>
+            <li class="air__menuTop__item"><a (click)="confirmClaim('CHANGE', data)"> Change Currency </a></li>
+          </ul>
+        </ng-template>
+      </td>
+    </tr>
   </tbody>
 </nz-table>
