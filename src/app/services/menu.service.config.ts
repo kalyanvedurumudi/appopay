@@ -108,6 +108,11 @@ export const getMenuData: any[] = [
         key: 'cardbasecurrency',
         url: '/customers/cardbasecurrency',
       },
+      {
+        title: 'CK Editor',
+        key: 'CKEditor',
+        url: '/customers/ckeditor',
+      }
     
     ],
   },

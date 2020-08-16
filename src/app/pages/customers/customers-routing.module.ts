@@ -39,14 +39,22 @@ import { ClaimconfirmationComponent } from 'src/app/pages/customers/claimconfirm
 import { CardTransferComponent } from 'src/app/pages/customers/cardtransfer/cardtransfer.component'
 
 import { CardBalanceComponent } from 'src/app/pages/customers/cardbalance/cardbalance.component'
+import { CKEditorComponent } from './ckeditor/ckeditor.component';
+
 const routes: Routes = [
+  {
+    path: 'ckeditor',
+    component: CKEditorComponent,
+    data: { title: 'ckeditor' },
+    canActivate: [AuthGuard],
+  },
   {
     path: 'basecurrency',
     component: BaseCurrencyComponent,
     data: { title: 'Basecurrency' },
     canActivate: [AuthGuard],
   },
-    {
+  {
     path: 'changecurrency',
     component: ChangeCurrencyComponent,
     data: { title: 'Changecurrency' },
@@ -58,7 +66,7 @@ const routes: Routes = [
     data: { title: 'cardbasecurrency' },
     canActivate: [AuthGuard],
   },
-    {
+  {
     path: 'cardchangecurrency',
     component: CardchangeCurrencyComponent,
     data: { title: 'cardchangecurrency' },
@@ -70,32 +78,32 @@ const routes: Routes = [
     data: { title: 'Claim Request' },
     canActivate: [AuthGuard],
   },
-    {
+  {
     path: 'paybills',
     component: PayBillsComponent,
     data: { title: 'Pay Bills' },
     canActivate: [AuthGuard],
   },
-     {
+  {
     path: 'topupairtime',
     component: TopupAirtimeComponent,
     data: { title: 'Topupairtime' },
     canActivate: [AuthGuard],
   },
-    {
+  {
     path: 'etransfers',
     component: EtransfersComponent,
     data: { title: 'Etransfers' },
     canActivate: [AuthGuard],
   },
-  
-   {
+
+  {
     path: 'bankdeposits',
     component: BankDepositsComponent,
     data: { title: 'Bankdeposits' },
     canActivate: [AuthGuard],
   },
-   {
+  {
     path: 'intraaccounttransfers',
     component: IntraaccountTransfersComponent,
     data: { title: 'IntraaccountTransfers' },
@@ -107,126 +115,126 @@ const routes: Routes = [
     data: { title: 'accountTransfers' },
     canActivate: [AuthGuard],
   },
-   {
+  {
     path: 'allcards',
     component: AllCardsComponent,
     data: { title: 'allCards' },
     canActivate: [AuthGuard],
   },
-    {
+  {
     path: 'sendmoney',
     component: SendMoneyComponent,
     data: { title: 'sendMoney' },
     canActivate: [AuthGuard],
   },
-  
-   {
+
+  {
     path: 'transferstatus',
     component: TransactionStatusComponent,
     data: { title: 'transferStatus' },
     canActivate: [AuthGuard],
   },
-      {
+  {
     path: 'customersupport',
     component: CustomerSupportComponent,
     data: { title: 'CustomerSupport' },
     canActivate: [AuthGuard],
   },
-  
-       {
+
+  {
     path: 'transactionlist',
     component: TransactionListComponent,
     data: { title: 'TransactionList' },
     canActivate: [AuthGuard],
   },
-  
-    {
+
+  {
     path: 'startenrollment',
     component: StartEnrollmentComponent,
     data: { title: 'Start Enrollment' },
     canActivate: [AuthGuard],
   },
-    {
+  {
     path: 'completeenrollment',
     component: CompleteEnrollmentComponent,
     data: { title: 'Complete Enrollment' },
     canActivate: [AuthGuard],
   },
-      {
+  {
     path: 'accountsettings',
     component: AccountSettingsComponent,
     data: { title: 'AccountSettings' },
     canActivate: [AuthGuard],
   },
-      {
+  {
     path: 'statusactivationcard',
     component: StatusActivationcardComponent,
     data: { title: 'StatusActivationcard' },
     canActivate: [AuthGuard],
   },
-      {
+  {
     path: 'quickswitch',
     component: QuickSwitchComponent,
     data: { title: 'quickswitch' },
     canActivate: [AuthGuard],
   },
-  
-     {
+
+  {
     path: 'balancetransaction',
     component: BalanceTransactionComponent,
     data: { title: 'BalanceTransaction' },
     canActivate: [AuthGuard],
   },
-  
-    {
+
+  {
     path: 'banktobanktransfer',
     component: BanktoBanktransferComponent,
     data: { title: 'BanktoBanktransfer' },
     canActivate: [AuthGuard],
   },
-  
-    {
+
+  {
     path: 'directpayment',
     component: DirectPaymentComponent,
     data: { title: 'DirectPayment' },
     canActivate: [AuthGuard],
   },
-   
-    {
+
+  {
     path: 'profile',
     component: ProfileComponent,
     data: { title: 'Profile' },
     canActivate: [AuthGuard],
   },
-  
-    {
+
+  {
     path: 'claimconfirmation',
     component: ClaimconfirmationComponent,
     data: { title: 'Claimconfirmation' },
     canActivate: [AuthGuard],
   },
-    
-    {
+
+  {
     path: 'cardhistory',
     component: CardHistoryComponent,
     data: { title: 'Cardhistory' },
     canActivate: [AuthGuard],
   },
-     {
+  {
     path: 'cardtransfer',
     component: CardTransferComponent,
     data: { title: 'Cardtransfer' },
     canActivate: [AuthGuard],
   },
-     {
+  {
     path: 'cardbalance',
     component: CardBalanceComponent,
     data: { title: 'CardBalance' },
     canActivate: [AuthGuard],
   },
-  
-  
-  
+
+
+
 ]
 
 @NgModule({
@@ -234,4 +242,4 @@ const routes: Routes = [
   providers: [AuthService],
   exports: [RouterModule],
 })
-export class CustomersRouterModule {}
+export class CustomersRouterModule { }

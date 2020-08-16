@@ -10,6 +10,8 @@ import { CardhistoryTableModule } from 'src/app/pages/customers/cardhistory/exam
 import { TransactionstatusTableModule } from 'src/app/pages/customers/transactionstatus/examples/examples.module'
 import { CustomersupportTableModule } from 'src/app/pages/customers/customersupport/examples/examples.module'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 // layout
 import { TransactionListComponent } from 'src/app/pages/customers/transactionlist/transactionlist.component'
 import { AllCardsComponent } from 'src/app/pages/customers/allcards/allcards.component'
@@ -58,6 +60,7 @@ import { DirectPaymentComponent } from 'src/app/pages/customers/directpayment/di
 
 import { ProfileComponent } from 'src/app/pages/customers/profile/profile.component'
 import { ClaimconfirmationComponent } from 'src/app/pages/customers/claimconfirmation/claimconfirmation.component'
+import { CKEditorComponent } from './ckeditor/ckeditor.component';
 
 const COMPONENTS = [
 
@@ -90,11 +93,26 @@ const COMPONENTS = [
  ClaimRequestComponent,
  CardTransferComponent,
  CardBalanceComponent,
-
+ CKEditorComponent
 ]
 
 @NgModule({
-  imports: [SharedModule, NzSwitchModule,CustomersRouterModule, NgbModule, FormsModule,TransactionstatusTableModule, CardhistoryTableModule,ReactiveFormsModule,PerfectScrollbarModule,AllcardsTableModule,CustomersupportTableModule,TransactionListtableModule,ClaimrequestTableModule],
+  imports: [
+    SharedModule,
+    NzSwitchModule,
+    CustomersRouterModule,
+    NgbModule,
+    FormsModule,
+    TransactionstatusTableModule,
+    CardhistoryTableModule,
+    ReactiveFormsModule,
+    PerfectScrollbarModule,
+    AllcardsTableModule,
+    CustomersupportTableModule,
+    TransactionListtableModule,
+    ClaimrequestTableModule,
+    CKEditorModule
+  ],
   declarations: [...COMPONENTS],
 })
 export class CustomersModule {}
