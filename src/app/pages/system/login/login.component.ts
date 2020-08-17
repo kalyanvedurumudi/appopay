@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private storage: LocalStorageService,
     private apiProvider: ApiProvider,
-    private notification: NzNotificationService,    
+    private notification: NzNotificationService,
     private spinner: NgxSpinnerService,
     private router: Router
     ) {

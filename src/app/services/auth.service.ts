@@ -24,7 +24,7 @@ export class AuthService {
   constructor(
     // public afs: AngularFirestore,
     // public afAuth: AngularFireAuth,
-    // public router: Router,
+    public router: Router,
     // private notification: NzNotificationService
     private storage: LocalStorageService
   ) {
@@ -57,8 +57,7 @@ export class AuthService {
   }
 
   async SignOut() {
-  //   await this.afAuth.auth.signOut()
-  //   localStorage.removeItem('user')
-  //   this.router.navigate(['system/login'])
+    this.storage.clear();
+    this.router.navigate(['system/login'])
   }
 }
