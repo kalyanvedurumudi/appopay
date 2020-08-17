@@ -8,6 +8,6 @@ const MODULES = [CommonModule, RouterModule, NgZorroAntdModule, TranslateModule]
 
 @NgModule({
   imports: [...MODULES],
-  exports: [...MODULES],
+  exports: [...MODULES]
 })
 export class SharedModule {}
