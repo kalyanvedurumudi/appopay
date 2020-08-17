@@ -32,4 +32,11 @@
         </div>
     </nz-dropdown-menu>
 </div>
-<ckeditor [editor]="Editor" [(ngModel)]="model.editorData" debounce="500" #ckedit></ckeditor>
+<div style="width: 100%">
+    <ngx-treeview
+        [config]="config"
+        [items]="items" style="width: 30%; float: left;">
+    </ngx-treeview>
+    <ckeditor [editor]="Editor" [(ngModel)]="model.editorData" debounce="500" style="width: 60%; float: right;"></ckeditor>
+
+</div>

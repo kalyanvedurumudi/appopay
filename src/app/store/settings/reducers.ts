@@ -22,7 +22,7 @@ export const initialState: object = {
     isMenuShadow: false,
     isMenuUnfixed: false,
     menuLayoutType: 'left', // left, top, top-dark, nomenu
-    menuType: 'compact', // default, flyout, compact
+    menuType: 'default', // default, flyout, compact
     menuColor: 'white', // dark, blue, gray, white
     flyoutMenuColor: 'white', // dark, blue, gray, white
     systemLayoutColor: 'white', // white, dark, blue, gray, image

@@ -61,6 +61,8 @@ import { DirectPaymentComponent } from 'src/app/pages/customers/directpayment/di
 import { ProfileComponent } from 'src/app/pages/customers/profile/profile.component'
 import { ClaimconfirmationComponent } from 'src/app/pages/customers/claimconfirmation/claimconfirmation.component'
 import { CKEditorComponent } from './ckeditor/ckeditor.component';
+import { CKEditorService } from '@app/services/ckeditor.service';
+import { TreeviewModule } from 'ngx-treeview';
 
 const COMPONENTS = [
 
@@ -111,8 +113,10 @@ const COMPONENTS = [
     CustomersupportTableModule,
     TransactionListtableModule,
     ClaimrequestTableModule,
-    CKEditorModule
+    CKEditorModule,
+    TreeviewModule.forRoot()
   ],
   declarations: [...COMPONENTS],
+  providers: [CKEditorService]
 })
 export class CustomersModule { }

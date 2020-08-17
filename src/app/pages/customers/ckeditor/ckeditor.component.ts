@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Editor from './build.3/ckeditor';
+import { CKEditorService } from '@app/services/ckeditor.service';
+import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
 
 @Component({
   selector: 'app-ckeditor',
@@ -35,11 +37,41 @@ export class CKEditorComponent implements OnInit {
       inner: "<p>What is the <strong>chemical equation</strong> for</p><p><math class='wrs_chemistry' xmlns='http://www.w3.org/1998/Math/MathML'><mi>MnO</mi><mn>2</mn><mo>&nbsp;</mo><mo>+</mo><mo>&nbsp;</mo><mi>HCL</mi><mo>&nbsp;</mo><mo>=</mo><mo>&nbsp;</mo><mi>MnCl</mi><mn>2</mn><mo>&nbsp;</mo><mo>+</mo><mo>&nbsp;</mo><mi>Cl</mi><mn>2</mn><mo>&nbsp;</mo><mo>+</mo><mo>&nbsp;</mo><mi mathvariant='normal'>H</mi><mn>2</mn><mi mathvariant='normal'>O</mi></math></p>",
       marks: "20 Marks"
     }
-  ]
+  ];
+
+  dropdownEnabled = true;
+  items: TreeviewItem[];
+  values: number[];
+  config = TreeviewConfig.create({
+    hasAllCheckBox: true,
+    hasFilter: true,
+    hasCollapseExpand: true,
+    decoupleChildFromParent: false,
+    maxHeight: 400
+  });
+
+  buttonClasses = [
+    'btn-outline-primary',
+    'btn-outline-secondary',
+    'btn-outline-success',
+    'btn-outline-danger',
+    'btn-outline-warning',
+    'btn-outline-info',
+    'btn-outline-light',
+    'btn-outline-dark'
+  ];
+  buttonClass = this.buttonClasses[0];
+
+
+  onFilterChange(value: string): void {
+    console.log('filter:', value);
+  }
 
   constructor(
+    private service: CKEditorService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.items = this.service.getBooks();
   }
 }
