@@ -65,10 +65,10 @@ import { CKEditorComponent } from './ckeditor/ckeditor.component';
 const COMPONENTS = [
 
   BaseCurrencyComponent,
-   ChangeCurrencyComponent,
+  ChangeCurrencyComponent,
   CardbaseCurrencyComponent,
   CardchangeCurrencyComponent,
- CardHistoryComponent,
+  CardHistoryComponent,
   PayBillsComponent,
   TopupAirtimeComponent,
   EtransfersComponent,
@@ -84,16 +84,16 @@ const COMPONENTS = [
   AccountSettingsComponent,
   StatusActivationcardComponent,
   QuickSwitchComponent,
- BalanceTransactionComponent,
- BanktoBanktransferComponent,
- DirectPaymentComponent,
- ProfileComponent,
- TransactionListComponent,
- ClaimconfirmationComponent,
- ClaimRequestComponent,
- CardTransferComponent,
- CardBalanceComponent,
- CKEditorComponent
+  BalanceTransactionComponent,
+  BanktoBanktransferComponent,
+  DirectPaymentComponent,
+  ProfileComponent,
+  TransactionListComponent,
+  ClaimconfirmationComponent,
+  ClaimRequestComponent,
+  CardTransferComponent,
+  CardBalanceComponent,
+  CKEditorComponent
 ]
 
 @NgModule({
@@ -115,4 +115,4 @@ const COMPONENTS = [
   ],
   declarations: [...COMPONENTS],
 })
-export class CustomersModule {}
+export class CustomersModule { }

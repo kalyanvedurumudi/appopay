@@ -1,3 +1,35 @@
-<ckeditor [editor]="Editor" [(ngModel)]="model.editorData" debounce="500"></ckeditor>
-<div>Content Entered</div>
-<div>{{ model.editorData }}</div>
+<div style="margin: 20px 0;">
+    <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
+        <div class="searchContainer">
+            <i class="searchIcon fe fe-search"></i>
+            <input class="searchInput" type="text" placeholder="{{ 'Start seraching for question' | translate }}" />
+        </div>
+    </div>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="card air__utils__shadow width-330">
+            <div class="card-body p-1 height-350">
+                <perfect-scrollbar>
+                    <div class="pt-4 px-4 pb-2">
+                        <div>
+                            <div class="text-uppercase font-size-12 mb-2 text-gray-6">Questions (3)</div>
+                            <ul class="list-unstyled">
+                                <li class="item" *ngFor="let question of questions">
+                                    <a href="javascript: void(0);" (click)="model.editorData = question.inner" class="itemLink">
+                                        <div class="itemPic mr-3">
+                                            <i class="itemIcon fe fe-file"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-muted">{{ question.marks }}</div>
+                                            <div class="text-blue" [innerHTML]="question.inner"></div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </perfect-scrollbar>
+            </div>
+        </div>
+    </nz-dropdown-menu>
+</div>
+<ckeditor [editor]="Editor" [(ngModel)]="model.editorData" debounce="500" #ckedit></ckeditor>
