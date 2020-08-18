@@ -2,350 +2,308 @@
   <div class="pt-5 pb-5 d-flex align-items-end mt-auto">
     <!-- src="assets/images/appopay.png"style="height:45px!important;" alt="AIR UI Logo" />-->
     <div class="air__utils__logo__text">
-    
+
     </div>
   </div>
   <div class="pl-5 pr-5 pt-5 pb-5 bg-white container" style="max-width: 61rem!important;">
-     <div class="text-dark font-size-25 mb-2 text-center">
-   <img src="assets/images/appopay.png" style="height:45px!important;"alt="AIR UI Logo" /> </div>
+    <div class="text-dark font-size-25 mb-2 text-center">
+      <img src="assets/images/appopay.png" style="height:45px!important;" alt="AIR UI Logo" /> </div>
     <div class="text-dark font-size-30 mb-4 text-center">Sign Up</div>
-    <form nz-form [nzLayout]="'vertical'" [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm.value)">
-	 <div class="row">
-          <div class="col-md-6">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="firstNameTpl">
-            <input nz-input id="firstName"  formControlName="firstName" placeholder="First Name"/>
-			      <ng-template #firstNameTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		  
-		  
-		      <div class="col-md-6">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="middleNameTpl">
-            <input nz-input id="middleName"  formControlName="middleName" placeholder="Middle Name"/>
-			  <ng-template #middleNameTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		  
-		      <div class="col-md-6">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="lastNameTpl">
-            <input nz-input id="lastName" formControlName="lastName"  placeholder="Last Name"/>
-			 <ng-template #lastNameTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		  
-		      <div class="col-md-6">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="transactionPinTpl">
-            <input nz-input id="transactionPin" formControlName="transactionPin"   placeholder="Transaction Pin"/>
-			 <ng-template #transactionPinTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-          <div class="col-md-6">
+    <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'" [formGroup]="validateForm"
+      (ngSubmit)="submitForm(validateForm.value)">
+      <div class="row">
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="firstNameTpl">
+              <input nz-input id="firstName" formControlName="firstName" placeholder="First Name" />
+              <ng-template #firstNameTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="middleNameTpl">
+              <input nz-input id="middleName" formControlName="middleName" placeholder="Middle Name" />
+              <ng-template #middleNameTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="lastNameTpl">
+              <input nz-input id="lastName" formControlName="lastName" placeholder="Last Name" />
+              <ng-template #lastNameTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="transactionPinTpl">
+              <input nz-input id="transactionPin" formControlName="transactionPin" placeholder="Transaction Pin" />
+              <ng-template #transactionPinTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Required</ng-container>
+                <ng-container *ngIf="control.hasError('minlength')">Pin should be min of 6 characters</ng-container><br>
+                <ng-container *ngIf="control.hasError('pattern')">Only numbers allowed</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="codeTpl">
+              <nz-select formControlName="code" nzShowSearch nzAllowClear nzPlaceHolder="Select Code" (ngModelChange) ="enableStateDropdown()">
+                <nz-option name="code" *ngFor="let cntry of countries"
+                  nzLabel="(+{{cntry.areacode}}) {{cntry.countryname}}" [nzValue]="cntry.areacode"></nz-option>
+              </nz-select>
+              <ng-template #codeTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="mobileNumberTpl">
+              <input nz-input id="mobileNumber" formControlName="mobileNumber" placeholder="Mobile Number" />
+              <ng-template #mobileNumberTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+                <ng-container *ngIf="control.hasError('pattern')">
+                  Please enter a valid number
+                </ng-container>
+                <ng-container *ngIf="control.hasError('minlength')">
+                  Mobile number has to be min 10 digits
+                </ng-container>
+                <ng-container *ngIf="control.hasError('maxlength')">
+                  Mobile number has to be max 12 digits
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="emailTpl">
+              <input nz-input id="emailAddress" formControlName="emailAddress" placeholder="Email Address" />
+              <ng-template #emailTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+                <ng-container *ngIf="control.hasError('email')">
+                  Please enter a valid email
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="passwordnewTpl">
+              <input type="password" nz-input id="passwordnew" formControlName="passwordnew" placeholder="Password" />
+              <ng-template #passwordnewTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+                <ng-container *ngIf="control.hasError('minlength')">
+                  Password has to be min 6 characters
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="confirmPasswordTpl">
+              <input type="password" nz-input id="confirmPassword" formControlName="confirmPassword" placeholder=" Confirm Password" />
+              <ng-template #confirmPasswordTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+                <ng-container *ngIf="control.hasError('minlength')">
+                  Password has to be min 6 characters
+                </ng-container>
+                <ng-container *ngIf="control.hasError('mustMatch')">
+                  Password did not match
+                </ng-container>
+                
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="currencyTpl">
+              <nz-select formControlName="currency" nzShowSearch nzAllowClear nzPlaceHolder="Select Currency">
+                <nz-option name="code"*ngFor="let code of currencies"
+                  nzLabel="{{code.currency_code}}" [nzValue]="code.id">{{code.currency_code}}</nz-option>
+              </nz-select>
+              <ng-template #currencyTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="countryTpl">
+              <nz-select formControlName="country" nzShowSearch nzAllowClear nzPlaceHolder="Select Country">
+                <nz-option name="country" *ngFor="let cntry of countries"
+                  nzLabel="{{cntry.countryname}}" [nzValue]="cntry.areacode"></nz-option>
+              </nz-select>
+              <ng-template #countryTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="stateTpl">
+              <nz-select formControlName="state" nzShowSearch nzAllowClear nzPlaceHolder="Select State">
+                <nz-option name="state"*ngFor="let code of states"
+                  nzLabel="{{code.statename}}" [nzValue]="code.id">{{code.statename}}</nz-option>
+              </nz-select>
+              <ng-template #stateTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-4">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="cityTpl">
+              <input nz-input id="city" formControlName="city" placeholder=" City" />
+              <ng-template #cityTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-4">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="addressTpl">
+              <input nz-input id="address" formControlName="address" placeholder=" Address" />
+              <ng-template #addressTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-4">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="dobTpl">
+              <nz-date-picker id="dob" formControlName="dob" [nzFormat]="'dd/MM/yyyy'" name="dob"></nz-date-picker>
+              <ng-template #dobTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-4">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="achievementTpl">
+              <input nz-input id="achievment" formControlName="achievment"
+                placeholder=" What is Your Major Achievment" />
+              <ng-template #achievementTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-4">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="mobilescreenTpl">
+              <input nz-input id="mobilescreen" formControlName="mobilescreen" placeholder="Mobile Screenlock Pin" />
+              <ng-template #mobilescreenTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div class="col-md-2">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="otpTpl">
+              <input nz-input id="otp" formControlName="otp" placeholder="OTP Number" />
+              <ng-template #otpTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="col-md-2">
             <nz-form-item>
+                <nz-form-control>
+                  <button nz-button nzType="primary" [nzSize]="'large'" [disabled]="!validateForm.get('mobileNumber').valid || !validateForm.get('emailAddress').valid"
+                  (click)=" sendOTP ?  validatePhone() : goToPin()" class="text-center btn btn-success w-100 font-size-16">
+                    {{ sendOTP ? 'Send OTP' : 'Resend OTP' }}
+                  </button>
+                </nz-form-control>
+              </nz-form-item>
+        </div>
 
-                    <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="codeTpl">
-               <nz-select nzShowSearch nzAllowClear  formControlName="code"  nzPlaceHolder="Select Code" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-		<ng-template #codeTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-
-
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
-          </div>
-		      <div class="col-md-6">
-         <nz-form-item>
-        
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="mobileNumberTpl">
-            <input nz-input id="mobileNumber" formControlName="mobileNumber" placeholder="Mobile Number"/>
-			  <ng-template #mobileNumberTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			  <ng-container *ngIf="control.hasError('pattern')">
-              Please enter a valid number
-            </ng-container>
-			  <ng-container *ngIf="control.hasError('minlength')">
-             Mobile number has to be min 8 digits
-            </ng-container>
-			 <ng-container *ngIf="control.hasError('maxlength')">
-             Mobile number has to be max 12 digits
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		      <div class="col-md-6">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="emailTpl">
-            <input nz-input id="emailAddress" formControlName="emailAddress"   placeholder="Email Address"/>
-			 <ng-template #emailTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			  <ng-container *ngIf="control.hasError('email')">
-              Please enter a valid email
-            </ng-container>
-			 
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
- <div class="col-md-6">
-         <nz-form-item>
-        
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="passwordnewTpl">
-            <input nz-input id="passwordnew" formControlName="passwordnew" placeholder="Password"/>
-			  <ng-template #passwordnewTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			 
-			  <ng-container *ngIf="control.hasError('minlength')">
-             Password number has to be min 6 digits
-            </ng-container>
-			
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		  
-		   <div class="col-md-6">
-         <nz-form-item>
-        
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="confirmPasswordTpl">
-            <input nz-input id="confirmPassword" formControlName="confirmPassword" placeholder=" Confirm Password"/>
-			  <ng-template #confirmPasswordTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			 
-			
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		
-            <div class="col-md-6">
-            <nz-form-item>
-
-                    <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="currencyTpl">
-               <nz-select nzShowSearch nzAllowClear  formControlName="currency"  nzPlaceHolder="Select Currency" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-		<ng-template #currencyTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-
-
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
-          </div>
-		     <div class="col-md-6">
-            <nz-form-item>
-
-                    <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="countryTpl">
-               <nz-select nzShowSearch nzAllowClear  formControlName="country"  nzPlaceHolder="Select Country" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-		<ng-template #countryTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-
-
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
-          </div>
-		      <div class="col-md-6">
-            <nz-form-item>
-
-                    <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="stateTpl">
-               <nz-select nzShowSearch nzAllowClear  formControlName="state"  nzPlaceHolder="Select State" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-		<ng-template #stateTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-
-
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
-          </div>
-		      <div class="col-md-4">
-         <nz-form-item>
-        
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="cityTpl">
-            <input nz-input id="city" formControlName="city" placeholder=" City"/>
-			  <ng-template #cityTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			 
-			
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		      <div class="col-md-4">
-         <nz-form-item>
-        
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="addressTpl">
-            <input nz-input id="address" formControlName="address" placeholder=" Address"/>
-			  <ng-template #addressTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			 
-			
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		     <div class="col-md-4">
-         <nz-form-item>
-        
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="dobTpl">
-            <input nz-input id="dob" formControlName="dob" placeholder=" DD/MM/YYYY"/>
-			  <ng-template #dobTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			 
-			
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		  
-		      <div class="col-md-4">
-         <nz-form-item>
-        
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="achievementTpl">
-            <input nz-input id="achievment" formControlName="achievment" placeholder=" What is Your Major Achievment"/>
-			  <ng-template #achievementTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			 
-			
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-
-		  		   <div class="col-md-4">
-         <nz-form-item>
-        
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="mobilescreenTpl">
-            <input nz-input id="mobilescreen" formControlName="mobilescreen" placeholder="Mobile Screenlock Pin"/>
-			  <ng-template #mobilescreenTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			 
-			
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>  
-		 
-		  		  
-		  	   <div class="col-md-4">
-         <nz-form-item>
-        
-          <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="otpTpl">
-            <input nz-input id="otp" formControlName="otp" placeholder="OTP Number"/>
-			  <ng-template #otpTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			 
-			
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>  
-		 
-		  </div>
+      </div>
 
       <nz-form-item>
         <nz-form-control>
-          <button nz-button nzType="primary" [nzSize]="'large'"
+          <button (click)="signUpPin()" nz-button nzType="primary" [nzSize]="'large'" [disabled]="!validateForm.valid"
             class="text-center btn btn-success w-100 font-weight-bold font-size-18">
             Sign Up
           </button>
         </nz-form-control>
       </nz-form-item>
     </form>
-   <!-- <a href="javascript: void(0);"
+    <!-- <a href="javascript: void(0);"
       class="font-weight-bold font-size-18 text-dark btn btn-outline-light w-100 mb-3 googleSign"
       style="background-image: url('assets/images/icons/google-logo.svg')">
       Sign Up with Google
