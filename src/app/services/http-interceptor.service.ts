@@ -42,6 +42,7 @@ export class HttpInterceptorService extends Http {
             } else {
                 this.notification.error('Error', 'Something went wrong.Please try after some time');
             }
+            return Observable.throw(error);
         } else {
             return Observable.throw(error);
         }

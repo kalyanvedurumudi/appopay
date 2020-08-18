@@ -154,6 +154,7 @@ export class LoginComponent implements OnInit {
     this.apiProvider.getWithoutAuth('configurations/country').subscribe(
       async resdata => {
         this.countries = resdata.result;
+        this.authService.setCountries(this.countries);
         this.filteredBanks.next(this.countries.slice());
         // this.bankFilterCtrl.valueChanges
         //   .pipe(takeUntil(this._onDestroy))
@@ -161,9 +162,7 @@ export class LoginComponent implements OnInit {
         //     this.filterBanks();
         //   });
 
-      }, async (error) => {
-
-      });
+      }, async () => {});
 
   }
 

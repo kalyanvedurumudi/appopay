@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore'
 import { Router } from '@angular/router'
 import { NzNotificationService } from 'ng-zorro-antd'
 import { LocalStorageService } from 'ngx-webstorage';
+import { ApiProvider } from './api-provider';
 
 interface User {
   uid: string
@@ -20,10 +21,12 @@ interface User {
 })
 export class AuthService {
   userData: any
+  countries: Array<any>;
 
   constructor(
     // public afs: AngularFirestore,
     // public afAuth: AngularFireAuth,
+    private apiProvider: ApiProvider,
     public router: Router,
     // private notification: NzNotificationService
     private storage: LocalStorageService
@@ -36,6 +39,14 @@ export class AuthService {
     //     localStorage.setItem('user', null)
     //   }
     // })
+  }
+
+  getCountries(): any[] {
+    return this.countries;
+  }
+
+  setCountries(cntries: any): void {
+    this.countries = cntries;
   }
 
   async SignIn(email: string, password: string) {
@@ -54,6 +65,10 @@ export class AuthService {
   get isLoggedIn(): boolean {
    const user = this.storage.retrieve('userDetails');
    return user !== null
+  }
+
+  getCountry() {
+    return this.apiProvider.getWithoutAuth('configurations/country');
   }
 
   async SignOut() {
