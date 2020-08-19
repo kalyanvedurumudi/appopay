@@ -1,216 +1,159 @@
 <div>
 
- <div class="subbar">
-  <ul class="breadcrumbList mr-4">
-    <li class="breadcrumbItem">
-      <a href="#" class="breadcrumbLink">
-        My Profile
-      </a>
-    </li>
-    <li class="breadcrumbItem">
-      <a href="#" class="breadcrumbLink breadcrumbLink__current">
-      My Profile
-      </a>
-    </li>
-  </ul>
- 
-
- 
-</div>
-<br> 
-
+  <div class="subbar">
+    <ul class="breadcrumbList mr-4">
+      <li class="breadcrumbItem">
+        <a href="#" class="breadcrumbLink">
+          My Profile
+        </a>
+      </li>
+      <li class="breadcrumbItem">
+        <a href="#" class="breadcrumbLink breadcrumbLink__current">
+          My Profile
+        </a>
+      </li>
+    </ul>
+  </div>
+  <br>
 
   <div class="row">
-  
-  
-   <div class="col-xl-4 col-lg-12">
+    <div class="col-xl-4 col-lg-12">
       <div class="card">
-    
         <div class="card-body">
-      
-	    <a  class="itemLink" style="text-align: center;">
-      <div class="itemCover mr-10">
-        <img width="100" height="100" src="assets/images/content/hands.png" alt="Hands" />
-      </div>
-      <div>
-     <br><br>
-        <div class="">
-    
-<span style="color:red;" *ngIf="message">{{message}}</span>
-<input #file type="file" accept='image/*' (change)="preview(file.files)" />
-<img [src]="imgURL" height="200" *ngIf="imgURL">
+          <a class="itemLink" style="text-align: center;">
+            <div class="itemCover mr-10">
+              <img width="100" height="100" src="assets/images/content/hands.png" alt="Hands" />
+            </div>
+            <div>
+              <br><br>
+              <div class="">
+                <span style="color:red;" *ngIf="message">{{message}}</span>
+                <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+                <img [src]="imgURL" height="200" *ngIf="imgURL">
+              </div>
+            </div>
+          </a>
         </div>
       </div>
-    </a>
-        </div>
-      </div>
-    
-
- 
-  
-
     </div>
+
     <div class="col-xl-8 col-lg-12">
       <div class="card">
         <div class="card-header card-header-flex">
           <div class="d-flex flex-column justify-content-center mr-auto">
-            <h5 class="mb-0"routerLink="/customers/profile">Edit Profile  </h5>
+            <h5 class="mb-0" routerLink="/customers/profile">Edit Profile </h5>
           </div>
-   
         </div>
-		
+
         <div class="card-body">
-          <form nz-form [nzLayout]="'vertical'">
-        <div class="row">
-          
-         
+          <form [formGroup]="onPersonalDetailsForm" nz-form [nzLayout]="'vertical'">
+            <div class="row">
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your First Name">
+                    <input formControlName="firstName"  nz-input id="full-name" placeholder="First Name" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
 
-		    
-		
-		      
-		  
-		 
-		  
-		  
-		      <div class="col-md-4">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your First Name">
-            <input nz-input id="full-name"  placeholder="First Name"/>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		  
-		  
-		      <div class="col-md-4">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter Middle Name!">
-            <input nz-input id="full-name"  placeholder="Middle Name"/>
-          </nz-form-control>
-        </nz-form-item>
-          </div>  <div class="col-md-4">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter Last Name!">
-            <input nz-input id="full-name"  placeholder="Last Name"/>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		    <div class="col-md-4" >
-           <nz-form-item>
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter Middle Name!">
+                    <input formControlName="middleName" nz-input id="full-name" placeholder="Middle Name" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
 
-                    <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="countryTpl">
-               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder="Select Country" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-		<ng-template #countryTpl let-control>
-           
-		   
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter Last Name!">
+                    <input formControlName="lastName" nz-input id="full-name" placeholder="Last Name" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
 
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="countryTpl">
+                    <nz-select formControlName="country" nzShowSearch nzAllowClear nzPlaceHolder="Select Country">
+                      <nz-option name="country" *ngFor="let cntry of countries"
+                        nzLabel="{{cntry.countryname}}" [nzValue]="cntry.id"></nz-option>
+                    </nz-select>
+                    <ng-template #countryTpl let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Required
+                      </ng-container>
+                    </ng-template>
+                  </nz-form-control>
 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
-          </div>
-		      <div class="col-md-4" >
-           <nz-form-item>
+                </nz-form-item>
+              </div>
 
-                    <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="stateTpl">
-               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder="Select State" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-		<ng-template #stateTpl let-control>
-           
-		   
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="stateTpl">
+                    <nz-select formControlName="state" nzShowSearch nzAllowClear nzPlaceHolder="Select State">
+                      <nz-option *ngFor="let st of states" nzLabel="{{st.statename}}" [nzValue]="st.id"></nz-option>
+                    </nz-select>
+                    <ng-template #stateTpl let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Required
+                      </ng-container>
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
 
-
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
-          </div>
-		      <div class="col-md-4" >
-           <nz-form-item>
-
-                    <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="cityTpl">
-               <nz-select nzShowSearch nzAllowClear  nzPlaceHolder="Select City" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-		<ng-template #cityTpl let-control>
-           
-		   
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="cityTpl">
+                    <input formControlName="city" nz-input id="city" placeholder="Please Enter City!" />                    
+                    <ng-template #cityTpl let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Required
+                      </ng-container>
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your DOB">
+                    <input formControlName="dob" nz-input id="dob" placeholder="DD/MM/YYYY" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
 
 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
-          </div>
-    <div class="col-md-4">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your DOB">
-            <input nz-input id="full-name"  placeholder="DD/MM/YYYY"/>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		  
-		  
-		      <div class="col-md-4">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter Email!">
-            <input nz-input id="full-name"  placeholder="Email"/>
-          </nz-form-control>
-        </nz-form-item>
-          </div>  <div class="col-md-4">
-         <nz-form-item>
-          
-          <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter Address!">
-            <input nz-input id="full-name"  placeholder="Address"/>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		 
-		
-        </div>
-	
-      </form>
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter Email!">
+                    <input formControlName="email" nz-input id="Email" placeholder="Email" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter Address!">
+                    <input formControlName="address" nz-input id="Address" placeholder="Address" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-    
-        <nz-form-item>
-          <nz-form-control>
-              <button type="submit" class="btn btn-primary" >
-             CANCEL
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="submit" class="btn btn-primary" >
-             SAVE
-            </button>
-          </nz-form-control>
-        </nz-form-item>
 
+      <nz-form-item>
+        <nz-form-control>
+          <button type="submit" class="btn btn-primary" (click)="onPersonalDetailsForm.reset()">
+            CANCEL
+          </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="submit" class="btn btn-primary" [disabled]="!onPersonalDetailsForm.valid" (click)="updateEmailId()">
+            SAVE
+          </button>
+        </nz-form-control>
+      </nz-form-item>
     </div>
-   
   </div>
-  	 
 </div>
-
-

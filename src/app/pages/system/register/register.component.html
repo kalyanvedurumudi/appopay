@@ -26,7 +26,7 @@
         </div>
 
 
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <nz-form-item>
             <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="middleNameTpl">
               <input nz-input id="middleName" formControlName="middleName" placeholder="Middle Name" />
@@ -37,7 +37,7 @@
               </ng-template>
             </nz-form-control>
           </nz-form-item>
-        </div>
+        </div> -->
 
         <div class="col-md-6">
           <nz-form-item>
@@ -52,7 +52,7 @@
           </nz-form-item>
         </div>
 
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <nz-form-item>
             <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="transactionPinTpl">
               <input nz-input id="transactionPin" formControlName="transactionPin" placeholder="Transaction Pin" />
@@ -63,14 +63,14 @@
               </ng-template>
             </nz-form-control>
           </nz-form-item>
-        </div>
+        </div> -->
 
         <div class="col-md-6">
           <nz-form-item>
             <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="codeTpl">
               <nz-select formControlName="code" nzShowSearch nzAllowClear nzPlaceHolder="Select Code" (ngModelChange) ="enableStateDropdown()">
                 <nz-option name="code" *ngFor="let cntry of countries"
-                  nzLabel="(+{{cntry.areacode}}) {{cntry.countryname}}" [nzValue]="cntry.areacode"></nz-option>
+                  nzLabel="(+{{cntry.areacode}}) {{cntry.countryname}}" [nzValue]="cntry"></nz-option>
               </nz-select>
               <ng-template #codeTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
@@ -97,22 +97,6 @@
                 </ng-container>
                 <ng-container *ngIf="control.hasError('maxlength')">
                   Mobile number has to be max 12 digits
-                </ng-container>
-              </ng-template>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-
-        <div class="col-md-6">
-          <nz-form-item>
-            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="emailTpl">
-              <input nz-input id="emailAddress" formControlName="emailAddress" placeholder="Email Address" />
-              <ng-template #emailTpl let-control>
-                <ng-container *ngIf="control.hasError('required')">
-                  Required
-                </ng-container>
-                <ng-container *ngIf="control.hasError('email')">
-                  Please enter a valid email
                 </ng-container>
               </ng-template>
             </nz-form-control>
@@ -149,13 +133,28 @@
                 <ng-container *ngIf="control.hasError('mustMatch')">
                   Password did not match
                 </ng-container>
-                
               </ng-template>
             </nz-form-control>
           </nz-form-item>
         </div>
 
         <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="emailTpl">
+              <input nz-input id="emailAddress" formControlName="emailAddress" placeholder="Email Address" />
+              <ng-template #emailTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  Required
+                </ng-container>
+                <ng-container *ngIf="control.hasError('email')">
+                  Please enter a valid email
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <!-- <div class="col-md-6">
           <nz-form-item>
             <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="currencyTpl">
               <nz-select formControlName="currency" nzShowSearch nzAllowClear nzPlaceHolder="Select Currency">
@@ -169,9 +168,9 @@
               </ng-template>
             </nz-form-control>
           </nz-form-item>
-        </div>
+        </div> -->
 
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <nz-form-item>
             <nz-form-control nzHasFeedback nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="countryTpl">
               <nz-select formControlName="country" nzShowSearch nzAllowClear nzPlaceHolder="Select Country">
@@ -185,9 +184,9 @@
               </ng-template>
             </nz-form-control>
           </nz-form-item>
-        </div>
+        </div> -->
 
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <nz-form-item>
             <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="stateTpl">
               <nz-select formControlName="state" nzShowSearch nzAllowClear nzPlaceHolder="Select State">
@@ -267,8 +266,18 @@
               </ng-template>
             </nz-form-control>
           </nz-form-item>
-        </div>
+        </div> -->
 
+        <div class="col-md-2">
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button nzType="primary" [nzSize]="'large'" [disabled]="!validateForm.get('mobileNumber').valid || !validateForm.get('emailAddress').valid"
+              (click)=" sendOTP ?  validatePhone() : goToPin()" class="text-center btn btn-success w-100 font-size-16">
+                {{ sendOTP ? 'Send OTP' : 'Resend OTP' }}
+              </button>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
         <div class="col-md-2">
           <nz-form-item>
             <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="otpTpl">
@@ -280,16 +289,6 @@
               </ng-template>
             </nz-form-control>
           </nz-form-item>
-        </div>
-        <div class="col-md-2">
-            <nz-form-item>
-                <nz-form-control>
-                  <button nz-button nzType="primary" [nzSize]="'large'" [disabled]="!validateForm.get('mobileNumber').valid || !validateForm.get('emailAddress').valid"
-                  (click)=" sendOTP ?  validatePhone() : goToPin()" class="text-center btn btn-success w-100 font-size-16">
-                    {{ sendOTP ? 'Send OTP' : 'Resend OTP' }}
-                  </button>
-                </nz-form-control>
-              </nz-form-item>
         </div>
 
       </div>
