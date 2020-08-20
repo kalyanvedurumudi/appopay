@@ -216,7 +216,7 @@ export class RegisterComponent implements OnInit {
     };
     
     this.spinner.show();
-    this.apiProvider.postWithoutAuth('api/users/createnewuser', insertdata).subscribe(
+    this.apiProvider.postWithoutAuth('users/createnewuser', insertdata).subscribe(
       async rdata => {
         this.spinner.hide();
         if (rdata.result == null) {
