@@ -1,94 +1,50 @@
-   <div class="">
-    <h4 class="mb-4 ml-2">
-        <strong>All Cards</strong>
-      </h4>
-   <div class="form-group form-inline">
-   <input class="form-control ml-2" type="text" name="searchTerm" placeholder="search" />
-     </div> 
+<div class="">
+  <h4 class="mb-4 ml-2">
+    <strong>All Cards</strong>
+  </h4>
+  <div class="form-group form-inline">
+    <input class="form-control ml-2" type="text" name="searchTerm" placeholder="search" [formControl]="searchCtrl"/>
   </div>
+</div>
 <div class="table-operations">
   <!--<button nz-button (click)="sort('age', 'descend')">Sort age</button>
   <button nz-button (click)="resetFilters()">Clear filters</button>
   <button nz-button (click)="resetSortAndFilters()">Clear filters and sorters</button>-->
- 
+
 </div>
-<nz-table #filterTable [nzData]="listOfDisplayData"  class="air__utils__scrollTable mb-4"
-          [nzScroll]="{x: '100%'}">
+<nz-table #filterTable [nzData]="allcardss" class="air__utils__scrollTable mb-4" [nzScroll]="{x: '100%'}">
   <thead>
-  <tr>
-    <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.name"
-      (nzSortChange)="sort('name', $event)"
-      [nzFilters]="listOfFilterName"
-      (nzFilterChange)="search($event, listOfSearchAddress)"
-    >
-      CARD NUMBER
-    </th>
-    <th nzShowSort [(nzSort)]="mapOfSort.age" (nzSortChange)="sort('age', $event)">DATE</th>
-    <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      CARD EXPIRY
-    </th>
-	  <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      CARD TYPE
-    </th>
-		  <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      IS DEFAULT CARD
-    </th>
-			  <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      FIRST NAME
-    </th>
-			  <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      LAST NAME
-    </th>
-  </tr>
+    <tr>
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.ccnumber" (nzSortChange)="sort('ccnumber', $event)">
+        CARD NUMBER
+      </th>
+      <!-- <th id='' nzShowSort [(nzSort)]="mapOfSort.transactionid" (nzSortChange)="sort('transactionid', $event)">DATE</th> -->
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.ccexpiry" (nzSortChange)="sort('ccexpiry', $event)">
+        CARD EXPIRY
+      </th>
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.cardtype" (nzSortChange)="sort('cardtype', $event)">
+        CARD TYPE
+      </th>
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.isdefault" (nzSortChange)="sort('isdefault', $event)">
+        IS DEFAULT CARD
+      </th>
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.firstname" (nzSortChange)="sort('firstname', $event)">
+        FIRST NAME
+      </th>
+      <th id='' nzShowSort [(nzSort)]="mapOfSort.lastname" (nzSortChange)="sort('lastname', $event)">
+        LAST NAME
+      </th>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of filterTable.data">
-    <td>{{ data.name }}</td>
-    <td>{{ data.age }}</td>
-    <td>{{ data.address }}</td>
-	    <td>{{ data.name }}</td>
-    <td>{{ data.age }}</td>
-    <td>{{ data.address }}</td>
-	    <td>{{ data.name }}</td>
-  
-  </tr>
+    <tr *ngFor="let data of filterTable.data">
+      <td>{{ data.ccnumber }}</td>
+      <td>{{ data.ccexpiry }}</td>
+      <td>{{ data.cardtype }}</td>
+      <td>{{ data.isdefault }}</td>
+      <td>{{ data.firstname }}</td>
+      <td>{{ data.lastname }}</td>
+
+    </tr>
   </tbody>
 </nz-table>

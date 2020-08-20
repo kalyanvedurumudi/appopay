@@ -197,7 +197,7 @@ export class RegisterComponent implements OnInit {
       firstName: this.validateForm.value.firstName,
       lastName: this.validateForm.value.lastName,
       username: usernames,
-      password: this.validateForm.value.password,
+      password: this.validateForm.value.passwordnew,
       email: this.validateForm.value.emailAddress,
       mobilenumber: this.validateForm.value.mobileNumber,
       phonecode: this.validateForm.value.code.areacode,

@@ -89,14 +89,15 @@ export class ClaimrequestTableComponent implements OnInit {
   }
 
   onFilterChange(value: string) {
-    this.claimrequests = this.cRSuperSet.filter(({ transactionid, messagetext, transferamount, currencycode, isclaimtext}) => {
-      return JSON.stringify({
-        transactionid,
-        messagetext,
-        transferamount,
-        currencycode,
-        isclaimtext
-        }).includes(value)
+    this.claimrequests = this.cRSuperSet.filter((claim) => {
+      const reqVal = { 
+        transactionid: claim.transactionid,
+        messagetext: claim.messagetext,
+        transferamount: claim.transferamount,
+        currencycode: claim.currencycode,
+        isclaimtext: claim.isclaimtext
+      }; 
+      return JSON.stringify(Object.values(reqVal)).toLocaleLowerCase().includes(value.toLocaleLowerCase());
     });
   }
 
