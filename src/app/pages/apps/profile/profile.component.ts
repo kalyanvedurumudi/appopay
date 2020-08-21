@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '@app/services/auth.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-apps-profile',
@@ -25,7 +26,7 @@ export class AppsProfileComponent implements OnInit {
     private apiProvider: ApiProvider,
     private authService: AuthService,
     private storage: LocalStorageService,
-    private notification: NzNotificationService,
+    private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder
     ) {
       this.userObj = this.storage.retrieve('userDetails');
@@ -77,7 +78,7 @@ export class AppsProfileComponent implements OnInit {
     const mobileno = this.userObj.mobilenumber;
     const areacode = this.userObj.phonecode;
     const usertype = this.userObj.usertype;
-
+    this.spinner.show();
     this.apiProvider.get('users/findbyMobile/' + mobileno + '/' + areacode + '/' + usertype).subscribe(
       async resdata => {
         this.userObj = resdata.result;
@@ -112,6 +113,7 @@ export class AppsProfileComponent implements OnInit {
     });
     this.statename = filterdata3[0].statename;
     this.onPersonalDetailsForm.controls.state.setValue(this.userObj.customerdetails.stateid);
+    this.spinner.hide();
   }
 
   changeKey(key) {

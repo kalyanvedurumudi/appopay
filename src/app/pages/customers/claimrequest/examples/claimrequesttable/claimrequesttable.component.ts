@@ -6,6 +6,7 @@ import { ApiProvider } from '@app/services/api-provider';
 import { filter } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'air-antd-table-claimrequest',
@@ -70,6 +71,7 @@ export class ClaimrequestTableComponent implements OnInit {
   constructor(
     private storage: LocalStorageService,
     private router: Router,
+    private spinner: NgxSpinnerService,
     private apiProvider: ApiProvider
   ) { }
 
@@ -105,6 +107,7 @@ export class ClaimrequestTableComponent implements OnInit {
   getMyClaims() {
     const mobileno = this.userDetails.mobilenumber;
     const areacode = this.userDetails.phonecode;
+    this.spinner.show();
 
     this.apiProvider.get('wallet/claimtransfer/' + mobileno + '/' + areacode).subscribe(
       async resdata => {
@@ -147,7 +150,9 @@ export class ClaimrequestTableComponent implements OnInit {
           });
 
         });
-      }, async (error) => {
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
       });
   }
   /**

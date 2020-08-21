@@ -89,7 +89,6 @@ export class LoginComponent implements OnInit {
               this.apiProvider.get('users/findbyMobile/' + mobileno + '/' + areacode + '/' + USET_TYPE).subscribe(
                 async userdata => {
                   if (userdata.result) {
-                    this.spinner.hide();
                     this.storage.store('userDetails', userdata.result);
                     let accounts = [];
                     if (userdata.result.customerdetails != null) {
@@ -121,16 +120,13 @@ export class LoginComponent implements OnInit {
                       'You have successfully logged in to AppoPay - Payments & Money Transfer Admin Template!',
                     )
                   } else {
-                    this.spinner.hide();
                     this.notification.warning('Warning', 'Please Enter correct mobile number or password.');
                   }
+                  this.spinner.hide();
                 }, async () => {
                   this.spinner.hide();
                   this.notification.error('Error', 'Some thing went wrong please try after sometime or contact admin');
-
                 });
-
-
             } else {
               this.spinner.hide();
               this.notification.warning('Warning', 'Please Enter correct mobile number or password.');
@@ -139,10 +135,8 @@ export class LoginComponent implements OnInit {
           }, async (error) => {
             this.spinner.hide();
             this.notification.error('Error', 'Some thing went wrong please try after sometime or contact admin');
-
           });
-
-      }, async (error) => {
+      }, async () => {
         this.spinner.hide();
         this.notification.error('Error', 'Some thing went wrong please try after sometime or contact admin');
 
@@ -150,7 +144,7 @@ export class LoginComponent implements OnInit {
   }
 
   async getCountry() {
-
+    this.spinner.show();
     this.apiProvider.getWithoutAuth('configurations/country').subscribe(
       async resdata => {
         this.countries = resdata.result;
@@ -161,8 +155,10 @@ export class LoginComponent implements OnInit {
         //   .subscribe(() => {
         //     this.filterBanks();
         //   });
-
-      }, async () => {});
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
+      });
 
   }
 

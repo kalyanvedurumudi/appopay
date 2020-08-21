@@ -4,6 +4,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { ApiProvider } from '@app/services/api-provider';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var swal: any;
 
 @Component({
@@ -47,6 +48,7 @@ export class ClaimconfirmationComponent implements OnInit {
     private apiProvider: ApiProvider,
     private storage: LocalStorageService,
     private notification: NzNotificationService,
+    private spinner: NgxSpinnerService,
     private router: Router
   ) { }
 
@@ -78,12 +80,14 @@ export class ClaimconfirmationComponent implements OnInit {
     const mobileno = this.userObj.mobilenumber;
     const areacode = this.userObj.phonecode;
     const usertype = this.userObj.usertype;
-
+    this.spinner.show();
     this.apiProvider.get('users/findbyMobile/' + mobileno + '/' + areacode + '/' + usertype).subscribe(
       async resdata => {
         this.userObj = resdata.result;
         this.getCurrency(resdata.result.customerdetails.customeraccount);
-      }, async () => {});
+      }, async () => {
+        this.spinner.hide();
+      });
   }
 
   async getCurrency(gaccounts) {
@@ -110,7 +114,10 @@ export class ClaimconfirmationComponent implements OnInit {
         this.accountTransfersForm.controls.amountTranfered.disable();
         this.securityQuestion = this.claimdetails.securityquestion;
         this.amounttoTransfer = this.claimdetails.transferamount;
-      }, async () => {});
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
+      });
   }
 
   getCurrencyName(cc) {
@@ -140,6 +147,7 @@ export class ClaimconfirmationComponent implements OnInit {
     const amounttocredit = (this.amounttoTransfer * this.conversionRate).toFixed(2);
     this.accountTransfersForm.controls.amountTranfered.setValue(amounttocredit);
     this.amounttoCredit = amounttocredit;
+    this.spinner.hide();
   }
 
   async getConversionAmount() {
@@ -180,6 +188,7 @@ export class ClaimconfirmationComponent implements OnInit {
       });
       const tocurrency = filterdata4[0].currency_code;
       this.tcurrency = tocurrency;
+      this.spinner.show();
       const url = 'https://api.exchangeratesapi.io/latest?base=' + fromcurrency;
       this.apiProvider.getConversionApi(url).subscribe(
         async bankdata => {
@@ -187,6 +196,7 @@ export class ClaimconfirmationComponent implements OnInit {
           this.conversionRate = res.rates[tocurrency];
           this.getTransferedAmount();
         }, async () => {
+          this.spinner.hide();
         });
 
     }
@@ -200,6 +210,7 @@ export class ClaimconfirmationComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         const datatransactionpin = result.value;
+        this.spinner.show();
         this.apiProvider.get('configurations/comissiontype/CLAIM-CONFIRM').subscribe(
           async comdata => {
 
@@ -216,6 +227,7 @@ export class ClaimconfirmationComponent implements OnInit {
             processingfees = (parseFloat(processingfees) + flatprocessingcomission).toFixed(2);
             const flatfees = (flatbankcomission + flatprocessingcomission).toFixed(2);
             finalamount = finalamount - parseFloat(flatfees);
+            this.spinner.hide();
 
             const message = 'You are about to claim ' + finalamount + ' ' + this.tcurrency + ' . Please confirm ?  ';
             swal.fire({
@@ -244,6 +256,7 @@ export class ClaimconfirmationComponent implements OnInit {
                   transactionid: this.claimdetails.transactionid,
                   securityanswer: this.accountTransfersForm.get('yourName').value
                 };
+                this.spinner.show();
                 this.apiProvider.post('wallet/claimconfirm', amountransferdata).subscribe(
                   async resdata => {
                     if (resdata.result == 'PINERROR') {
@@ -257,16 +270,20 @@ export class ClaimconfirmationComponent implements OnInit {
                       this.notification.success('Success', 'Your claim transfer is successful.');
                       this.router.navigate(['/dashboards/analytics']);
                     }
+                    this.spinner.hide();
                   }, async () => {
                     this.notification.error('Failed', 'Failed to perform the claim ,Please try after sometime');
+                    this.spinner.hide();
                   });
               }
             });
           }, async () => {
             this.notification.error('Failed', 'Failed to perform the claim ,Please try after sometime');
+            this.spinner.hide();
           });
       } else {
         this.notification.warning('Warning', 'Please enter transaction pin.');
+        this.spinner.hide();
       }
     });
   }

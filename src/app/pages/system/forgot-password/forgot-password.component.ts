@@ -6,6 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/services/must-match.validator';
 import { AuthService } from '@app/services/auth.service';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var swal: any;
 
 @Component({
@@ -25,7 +26,8 @@ export class ForgotPasswordComponent implements OnInit {
     private authService: AuthService,
     private storage: LocalStorageService,
     private notification: NzNotificationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -66,6 +68,7 @@ export class ForgotPasswordComponent implements OnInit {
     const verifydata = {
       phone_number: mobilenumber
     };
+    this.spinner.show();
     this.apiProvider.postWithoutAuth('otp/generateotp', verifydata).subscribe(
       async resdata => {
         const res = resdata;
@@ -75,8 +78,10 @@ export class ForgotPasswordComponent implements OnInit {
           this.notification.warning('Warning', 'OTP Send Successfully, OTP is valid only for 5 min');
           this.buttonaction = 2;
         }
+        this.spinner.hide();
       }, async () => {
         this.notification.error('Error', 'Failed to send OTP please try after some time.');
+        this.spinner.hide();
       });
   }
 
@@ -93,7 +98,7 @@ export class ForgotPasswordComponent implements OnInit {
           phone_number: mobilenumber,
           otp_number: datatransactionpin
         };
-
+        this.spinner.show();
         this.apiProvider.postWithoutAuth('otp/verifyOTP', verifycontent).subscribe(
           async resdata => {
             const res = resdata;
@@ -102,11 +107,13 @@ export class ForgotPasswordComponent implements OnInit {
             } else {
               this.updatePassword();
             }
-
+            this.spinner.hide();
           }, async () => {
+            this.spinner.hide();
             this.notification.warning('Warning', 'OTP verification failed,Please try again!');
           });
       } else {
+            this.spinner.hide();
             this.notification.warning('Warning', 'Please enter OTP');
       }
 
@@ -122,6 +129,7 @@ export class ForgotPasswordComponent implements OnInit {
       securityanswer: this.forgotPasswordForm.value.securityAnswer
     };
 
+    this.spinner.show();
     this.apiProvider.postWithoutAuth('users/resetpassword', insertdata).subscribe(
       async resdata => {
         const res = resdata;
@@ -137,8 +145,10 @@ export class ForgotPasswordComponent implements OnInit {
         } else {
          this.notification.warning('Warning', 'Failed to reset your password!');
         }
+        this.spinner.hide();
       }, async () => {
-         this.notification.error('Warning', 'Failed to reset your password!');
+        this.spinner.hide();
+        this.notification.error('Warning', 'Failed to reset your password!');
       });
 
 

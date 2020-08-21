@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <div>
   <div class="air__utils__heading">
     <h5>
@@ -13,16 +14,16 @@
     <div class="card-body">
       <h5 style="float: right!important;">
 
-        <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add Card</button>
+        <button class="btn btn-lg btn-outline-primary" (click)="open(undefined, content)">Add Card</button>
       </h5>
-      <air-antd-table-allcards #allCardTable (updateCstmr)="updtCustomer($event)"></air-antd-table-allcards>
+      <air-antd-table-allcards #allCardTable (updateCstmr)="open($event, content)"></air-antd-table-allcards>
 
     </div>
   </div>
 </div>
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{ mode === 'create' ? 'Add Card' : 'Update Card' }}</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{ mode === 'create' ? 'Add Card' : 'Card List' }}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -134,7 +135,7 @@
           RESET
         </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="submit" class="btn btn-primary" (click)="modal.dismiss('Add click'); submitForm()">
-          ADD CARD
+            {{ mode === 'create' ? 'ADD CARD' : 'REMOVE CARD' }}
         </button>
       </nz-form-control>
     </nz-form-item>

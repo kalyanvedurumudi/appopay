@@ -34,6 +34,7 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { HttpModule } from '@angular/http';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 const LOCALE_PROVIDERS = [
   { provide: LOCALE_ID, useValue: 'en' },
   { provide: NZ_I18N, useValue: localeZorro },
@@ -105,6 +106,7 @@ const firebaseConfig = {
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
+    NgxSpinnerModule
   ],
   providers: [
     ...LOCALE_PROVIDERS,

@@ -5,6 +5,7 @@ import { ApiProvider } from '@app/services/api-provider';
 import { AuthService } from '@app/services/auth.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-profile',
@@ -34,12 +35,12 @@ export class ProfileComponent implements OnInit {
   statename = null;
 
   constructor(
-    private router: Router,
     private apiProvider: ApiProvider,
     private authService: AuthService,
     private storage: LocalStorageService,
     private notification: NzNotificationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) {
     this.userObj = this.storage.retrieve('userDetails');
   }
@@ -90,7 +91,7 @@ export class ProfileComponent implements OnInit {
     const mobileno = this.userObj.mobilenumber;
     const areacode = this.userObj.phonecode;
     const usertype = this.userObj.usertype;
-
+    this.spinner.show();
     this.apiProvider.get('users/findbyMobile/' + mobileno + '/' + areacode + '/' + usertype).subscribe(
       async resdata => {
         this.userObj = resdata.result;
@@ -125,9 +126,11 @@ export class ProfileComponent implements OnInit {
     });
     this.statename = filterdata3[0].statename;
     this.onPersonalDetailsForm.controls.state.setValue(this.userObj.customerdetails.stateid);
+    this.spinner.hide();
   }
 
   async updateEmailId() {
+    this.spinner.show();
     if (this.userObj.email == this.onPersonalDetailsForm.value.email) {
       this.updateUser();
       // this.updateEmail();
@@ -141,7 +144,9 @@ export class ProfileComponent implements OnInit {
           } else {
             this.updateUser();
           }
+        this.spinner.hide();
         }, async () => {
+          this.spinner.hide();
         });
     }
   }
@@ -188,13 +193,14 @@ export class ProfileComponent implements OnInit {
         const res = resdata;
         if (!res.result) {
           this.notification.error('Error', 'Failed to update personal details!');
-
         } else {
           this.notification.success('Success', 'Personal Details updated successfully');
           this.latestUserDetails();
         }
+        this.spinner.hide();
       }, async () => {
         this.notification.error('Error', 'Failed to update personal details!');
+        this.spinner.hide();
       });
   }
 }

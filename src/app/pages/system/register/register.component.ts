@@ -120,6 +120,7 @@ export class RegisterComponent implements OnInit {
     const mobile = this.validateForm.value.mobileNumber;
     const areacode = this.validateForm.value.code.areacode;
     const mbnumber = areacode + mobile;
+    this.spinner.show();
     this.apiProvider.getWithoutAuth('users/checkmobile/' + mbnumber + '/CUSTOMER').subscribe(
       async resdata => {
         if (!resdata.result) {
@@ -127,7 +128,10 @@ export class RegisterComponent implements OnInit {
         } else {
           this.validateEmail();
         }
-      }, async () => {});
+      this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
+      });
 
   }
 
@@ -157,13 +161,13 @@ export class RegisterComponent implements OnInit {
     };
     this.apiProvider.postWithoutAuth('otp/generateotp', verifydata).subscribe(
       async resdata => {
-        this.spinner.hide();
         const res = resdata;
         if (res.result === false) {
           this.notification.warning('Warning', 'Failed to send Otp please try after some time.');
         } else {
           this.notification.success('Success', 'Otp Send Successfully,Otp is valid only for 5 min');
         }
+        this.spinner.hide();
       }, async () => {
         this.spinner.hide();
         this.notification.error('error', 'Failed to send Otp please try after some time.');
@@ -178,15 +182,18 @@ export class RegisterComponent implements OnInit {
       phone_number: newnumber,
       otp_number: this.validateForm.get('otp').value
     };
+    this.spinner.show();
     this.apiProvider.postWithoutAuth('otp/verifyOTP', verifycontent).subscribe(
       async resdata => {
         const res = resdata;
         if (!res) {
+          this.spinner.hide();
           this.notification.warning('Warning', 'Please enter a valid OTP !');
         } else {
           this.createUser();
         }
       }, async () => {
+        this.spinner.hide();
         this.notification.error('Error', 'OTP verification failed please try again !');
       });
   }

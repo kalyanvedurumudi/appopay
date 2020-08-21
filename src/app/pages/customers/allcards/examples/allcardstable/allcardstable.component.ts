@@ -103,10 +103,14 @@ export class AllcardsTableComponent implements OnInit {
   }
 
   async getCurrency() {
+    this.spinner.show();
     this.apiProvider.getWithoutAuth('configurations/currency').subscribe(
       async resdata => {
         this.currencies = resdata.result;
-      }, async () => { });
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
+      });
   }
 
   onFilterChange(value: string) {
@@ -124,6 +128,7 @@ export class AllcardsTableComponent implements OnInit {
   }
 
   usercardetails() {
+    this.spinner.show();
     this.apiProvider.get('users/getcards/' + this.userDetails.id).subscribe(
       async resdata => {
         this.cardslist = resdata.result;
@@ -180,9 +185,9 @@ export class AllcardsTableComponent implements OnInit {
               });
             }
           }
-
+          this.spinner.hide();
         }, async () => {
-
+          this.spinner.hide();
         });
       count++;
     });
@@ -309,7 +314,6 @@ export class AllcardsTableComponent implements OnInit {
         const IdPlastico = versatecres.result.IdPlastico;
         const IdAsociado = versatecres.result.IdAsociado;
         if (IdCuenta == null) {
-          this.spinner.hide();
           this.notification.success('Success', 'Card saved successfully');
           this.usercardetails();
         } else {
@@ -327,10 +331,8 @@ export class AllcardsTableComponent implements OnInit {
           this.apiProvider.post('cardidentifications/linkcard', cardcontent).subscribe(
             async carddetails => {
               if (carddetails.result == 'SUCCESS') {
-                this.spinner.hide();
                 this.notification.success('Success', 'Card saved successfully');
                 this.usercardetails();
-
               } else {
                 this.spinner.hide();
               }

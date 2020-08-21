@@ -64,7 +64,15 @@ export class AllCardsComponent implements OnInit {
     }
   }
 
-  open(content) {
+  open(allCards: Allcards, content: any) {
+    if (allCards) {
+      this.mode = 'update';
+      this.addCardForm.patchValue({
+        ...allCards
+      })
+      allCards.isdefault ? this.addCardForm.get('isdefault').setValue('Yes') : this.addCardForm.get('isdefault').setValue('No');
+    }
+    
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
       result => {
         this.closeResult = `Closed with: ${result}`
@@ -139,45 +147,31 @@ export class AllCardsComponent implements OnInit {
   }
 
   updtCustomer(allCards: Allcards): void {
-    this.mode = 'update';
-    this.addCardForm.patchValue({
-      ...allCards
-    })
-    allCards.isdefault ? this.addCardForm.get('isdefault').setValue('Yes') : this.addCardForm.get('isdefault').setValue('No');
-    
-    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
-      updtCstmr => {
-        this.closeResult = `Closed with: ${updtCstmr}`;
-        const message = 'Do you want to remove Card ?';
+    this.closeResult = `Closed with: ${allCards}`;
+    const message = 'Do you want to remove Card ?';
 
-        swal.fire({
-          title: message,
-          showCancelButton: true
-        }).then((transConfirm) => {
-          if (transConfirm) {
-            this.spinner.show();
-            this.apiProvider.delete('users/removecard/' + updtCstmr.id + '').subscribe(
-              async resdata => {
-                this.spinner.hide();
-                if (resdata.result == 1) {
-                  this.notification.success('Success', 'Card removed successfully');
-                  this.allCardsTbleCmpt.usercardetails();
-                } else {
-                  this.notification.error('Error', 'Failed to remove card ,Please try after sometime.');
-                }
-              }, async () => {
-                this.spinner.hide();
-                this.notification.error('Error', 'Failed to update ,Please try after sometime.');
-
-              });
-          } 
-        });
-        this.close();
-      },
-      reason => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        this.close();
-      },);
+    swal.fire({
+      title: message,
+      showCancelButton: true
+    }).then((transConfirm) => {
+      if (transConfirm && transConfirm.isConfirmed) {
+        this.spinner.show();
+        this.apiProvider.delete('users/removecard/' + allCards.id + '').subscribe(
+          async resdata => {
+            this.spinner.hide();
+            if (resdata.result == 1) {
+              this.notification.success('Success', 'Card removed successfully');
+              this.allCardsTbleCmpt.usercardetails();
+            } else {
+              this.notification.error('Error', 'Failed to remove card ,Please try after sometime.');
+            }
+          }, async () => {
+            this.spinner.hide();
+            this.notification.error('Error', 'Failed to update ,Please try after sometime.');
+          });
+      } 
+    });
+    this.close();
   }
 
   updateCustomer() {
