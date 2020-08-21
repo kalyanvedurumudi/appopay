@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core'
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap'
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@app/services/auth.service';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { Allcards } from '../models/allcards.model';
+import { ApiProvider } from '@app/services/api-provider';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AllcardsTableComponent } from './examples/allcardstable/allcardstable.component';
+declare var swal: any;
 
 @Component({
   selector: 'app-tables-antd',
@@ -12,10 +17,44 @@ import { NzNotificationService } from 'ng-zorro-antd';
 export class AllCardsComponent implements OnInit {
   closeResult: string;
   countries;
+  addCardForm: FormGroup;
+
   mode: 'create' | 'update' = 'create';
+  @ViewChild('content', { static: true }) content: ElementRef;
+  @ViewChild(AllcardsTableComponent, { static: true }) allCardsTbleCmpt : AllcardsTableComponent;
+  
+
+
+  constructor(private fb: FormBuilder, private modalService: NgbModal,
+    private notification: NzNotificationService,    
+    public activeModal: NgbActiveModal,
+    private apiProvider: ApiProvider,
+    private spinner: NgxSpinnerService,
+    private authService: AuthService
+    ) {}
 
   ngOnInit() {
-    
+    this.addCardForm = this.fb.group({
+      id: [''],
+      imageSrc: [''],
+      ccnumber: [null, Validators.compose([
+        Validators.required, Validators.minLength(5), Validators.maxLength(20), Validators.pattern("^[0-9]*$")
+      ])],
+      ccexpiry: [null, Validators.compose([
+        Validators.required, Validators.minLength(3), Validators.maxLength(10), Validators.pattern("^[0-9]*$")
+      ])],
+      cvv: [null, Validators.compose([
+        Validators.required, Validators.minLength(3), Validators.maxLength(10), Validators.pattern("^[0-9]*$")
+      ])],
+      firstname: [null, Validators.compose([
+        Validators.required
+      ])],
+      isdefault: ['', Validators.compose([
+        Validators.required
+      ])]
+    });
+    this.addCardForm.reset();
+
     this.countries = this.authService.getCountries();
     if (!this.countries || (this.countries && this.countries.length)) {
       this.authService.getCountry().subscribe(resdata => {
@@ -24,13 +63,15 @@ export class AllCardsComponent implements OnInit {
       }, () => { });
     }
   }
+
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
       result => {
         this.closeResult = `Closed with: ${result}`
       },
       reason => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.close();
       },
     )
   }
@@ -44,7 +85,6 @@ export class AllCardsComponent implements OnInit {
       return `with: ${reason}`
     }
   }
-  addCardForm: FormGroup;
 
   submitForm(): void {
     if (this.mode === 'create') {
@@ -58,29 +98,6 @@ export class AllCardsComponent implements OnInit {
     e.preventDefault();
     this.addCardForm.reset();
     this.addCardForm.get('isDefault').setValue('');
-  }
-
-  constructor(private fb: FormBuilder, private modalService: NgbModal,
-    private notification: NzNotificationService,
-    private authService: AuthService
-    ) {
-    this.addCardForm = this.fb.group({
-      cardNumber: [null, Validators.compose([
-        Validators.required, Validators.minLength(5), Validators.maxLength(20), Validators.pattern("^[0-9]*$")
-      ])],
-      ccExp: [null, Validators.compose([
-        Validators.required, Validators.minLength(3), Validators.maxLength(10), Validators.pattern("^[0-9]*$")
-      ])],
-      cvv: [null, Validators.compose([
-        Validators.required, Validators.minLength(3), Validators.maxLength(10), Validators.pattern("^[0-9]*$")
-      ])],
-      fullName: [null, Validators.compose([
-        Validators.required
-      ])],
-      isDefault: ['', Validators.compose([
-        Validators.required
-      ])]
-    });
   }
 
   createCustomer() {
@@ -112,8 +129,55 @@ export class AllCardsComponent implements OnInit {
       this.notification.warning('Warning', 'Please enter a valid card');
     }
     if (isvalid) {
-      // this.dialogRef.close(customer);
+      this.allCardsTbleCmpt.createCustomer(customer);
     }
+    this.close();
+  }
+
+  close(): void {
+    this.activeModal.close();
+  }
+
+  updtCustomer(allCards: Allcards): void {
+    this.mode = 'update';
+    this.addCardForm.patchValue({
+      ...allCards
+    })
+    allCards.isdefault ? this.addCardForm.get('isdefault').setValue('Yes') : this.addCardForm.get('isdefault').setValue('No');
+    
+    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      updtCstmr => {
+        this.closeResult = `Closed with: ${updtCstmr}`;
+        const message = 'Do you want to remove Card ?';
+
+        swal.fire({
+          title: message,
+          showCancelButton: true
+        }).then((transConfirm) => {
+          if (transConfirm) {
+            this.spinner.show();
+            this.apiProvider.delete('users/removecard/' + updtCstmr.id + '').subscribe(
+              async resdata => {
+                this.spinner.hide();
+                if (resdata.result == 1) {
+                  this.notification.success('Success', 'Card removed successfully');
+                  this.allCardsTbleCmpt.usercardetails();
+                } else {
+                  this.notification.error('Error', 'Failed to remove card ,Please try after sometime.');
+                }
+              }, async () => {
+                this.spinner.hide();
+                this.notification.error('Error', 'Failed to update ,Please try after sometime.');
+
+              });
+          } 
+        });
+        this.close();
+      },
+      reason => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.close();
+      },);
   }
 
   updateCustomer() {
@@ -144,7 +208,7 @@ export class AllCardsComponent implements OnInit {
       this.notification.warning('Warning', 'Please enter a valid card');
     }
     if (isvalid) {
-      // this.dialogRef.close(customer);
+      this.updtCustomer(customer);
     }
   }
 }

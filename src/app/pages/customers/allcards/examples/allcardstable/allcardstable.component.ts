@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'
 import { Allcards } from '@app/pages/customers/models/allcards.model';
 import { ReplaySubject, Observable, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -6,6 +6,8 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
 import { ApiProvider } from '@app/services/api-provider';
 import { filter } from 'rxjs/operators';
+import { NzNotificationService } from 'ng-zorro-antd';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'air-antd-table-allcards',
@@ -23,13 +25,18 @@ import { filter } from 'rxjs/operators';
   ],
 })
 export class AllcardsTableComponent implements OnInit {
-  
+  @Output() updateCstmr = new EventEmitter<Allcards>()
 
   subject$: ReplaySubject<Allcards[]> = new ReplaySubject<Allcards[]>(1);
   data$: Observable<Allcards[]> = this.subject$.asObservable();
   allcardss: Allcards[];
   cRSuperSet: Allcards[];
-  
+  userDetails: any;
+  allcardlist = [];
+  searchCtrl = new FormControl();
+  currencies: Array<any>;
+  cardslist = [];
+
   mapOfSort: { [key: string]: any } = {
     ccnumber: null,
     ccexpiry: null,
@@ -70,16 +77,13 @@ export class AllcardsTableComponent implements OnInit {
       priority: 1
     }
   ];
-  userDetails: any;
-  allcardlist = [];
-  searchCtrl = new FormControl();
-  currencies: Array<any>;
-  cardslist = [];
 
   constructor(
     private storage: LocalStorageService,
     private router: Router,
-    private apiProvider: ApiProvider
+    private notification: NzNotificationService,
+    private apiProvider: ApiProvider,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -102,7 +106,7 @@ export class AllcardsTableComponent implements OnInit {
     this.apiProvider.getWithoutAuth('configurations/currency').subscribe(
       async resdata => {
         this.currencies = resdata.result;
-      }, async () => {});
+      }, async () => { });
   }
 
   onFilterChange(value: string) {
@@ -124,7 +128,7 @@ export class AllcardsTableComponent implements OnInit {
       async resdata => {
         this.cardslist = resdata.result;
         this.getallcards();
-      }, async () => {});
+      }, async () => { });
 
   }
 
@@ -198,11 +202,11 @@ export class AllcardsTableComponent implements OnInit {
         this.mapOfSort[key] = key === sortName ? value : null
       }
     }
-    
+
     if (sortName && value) {
       const toSort = [...this.allcardss];
       this.allcardss = [];
-      this.allcardss = toSort.sort((a, b) =>{
+      this.allcardss = toSort.sort((a, b) => {
         if (!a.hasOwnProperty(sortName) || !b.hasOwnProperty(sortName)) {
           return 0;
         }
@@ -223,7 +227,140 @@ export class AllcardsTableComponent implements OnInit {
     }
   }
 
-  confirmClaim(type, details){
+  createCustomer(allcards: Allcards): void {
+
+    if (allcards) {
+
+      const visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+      const mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
+      const amexpRegEx = /^(?:3[47][0-9]{13})$/;
+      const discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
+      const cooptavanzaRegEx = /^(?:60891700[0-9]{11})$/;
+      let cardtype = '';
+      let isvalid = true;
+      if (visaRegEx.test(allcards.ccnumber)) {
+        cardtype = 'VISA';
+      } else if (mastercardRegEx.test(allcards.ccnumber)) {
+        cardtype = 'MASTER';
+      } else if (amexpRegEx.test(allcards.ccnumber)) {
+        cardtype = 'AMEX';
+      } else if (discovRegEx.test(allcards.ccnumber)) {
+        cardtype = 'DISCOVER';
+      } else if (cooptavanzaRegEx.test(allcards.ccnumber)) {
+        cardtype = 'COOPTAVANZA';
+      } else {
+        isvalid = false;
+        this.notification.warning('Warning', 'Please enter a valid card');
+      }
+      if (isvalid) {
+        const cardfullName = allcards.fullname.split(' ');
+        let isdetault = true;
+        if (allcards.isdefault == 'Yes') {
+          isdetault = true;
+        } else {
+          isdetault = false;
+        }
+        const inputdata = {
+          firstName: this.userDetails.firstName,
+          lastName: this.userDetails.lastName,
+          ccnumber: allcards.ccnumber,
+          ccexp: allcards.ccexpiry,
+          cvv: allcards.cvv,
+          id: this.userDetails.id,
+          // tslint:disable-next-line:object-literal-shorthand
+          cardtype: cardtype,
+          isdefault: isdetault,
+          cardfirstname: cardfullName[0],
+          cardlastname: cardfullName[1],
+        };
+        this.spinner.show();
+        this.apiProvider.post('users/savecardtype', inputdata).subscribe(
+          async resdata => {
+            if (resdata.result != 'SAVE_FAILED' && resdata.result != 'DUPLICATE') {
+              if (resdata.result != 'COMMING_SOON') {
+                this.linkCard(resdata.result, allcards.ccnumber);
+              } else {
+                this.spinner.hide();
+                this.notification.warning('Warning', 'Option will be available soon');
+              }
+
+            } else {
+              this.spinner.hide();
+              this.notification.error('Error', 'Failed to save card / Card details might already exists,Please try after sometime');
+
+            }
+          }, async (error) => {
+            this.notification.error('Error', 'failed to save card / Card details might already exists,Please try after sometime');
+            this.spinner.hide();
+          });
+      }
+    }
+  }
+
+
+  linkCard(transactionid, cardnumber) {
+
+    const versateccontent = {
+      card_token: cardnumber
+    };
+    this.apiProvider.postWithoutAuth('cardidentifications/checkversateccard', versateccontent).subscribe(
+      async versatecres => {
+        const IdCuenta = versatecres.result.IdCuenta;
+        const IdPlastico = versatecres.result.IdPlastico;
+        const IdAsociado = versatecres.result.IdAsociado;
+        if (IdCuenta == null) {
+          this.spinner.hide();
+          this.notification.success('Success', 'Card saved successfully');
+          this.usercardetails();
+        } else {
+          const cardcontent = {
+            // tslint:disable-next-line:object-literal-shorthand
+            IdCuenta: IdCuenta,
+            // tslint:disable-next-line:object-literal-shorthand
+            IdPlastico: IdPlastico,
+            // tslint:disable-next-line:object-literal-shorthand
+            IdAsociado: IdAsociado,
+            // tslint:disable-next-line:object-literal-shorthand
+            transactionid: transactionid
+          };
+
+          this.apiProvider.post('cardidentifications/linkcard', cardcontent).subscribe(
+            async carddetails => {
+              if (carddetails.result == 'SUCCESS') {
+                this.spinner.hide();
+                this.notification.success('Success', 'Card saved successfully');
+                this.usercardetails();
+
+              } else {
+                this.spinner.hide();
+              }
+            }, async () => {
+              this.spinner.hide();
+            });
+        }
+      }, async () => {
+        this.spinner.hide();
+      });
+
+  }
+
+  cardbalance(customer) {
+    this.storage.store('CARDDETAILS', customer);
+    this.router.navigate(['/pages/cardbalance']);
+
+  }
+  cardhistory(customer) {
+    this.storage.store('CARDDETAILS', customer);
+    this.router.navigate(['/pages/cardhistory']);
+
+  }
+
+  cartocardtransfer(customer) {
+    this.storage.store('CARDDETAILS', customer);
+    this.router.navigate(['/pages/cardtransfer']);
+  }
+
+  confirmClaim(type, details) {
     this.storage.store('claimtype', type);
     this.storage.store('details', details);
     this.router.navigate(['/customers/claimconfirmation']);

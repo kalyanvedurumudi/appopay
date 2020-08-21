@@ -3,7 +3,7 @@
     <strong>All Cards</strong>
   </h4>
   <div class="form-group form-inline">
-    <input class="form-control ml-2" type="text" name="searchTerm" placeholder="search" [formControl]="searchCtrl"/>
+    <input class="form-control ml-2" type="text" name="searchTerm" placeholder="search" [formControl]="searchCtrl" />
   </div>
 </div>
 <div class="table-operations">
@@ -34,6 +34,9 @@
       <th id='' nzShowSort [(nzSort)]="mapOfSort.lastname" (nzSortChange)="sort('lastname', $event)">
         LAST NAME
       </th>
+      <th id="">
+        ACTION
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -44,7 +47,42 @@
       <td>{{ data.isdefault }}</td>
       <td>{{ data.firstname }}</td>
       <td>{{ data.lastname }}</td>
+      <td>
+        <em class="icon fe fe-menu" nz-popover nzPopoverTitle="Confirm Claim" nzPopoverTrigger="click"
+          [nzPopoverContent]="contentTemplate">
+        </em>
+        <ng-template #contentTemplate>
+          <ul class="list-unstyled">
+            <li>
+              <button (click)="updateCstmr.emit(data)">
+                <em class="icon fe fe-menu"></em>
+                <span>Update</span>
+              </button>
+            </li>
 
+            <li>
+              <button *ngIf="data.idCuenta" (click)="cardbalance(data)">
+                <em class="icon fe fe-menu"></em>
+                <span>Card Balance</span>
+              </button>
+            </li>
+
+            <li>
+              <button *ngIf="data.idCuenta" (click)="cartocardtransfer(data)">
+                <em class="icon fe fe-menu"></em>
+                <span>Card to Card Transfer</span>
+              </button>
+            </li>
+
+            <li>
+              <button *ngIf="data.idCuenta" (click)="cardhistory(data)">
+                <em class="icon fe fe-menu"></em>
+                <span>Transaction History</span>
+              </button>
+            </li>
+          </ul>
+        </ng-template>
+      </td>
     </tr>
   </tbody>
 </nz-table>

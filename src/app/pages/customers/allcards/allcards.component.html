@@ -15,33 +15,36 @@
 
         <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add Card</button>
       </h5>
-      <air-antd-table-allcards></air-antd-table-allcards>
+      <air-antd-table-allcards #allCardTable (updateCstmr)="updtCustomer($event)"></air-antd-table-allcards>
 
     </div>
   </div>
 </div>
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add Card</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{ mode === 'create' ? 'Add Card' : 'Update Card' }}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <form nz-form [nzLayout]="'vertical'" [formGroup]="addCardForm" (ngSubmit)="submitForm()">
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="addCardForm">
       <div class="row">
 
         <div class="col-md-6">
           <nz-form-item>
 
             <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="cardNumberTpl">
-              <input nz-input id="cardNumber" formControlName="cardNumber" placeholder="Card Number" />
+              <input nz-input id="ccnumber" formControlName="ccnumber" placeholder="Card Number" />
               <ng-template #cardNumberTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
                   Required
                 </ng-container>
                 <ng-container *ngIf="control.hasError('pattern')">
-                  Please enter a valid number
+                  Only numbers allowed
+                </ng-container><br>
+                <ng-container *ngIf="control.hasError('minlength')">
+                  Enter a valid card number
                 </ng-container>
               </ng-template>
             </nz-form-control>
@@ -52,13 +55,16 @@
         <div class="col-md-6">
           <nz-form-item>
             <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="ccExpTpl">
-              <input nz-input id="ccExp" formControlName="ccExp" placeholder="CC / EXP" />
+              <input type="password" nz-input id="ccexpiry" formControlName="ccexpiry" placeholder="CC / EXP" />
               <ng-template #ccExpTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
                   Required
                 </ng-container>
                 <ng-container *ngIf="control.hasError('pattern')">
-                  Please enter a valid number
+                  Only numbers allowed
+                </ng-container><br>
+                <ng-container *ngIf="control.hasError('minlength')">
+                  Enter a valid number
                 </ng-container>
               </ng-template>
             </nz-form-control>
@@ -69,14 +75,17 @@
           <nz-form-item>
 
             <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="cvvTpl">
-              <input nz-input id="cvv" formControlName="cvv" placeholder="CVV" />
+              <input type="password" nz-input id="cvv" formControlName="cvv" placeholder="CVV" />
               <ng-template #cvvTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
                   Required
                 </ng-container>
                 <ng-container *ngIf="control.hasError('pattern')">
-                  Please enter a valid number
-                </ng-container> 
+                  Only numbers allowed
+                </ng-container><br>
+                <ng-container *ngIf="control.hasError('minlength')">
+                  Enter a valid number
+                </ng-container>
               </ng-template>
             </nz-form-control>
           </nz-form-item>
@@ -84,7 +93,7 @@
         <div class="col-md-6">
           <nz-form-item>
             <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="fullNameTpl">
-              <input nz-input id="fullName" formControlName="fullName" placeholder="Full Name" />
+              <input nz-input id="fullname" formControlName="firstname" placeholder="Enter Name" />
               <ng-template #fullNameTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
                   Required
@@ -101,7 +110,7 @@
                 <nz-option name="code" *ngFor="let optn of isDefaultOptn"
                   nzLabel="{{optn}}" [nzValue]="optn"></nz-option>
               </nz-select> -->
-              <select class="form-control" formControlName="isDefault">
+              <select class="form-control" formControlName="isdefault">
                   <option hidden value="" disabled selected><span style="color: #786fa4">Is Default</span></option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
@@ -121,11 +130,11 @@
   <div class="modal-footer">
     <nz-form-item>
       <nz-form-control>
-        <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
+        <button type="submit" class="btn btn-primary" (click)="modal.dismiss('Reset click'); resetForm($event)">
           RESET
         </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="submit" class="btn btn-primary">
-          ADD FUND
+        <button type="submit" class="btn btn-primary" (click)="modal.dismiss('Add click'); submitForm()">
+          ADD CARD
         </button>
       </nz-form-control>
     </nz-form-item>

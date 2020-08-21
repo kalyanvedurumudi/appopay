@@ -9,7 +9,7 @@ import { ClaimrequestTableModule } from 'src/app/pages/customers/claimrequest/ex
 import { CardhistoryTableModule } from 'src/app/pages/customers/cardhistory/examples/examples.module'
 import { TransactionstatusTableModule } from 'src/app/pages/customers/transactionstatus/examples/examples.module'
 import { CustomersupportTableModule } from 'src/app/pages/customers/customersupport/examples/examples.module'
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 // layout
@@ -117,6 +117,6 @@ const COMPONENTS = [
     TreeviewModule.forRoot()
   ],
   declarations: [...COMPONENTS],
-  providers: [CKEditorService]
+  providers: [CKEditorService, NgbActiveModal]
 })
 export class CustomersModule { }
