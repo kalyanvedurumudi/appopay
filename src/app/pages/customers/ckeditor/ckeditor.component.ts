@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as Editor from './build.3/ckeditor';
+import * as Editor from './build/ckeditor';
 import { CKEditorService } from '@app/services/ckeditor.service';
 import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
 
