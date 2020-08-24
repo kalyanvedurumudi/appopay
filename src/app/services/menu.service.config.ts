@@ -50,45 +50,59 @@ export const getMenuData: any[] = [
     category: true,
     title: 'Apps & Pages',
   },*/
+  // {
+  //   title: 'System Pages',
+  //   key: 'system',
+  //   icon: 'fe fe-user',
+  //   children: [
+  //     {
+  //       title: 'Login',
+  //       key: 'systemLogin',
+  //       url: '/system/login',
+  //     },
+  //     {
+  //       title: 'Forgot Password',
+  //       key: 'systemForgotPassword',
+  //       url: '/system/forgot-password',
+  //     },
+  //     {
+  //       title: 'Register',
+  //       key: 'systemRegister',
+  //       url: '/system/register',
+  //     },
+  //     {
+  //       title: 'Lockscreen',
+  //       key: 'systemLockscreen',
+  //       url: '/system/lockscreen',
+  //     },
+  //     {
+  //       title: 'Page 404',
+  //       key: 'system404',
+  //       url: '/system/404',
+  //     },
+  //     {
+  //       title: 'Page 500',
+  //       key: 'system500',
+  //       url: '/system/500',
+  //     },
+  //   ],
+  // },
+
+
   {
-    title: 'System Pages',
-    key: 'system',
-    icon: 'fe fe-user',
+    title: 'My Cards',
+    key: 'mycards',
+    icon: 'fe fe-shopping-cart',
     children: [
       {
-        title: 'Login',
-        key: 'systemLogin',
-        url: '/system/login',
+        title: 'All Cards',
+        key: 'allcards',
+        url: '/customers/allcards',
       },
-      {
-        title: 'Forgot Password',
-        key: 'systemForgotPassword',
-        url: '/system/forgot-password',
-      },
-      {
-        title: 'Register',
-        key: 'systemRegister',
-        url: '/system/register',
-      },
-      {
-        title: 'Lockscreen',
-        key: 'systemLockscreen',
-        url: '/system/lockscreen',
-      },
-      {
-        title: 'Page 404',
-        key: 'system404',
-        url: '/system/404',
-      },
-      {
-        title: 'Page 500',
-        key: 'system500',
-        url: '/system/500',
-      },
+
     ],
   },
-  
-    {
+  {
     title: 'Add Fund',
     key: 'addfund',
     icon: 'fe fe-user',
@@ -113,11 +127,11 @@ export const getMenuData: any[] = [
         key: 'CKEditor',
         url: '/customers/ckeditor',
       }
-    
+
     ],
   },
-  
-      {
+
+  {
     title: 'Payments',
     key: 'payments',
     icon: 'fe fe-shopping-cart',
@@ -132,13 +146,13 @@ export const getMenuData: any[] = [
         key: 'topupAirtime',
         url: '/customers/topupairtime',
       },
-  
-    
+
+
     ],
   },
-  
-  
-       {
+
+
+  {
     title: 'Transfers',
     key: 'transfers',
     icon: 'fe fe-shopping-cart',
@@ -153,36 +167,22 @@ export const getMenuData: any[] = [
         key: 'bankDeposits',
         url: '/customers/bankdeposits',
       },
-  
-     {
+
+      {
         title: 'Intra Account Transfers',
         key: 'intraaccountTransfers',
         url: '/customers/intraaccounttransfers',
       },
-	  
-     {
+
+      {
         title: 'Account Transfers',
         key: 'accountTransfers',
         url: '/customers/accounttransfers',
       },
     ],
   },
-  
-    {
-    title: 'My Cards',
-    key: 'mycards',
-    icon: 'fe fe-shopping-cart',
-    children: [
-      {
-        title: 'All Cards',
-        key: 'allcards',
-        url: '/customers/allcards',
-      },
-   
-    ],
-  },
-  
-    {
+
+  {
     title: 'Money Transfer',
     key: 'moneyTransfer',
     icon: 'fe fe-shopping-cart',
@@ -192,7 +192,7 @@ export const getMenuData: any[] = [
         key: 'sendMoney',
         url: '/customers/sendmoney',
       },
-    {
+      {
         title: 'Transfer Status',
         key: 'transferStatus',
         url: '/customers/transferstatus',
@@ -200,14 +200,14 @@ export const getMenuData: any[] = [
     ],
   },
 
-   {
-     title: 'Customer Support',
+  {
+    title: 'Customer Support',
     key: 'customersupport',
     icon: 'fe fe-shopping-cart',
-        url: '/customers/customersupport',
-      },
-	  
-	      {
+    url: '/customers/customersupport',
+  },
+
+  {
     title: 'Bank Jet',
     key: 'bankjet',
     icon: 'fe fe-shopping-cart',
@@ -217,37 +217,37 @@ export const getMenuData: any[] = [
         key: 'startenrollment',
         url: '/customers/startenrollment',
       },
-    {
+      {
         title: 'Complete Enrollment',
         key: 'completeenrollment',
         url: '/customers/completeenrollment',
       },
-	   {
+      {
         title: 'Account Settings',
         key: 'accountsettings',
         url: '/customers/accountsettings',
       },
-	   {
+      {
         title: 'Status & Activation Of Card',
         key: 'statusactivationcard',
         url: '/customers/statusactivationcard',
       },
-	    {
+      {
         title: 'Quick Switch',
         key: 'quickswitch',
         url: '/customers/quickswitch',
       },
-	   {
+      {
         title: 'Balance Transaction',
         key: 'balancetransaction',
         url: '/customers/balancetransaction',
       },
-	  {
+      {
         title: 'Bank To Bank(ACH) Transfer',
         key: 'banktobanktransfer',
         url: '/customers/banktobanktransfer',
       },
-	    {
+      {
         title: 'Direct Payment',
         key: 'directpayment',
         url: '/customers/directpayment',
@@ -565,5 +565,5 @@ export const getMenuData: any[] = [
     icon: 'fe fe-shopping-cart',
         url: '/customers/profile',
       },*/
-	  
+
 ]

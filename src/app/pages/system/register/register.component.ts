@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
         Validators.required
       ])],
       mobileNumber: [null, Validators.compose([
-        Validators.required, Validators.minLength(10), Validators.maxLength(12), Validators.pattern("^[0-9]*$")
+        Validators.required, Validators.minLength(8), Validators.maxLength(12), Validators.pattern("^[0-9]*$")
       ])],
       emailAddress: [null, Validators.compose([
         Validators.required, Validators.email

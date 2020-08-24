@@ -7,6 +7,7 @@ import { select, Store } from '@ngrx/store'
 import { MenuService } from 'src/app/services/menu.service'
 import * as SettingsActions from 'src/app/store/settings/actions'
 import * as Reducers from 'src/app/store/reducers'
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'air-menu-left',
@@ -22,7 +23,8 @@ import * as Reducers from 'src/app/store/reducers'
   ],
 })
 export class MenuLeftComponent implements OnInit {
-  menuData: any = []
+  userObj: any;
+  menuData: any = [];
   isMobileView: boolean
   isMobileMenuOpen: boolean
   isMenuCollapsed: boolean
@@ -45,9 +47,12 @@ export class MenuLeftComponent implements OnInit {
     private menuService: MenuService,
     private store: Store<any>,
     private router: Router,
-  ) {}
+    private storage: LocalStorageService
+    ) {}
 
   ngOnInit() {
+    this.userObj = this.storage.retrieve('userDetails');
+
     this.menuService.getMenuData().subscribe(menuData => (this.menuData = menuData))
     this.store.pipe(select(Reducers.getSettings)).subscribe(state => {
       this.isMobileView = state.isMobileView
