@@ -54,7 +54,7 @@
               <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Bank Currency :</nz-form-label>
               <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="bankCurrencyTpl">
                 <nz-select nzShowSearch nzAllowClear formControlName="currency"
-                  nzPlaceHolder="Please Select Bank Currency">
+                  nzPlaceHolder="Please Select Bank Currency" (ngModelChange)="getConversionAmount()">
                   <nz-option name="currency" *ngFor="let crr of currencies" nzLabel="{{crr.currency_code}}" [nzValue]="crr.currency_code"></nz-option>
                 </nz-select>
                 <ng-template #bankCurrencyTpl let-control>
@@ -72,7 +72,7 @@
               </nz-form-label>
               <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Conversion Rate!">
                 <input nz-input id="conversionRate" formControlName="conversionRate"
-                  placeholder="Enter Conversion Rate" />
+                  placeholder="Enter Conversion Rate" disabled />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -83,7 +83,7 @@
               </nz-form-label>
               <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="bankCurrencyTpl" >
                 <input nz-input id="amountAdded" formControlName="fundAmount"
-                  placeholder="Enter Amount to be Added " />
+                  placeholder="Enter Amount to be Added " (ngModelChange)="getTransferedAmount()"/>
                   <ng-template #bankCurrencyTpl let-control>
                       <ng-container *ngIf="control.hasError('required')">Required</ng-container>
                       <ng-container *ngIf="control.hasError('minlength')">Please enter minimum 2 digits</ng-container>
@@ -99,7 +99,7 @@
               </nz-form-label>
               <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input your Amount to be Credited!">
                 <input nz-input id="amountCredited" formControlName="amounttoCredit"
-                  placeholder="Enter Amount to be Credited" />
+                  placeholder="Enter Amount to be Credited" disabled/>
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -120,7 +120,7 @@
                 <input nz-input id="cardNumber" formControlName="cardNumber" placeholder="Enter Card Number" />
                 <ng-template #bankAccountNumberTpl let-control>
                     <ng-container *ngIf="control.hasError('required')">Required</ng-container>
-                    <ng-container *ngIf="control.hasError('minlength')">Please enter minimum 2 digits</ng-container>
+                    <ng-container *ngIf="control.hasError('minlength')">Please enter a valid card number</ng-container>
                     <ng-container *ngIf="control.hasError('pattern')">Please enter valid number</ng-container>
                 </ng-template>
               </nz-form-control>
@@ -156,7 +156,7 @@
             <button type="submit" class="btn btn-primary" (click)="resetform($event)">
               RESET
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" [disabled]="!onCardbasecurrencyForm.valid" (click)="addFund()">
               ADD FUND
             </button>
           </nz-form-control>

@@ -1,116 +1,96 @@
 <div>
-   <div class="subbar">
-  <ul class="breadcrumbList mr-4">
-    <li class="breadcrumbItem">
-      <a href="#" class="breadcrumbLink">
-       Payments
-      </a>
-    </li>
-    <li class="breadcrumbItem">
-      <a href="#" class="breadcrumbLink breadcrumbLink__current">
-      Topup Airtime
-      </a>
-    </li>
-  </ul>
-  <div class="divider mr-4 d-none d-xl-block"></div>
+  <div class="subbar">
+    <ul class="breadcrumbList mr-4">
+      <li class="breadcrumbItem">
+        <a href="#" class="breadcrumbLink">
+          Payments
+        </a>
+      </li>
+      <li class="breadcrumbItem">
+        <a href="#" class="breadcrumbLink breadcrumbLink__current">
+          Topup Airtime
+        </a>
+      </li>
+    </ul>
+    <div class="divider mr-4 d-none d-xl-block"></div>
+  </div>
 
-  
- 
-</div>
-<br><br>
-  
-  
-      <div class="card">
+  <br><br>
+
+  <div class="card">
     <div class="card-body">
-    
-       <h4 class="mb-4">
+      <h4 class="mb-4">
         <strong>Topup Airtime Information</strong>
       </h4>
-     <form nz-form [nzLayout]="'vertical'" [formGroup]="topupAirtimeForm" (ngSubmit)="submitForm(topupAirtimeForm.value)">
+      <form nz-form [nzLayout]="'vertical'" [formGroup]="topupAirtimeForm"
+        (ngSubmit)="submitForm(topupAirtimeForm.value)">
         <div class="row">
-               <div class="col-md-6">
+          <div class="col-md-6">
             <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Code :</nz-form-label>
-                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="codeTpl">
-               <nz-select nzShowSearch nzAllowClear formControlName="code" nzPlaceHolder="Please Select Code" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-	  <ng-template #codeTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-
-
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Code :</nz-form-label>
+              <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="codeTpl">
+                <nz-select formControlName="bankCtrl" nzShowSearch nzAllowClear nzPlaceHolder="Select Code" (ngModelChange) ="enableStateDropdown()">
+                  <nz-option name="code" *ngFor="let cntry of countries"
+                    nzLabel="(+{{cntry.areacode}}) {{cntry.countryname}}" [nzValue]="cntry"></nz-option>
+                </nz-select>
+                <ng-template #codeTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
           </div>
-		  
-		       <div class="col-md-6">
-         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Mobile Number :</nz-form-label>
-          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="mobuleNumberTpl">
-            <input nz-input id="mobileNumber" formControlName="mobileNumber" placeholder="Enter Mobile Number "/>
-			  <ng-template #mobuleNumberTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			  <ng-container *ngIf="control.hasError('pattern')">
-              Please enter a valid number
-            </ng-container>
-			  <ng-container *ngIf="control.hasError('minlength')">
-             Mobile number has to be min 8 digits
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-        
-		
-              <div class="col-md-6">
+
+          <div class="col-md-6">
             <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Carrier :</nz-form-label>
-                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="carrierTpl">
-               <nz-select nzShowSearch nzAllowClear formControlName="carrier" nzPlaceHolder="Please Select Carrier" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-	  <ng-template #carrierTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-
-
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Mobile Number :</nz-form-label>
+              <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="mobuleNumberTpl">
+                <input nz-input id="mobileNumber" formControlName="mobileNumber" placeholder="Enter Mobile Number " />
+                <ng-template #mobuleNumberTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                  <ng-container *ngIf="control.hasError('pattern')">
+                    Please enter a valid number
+                  </ng-container>
+                  <ng-container *ngIf="control.hasError('minlength')">
+                    Mobile number has to be min 8 digits
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
           </div>
-		
-		  
+
+
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Carrier :</nz-form-label>
+              <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="carrierTpl">
+                <nz-select nzShowSearch nzAllowClear formControlName="carrier" nzPlaceHolder="Please Select Carrier">
+                  <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
+                  <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
+                </nz-select>
+                <ng-template #carrierTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
         </div>
-		    <nz-form-item>
+        <nz-form-item>
           <nz-form-control>
-              <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
-             RESET
+            <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
+              RESET
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="submit" class="btn btn-primary" >
-             SUBMIT
+            <button type="submit" class="btn btn-primary">
+              SUBMIT
             </button>
           </nz-form-control>
         </nz-form-item>
       </form>
     </div>
   </div>
-  
-  
- 
-
 </div>

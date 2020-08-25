@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Please Choose Account</h4>
+</div>
+<div class="modal-body" >
+  <table class="table w-full mt-10 ">
+    <thead>
+      <tr>
+        <td class="body-2 text-secondary">#</td>
+        <td class="body-2 text-secondary">Account Number</td>
+        <td class="body-2 text-secondary">Balance</td>
+        <td class="body-2 text-secondary">Currency</td>
+        <td class="body-2 text-secondary">ACTION</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor=" let acc of accounts">
+        <td class="py-6 border-b">#</td>
+        <td class="py-6 border-b">{{acc.accountnumber}}</td>
+        <td class="py-6 border-b">{{acc.currentbalance}}</td>
+        <td class="py-6 border-b">{{getCurrencyName(acc.currencyid)}}</td>
+        <td class="py-6 border-b"> <button color="primary" (click)="confirmClick(acc)" >Select</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

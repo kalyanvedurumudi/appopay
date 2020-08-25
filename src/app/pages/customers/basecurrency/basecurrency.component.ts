@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 
-import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { Observable, Observer } from 'rxjs';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ApiProvider } from '@app/services/api-provider';
 import { LocalStorageService } from 'ngx-webstorage';
 import { NzNotificationService } from 'ng-zorro-antd';
@@ -126,10 +125,14 @@ export class BaseCurrencyComponent implements OnInit {
   }
 
   async getAccountTypes() {
+    this.spinner.show();    
     this.apiProvider.get('configurations/accounttypes').subscribe(
       async resdata => {
         this.accounttypes = resdata.result;
-      }, async () => {});
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
+      });
   }
 
   async getBanksByCountry() {
@@ -140,11 +143,13 @@ export class BaseCurrencyComponent implements OnInit {
     this.countryname = filterdata3[0].countryname;
     this.onbankDepositForm.controls.amounttoTransfer.setValue(null);
     this.onbankDepositForm.controls.amounttoCredit.setValue(null);
+    this.spinner.show();
     this.apiProvider.get('configurations/banknames/' + countryid).subscribe(
       async resdata => {
         this.banknames = resdata.result;
-      }, async (error) => {
-
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
       });
   }
 
@@ -162,11 +167,13 @@ export class BaseCurrencyComponent implements OnInit {
 
     this.onbankDepositForm.get('routingNumber').setValue(filterdata3[0].bankcode);
     this.onbankDepositForm.get('routingNumber').disable();
+    this.spinner.show();
     this.apiProvider.get('configurations/bankcurrency/' + bankid).subscribe(
       async resdata => {
         this.bankcurrencies = resdata.result;
-      }, async (error) => {
-
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
       });
   }
 
@@ -174,20 +181,26 @@ export class BaseCurrencyComponent implements OnInit {
     const mobileno = this.userDetails.mobilenumber;
     const areacode = this.userDetails.phonecode;
     const usertype = this.userDetails.usertype;
-
+    this.spinner.show();
     this.apiProvider.get('users/findbyMobile/' + mobileno + '/' + areacode + '/' + usertype).subscribe(
       async resdata => {
         this.accounts = resdata.result.customerdetails.customeraccount;
-      }, async () => {});
+        this.spinner.hide();        
+      }, async () => {
+        this.spinner.hide();
+      });
 
   }
 
   async getCurrency() {
-
+    this.spinner.show();
     this.apiProvider.getWithoutAuth('configurations/currency').subscribe(
       async resdata => {
         this.currencies = resdata.result;
-      }, async () => {});
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
+      });
 
   }
 
@@ -238,16 +251,16 @@ export class BaseCurrencyComponent implements OnInit {
       this.tcurrency = this.onbankDepositForm.value.bankCurrency;
 
       const url = 'https://api.exchangeratesapi.io/latest?base=' + tocurrency;
-
-
+      this.spinner.show();
       this.apiProvider.getConversionApi(url).subscribe(
         async bankdata => {
           const res = bankdata;
           console.log(res.rates[fromcurrency]);
           this.onbankDepositForm.controls.conversionRate.setValue(res.rates[fromcurrency]);
           this.conversionRate = res.rates[fromcurrency];
-        }, async (error) => {
-
+          this.spinner.hide();
+        }, async () => {
+          this.spinner.hide();
         });
 
     }
@@ -262,8 +275,10 @@ export class BaseCurrencyComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         const datatransactionpin = result.value;
+        this.spinner.show();
         this.apiProvider.get('configurations/comissiontype/BANK-DEPOSIT').subscribe(
           async comdata => {
+            this.spinner.hide();
             const bankcomission = comdata.result.bankcomission;
             const processingcomission = comdata.result.processingfees;
             const flatbankcomission = comdata.result.flatbankcomission;
@@ -277,6 +292,16 @@ export class BaseCurrencyComponent implements OnInit {
             processingfees = (parseFloat(processingfees) + flatprocessingcomission).toFixed(2);
             const flatfees = (flatbankcomission + flatprocessingcomission).toFixed(2);
             finalamount = finalamount + parseFloat(flatfees);
+
+            const taxpercentage = comdata.result.taxpercentage;
+            let taxes = 0;
+            if (comdata.result.taxon == 'FEES') {
+              //apply tax on fees
+              taxes = flatfees * taxpercentage / 100
+            } else {
+              taxes = finalamount * taxpercentage / 100
+            }
+            finalamount = finalamount + taxes;
             const message = 'You are about to debit ' + finalamount + ' ' + this.tcurrency + ' from your bank account . Please confirm ?  ';        
             swal.fire({
               title: message,
@@ -328,29 +353,20 @@ export class BaseCurrencyComponent implements OnInit {
                       // this.notificationMessageService.setMessage(true);
                       this.onbankDepositForm.reset();
                     }
-                  }, async (error) => {
+                  }, async () => {
                     this.spinner.hide();
                     this.notification.error('Error', 'Failed to deposit amount ,Please try after sometime');
-
                   });
-
               }
-
             });
-
-          }, async (error) => {
+          }, async () => {
             this.spinner.hide();
             this.notification.error('Error', 'Failed to transfer amount ,Please try after sometime.');
-
           });
       } else {
         this.spinner.hide();
         this.notification.warning('Warning', 'Please enter transaction pin');
-
       }
-
     });
-
   }
-
 }

@@ -1,0 +1,93 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Please Choose Account</h4>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="oncardForm">
+    <div class="col-md-6">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Currency :</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="currencyCode">
+          <nz-select formControlName="currency" nzShowSearch nzAllowClear nzPlaceHolder="Select Currency">
+            <nz-option name="code" *ngFor="let crr of currencies" nzLabel="crr.currency_code"
+              [nzValue]="crr.currency_code"></nz-option>
+          </nz-select>
+          <ng-template #currencyCode let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Required
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="col-md-6">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Name :</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="cardFullName">
+          <input nz-input id="cardFullName" formControlName="cardFullName" placeholder="Enter FULL NAME (AS ON CARD)" />
+          <ng-template #cardFullName let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Required
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="col-md-6">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Card Number :</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="cardNumber">
+          <input nz-input id="cardNumber" formControlName="cardNumber" placeholder="Card Number" />
+          <ng-template #cardNumber let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Required
+            </ng-container>
+            <ng-container *ngIf="control.hasError('pattern')">
+              Please enter a valid number
+            </ng-container>
+            <ng-container *ngIf="control.hasError('minlength')">
+              Mobile number has to be min 10 digits
+            </ng-container>
+            <ng-container *ngIf="control.hasError('maxlength')">
+              Mobile number has to be max 12 digits
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="col-md-6">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> CC & Exp :</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="expirationMonth">
+          <input nz-input id="expirationMonth" formControlName="expirationMonth" placeholder="CC & Exp" />
+          <ng-template #expirationMonth let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Required
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="col-md-6">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> CVV :</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="cardCvv">
+          <input nz-input maxlength="4" id="cardCvv" formControlName="cardCvv" placeholder="CVV" />
+          <ng-template #cardCvv let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Required
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="modal-footer" style="margin-bottom: 17px; margin-right: 20px;">
+      <button type="button" (click)="confirmClick()">CONFIRM </button>
+    </div>
+  </form>
+</div>

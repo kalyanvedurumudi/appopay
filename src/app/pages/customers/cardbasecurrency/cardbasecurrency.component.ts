@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-webstorage';
 import { ApiProvider } from '@app/services/api-provider';
 import { NzNotificationService } from 'ng-zorro-antd';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var swal: any;
 
 @Component({
@@ -35,6 +36,7 @@ export class CardbaseCurrencyComponent implements OnInit {
     private apiProvider: ApiProvider,
     private storage: LocalStorageService,
     private notification: NzNotificationService,
+    private spinner: NgxSpinnerService,
     private router: Router) {
     this.userDetails = this.storage.retrieve('userDetails');
   }
@@ -60,7 +62,7 @@ export class CardbaseCurrencyComponent implements OnInit {
         Validators.required
       ])],
       cardNumber: [null, Validators.compose([
-        Validators.required, Validators.minLength(14), Validators.maxLength(21), Validators.pattern('^[0-9]*$')
+        Validators.required, Validators.minLength(6), Validators.maxLength(21), Validators.pattern('^[0-9]*$')
       ])],
       expirationMonth: [null, Validators.compose([
         Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')
@@ -100,12 +102,16 @@ export class CardbaseCurrencyComponent implements OnInit {
       const fromcurrencycode = filterdata2[0].currency_code;
 
       const url = 'https://api.exchangeratesapi.io/latest?base=' + fromcurrencycode;
+      this.spinner.show();
       this.apiProvider.getConversionApi(url).subscribe(
         async bankdata => {
           const res = bankdata;
           const conversionrate = res.rates[currencycode].toFixed(2);
           this.onCardbasecurrencyForm.controls.conversionRate.setValue(conversionrate);
-        }, async () => {});
+          this.spinner.hide();
+        }, async () => {
+          this.spinner.hide();
+        });
     }
   }
 
@@ -120,25 +126,29 @@ export class CardbaseCurrencyComponent implements OnInit {
     const mobileno = this.userDetails.mobilenumber;
     const areacode = this.userDetails.phonecode;
     const usertype = this.userDetails.usertype;
+    this.spinner.show();
 
     this.apiProvider.get('users/findbyMobile/' + mobileno + '/' + areacode + '/' + usertype).subscribe(
       async resdata => {
-        console.log(resdata);
         this.userDetails = resdata.result;
         this.accounts = resdata.result.customerdetails.customeraccount;
         this.toaccounts = resdata.result.customerdetails.customeraccount;
         this.usercardetails();
-        console.log(this.toaccounts);
-      }, async () => {});
+        this.spinner.hide();        
+      }, async () => {
+        this.spinner.hide();
+      });
   }
 
   usercardetails() {
+    this.spinner.show();
     this.apiProvider.get('users/getcards/' + this.userDetails.id).subscribe(
       async resdata => {
         this.cardslist = resdata.result;
         this.getallcards();
-      }, async (error) => {
-
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
       });
 
   }
@@ -151,7 +161,7 @@ export class CardbaseCurrencyComponent implements OnInit {
           transctionid: transactiontoken,
         };
         this.cardtype = usercardmapping.cardtype;
-
+        this.spinner.show();
         this.apiProvider.postNodeUrl('customerbyTransactionID', fetchdata).subscribe(
           async resdata => {
             if (resdata && resdata.billing) {
@@ -159,17 +169,22 @@ export class CardbaseCurrencyComponent implements OnInit {
               this.onCardbasecurrencyForm.controls.cardNumber.setValue(resdata.billing['cc-number']);
               this.onCardbasecurrencyForm.controls.expirationMonth.setValue(ccexp);
             }
-          }, async () => {});
+          this.spinner.hide();
+          }, async () => {
+            this.spinner.hide();
+          });
       }
     });
   }
 
   async getCurrency() {
+    this.spinner.show();
     this.apiProvider.getWithoutAuth('configurations/currency').subscribe(
       async resdata => {
         this.currencies = resdata.result;
-      }, async (error) => {
-
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
       });
 
   }
@@ -233,6 +248,7 @@ export class CardbaseCurrencyComponent implements OnInit {
         ccExp = ccexp;
         // tslint:disable-next-line:radix
         cardcvv = parseInt(this.onCardbasecurrencyForm.value.cardCvv);
+        this.spinner.show();
         this.apiProvider.get('configurations/comissiontype/CARD-WALLET').subscribe(
           async comdata => {
 
@@ -250,13 +266,24 @@ export class CardbaseCurrencyComponent implements OnInit {
             const flatfees = (flatbankcomission + flatprocessingcomission).toFixed(2);
             finalamount = finalamount + parseFloat(flatfees);
 
+            const taxpercentage = comdata.result.taxpercentage;
+            let taxes = 0;
+            if (comdata.result.taxon == 'FEES') {
+              //apply tax on fees
+              taxes = flatfees * taxpercentage / 100
+            } else {
+              taxes = finalamount * taxpercentage / 100
+            }
+            finalamount = finalamount + taxes;
+            this.spinner.hide();
+
             // tslint:disable-next-line:max-line-length
             const message = 'You are about debit your card with ' + finalamount + ' ' + currencycode + ' to fund your wallet . Please confirm ?  ';
             swal.fire({
               title: message,
               showCancelButton: true
             }).then((transConfirm) => {
-              if (transConfirm) {
+              if (transConfirm.isConfirmed) {
                 const amountransferdata: any = {
                   ccnumber: cardnumber,
                   ccexp: ccExp,
@@ -278,6 +305,7 @@ export class CardbaseCurrencyComponent implements OnInit {
                   fundamount: this.onCardbasecurrencyForm.value.amounttoCredit,
                   cardtpe: cardtype
                 };
+                this.spinner.show();
                 this.apiProvider.post('wallet/addfund', amountransferdata).subscribe(
                   async resdata => {
                     if (resdata.result == -1) {
@@ -295,17 +323,20 @@ export class CardbaseCurrencyComponent implements OnInit {
                       this.router.navigate(['/dashboards/analytics']);
 
                     }
+                    this.spinner.hide();
                   }, async () => {
                     this.notification.error('Error', 'Failed to add fund from your card.Please try after sometime');
+                    this.spinner.hide();
                   });
               }
             });
           }, async () => {
             this.notification.error('Error', 'Failed to add fund from your card.Please try after sometime');
-
+            this.spinner.hide();
           });
       } else {
         this.notification.warning('Warning', 'Please enter transaction pin');
+        this.spinner.hide();
       }
     });
 

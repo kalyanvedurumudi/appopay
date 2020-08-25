@@ -63,6 +63,10 @@ import { ClaimconfirmationComponent } from 'src/app/pages/customers/claimconfirm
 import { CKEditorComponent } from './ckeditor/ckeditor.component';
 import { CKEditorService } from '@app/services/ckeditor.service';
 import { TreeviewModule } from 'ngx-treeview';
+import { AccountsDialogComponent } from '@app/modal/accounts-dialog.component';
+import { CardsDialogComponent } from '@app/modal/cards-dialog.component';
+import { ConfirmationPaymentDialogComponent } from '@app/modal/confirm-payment-dialog.component';
+import { ConfirmationDialogComponent } from '@app/modal/confirmation-dialog.component';
 
 const COMPONENTS = [
 
@@ -95,7 +99,11 @@ const COMPONENTS = [
   ClaimRequestComponent,
   CardTransferComponent,
   CardBalanceComponent,
-  CKEditorComponent
+  CKEditorComponent,
+  AccountsDialogComponent,
+  CardsDialogComponent,
+  ConfirmationPaymentDialogComponent,
+  ConfirmationDialogComponent
 ]
 
 @NgModule({
@@ -117,6 +125,12 @@ const COMPONENTS = [
     TreeviewModule.forRoot()
   ],
   declarations: [...COMPONENTS],
+  entryComponents: [
+    CardsDialogComponent,
+    AccountsDialogComponent,
+    ConfirmationPaymentDialogComponent,
+    ConfirmationDialogComponent
+  ],
   providers: [CKEditorService, NgbActiveModal]
 })
 export class CustomersModule { }
