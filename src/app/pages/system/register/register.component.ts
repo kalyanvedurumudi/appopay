@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private apiProvider: ApiProvider,
     private notification: NzNotificationService,
-    private storage: LocalStorageService,
     private router: Router,
     private spinner: NgxSpinnerService
   ) { }
