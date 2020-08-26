@@ -75,7 +75,7 @@
               <div class="col-md-4">
                 <nz-form-item>
                   <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="countryTpl">
-                    <nz-select formControlName="country" nzShowSearch nzAllowClear nzPlaceHolder="Select Country">
+                    <nz-select formControlName="country" nzShowSearch nzAllowClear nzPlaceHolder="Please Select Country" (ngModelChange)="setState(null)">
                       <nz-option name="country" *ngFor="let cntry of countries"
                         nzLabel="{{cntry.countryname}}" [nzValue]="cntry.id"></nz-option>
                     </nz-select>
@@ -85,7 +85,6 @@
                       </ng-container>
                     </ng-template>
                   </nz-form-control>
-
                 </nz-form-item>
               </div>
 
@@ -116,14 +115,19 @@
                   </nz-form-control>
                 </nz-form-item>
               </div>
+
               <div class="col-md-4">
                 <nz-form-item>
-                  <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your DOB">
-                    <input formControlName="dob" nz-input id="dob" placeholder="DD/MM/YYYY" />
+                  <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="dobTpl">
+                    <nz-date-picker id="dobTpl" formControlName="dob" placeholder="DD/MM/YYYY" [nzFormat]="'dd/MM/yyyy'" name="dob"></nz-date-picker>
+                    <ng-template #dobTpl let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Please input your DOB
+                      </ng-container>
+                    </ng-template>
                   </nz-form-control>
                 </nz-form-item>
               </div>
-
 
               <div class="col-md-4">
                 <nz-form-item>
@@ -132,6 +136,7 @@
                   </nz-form-control>
                 </nz-form-item>
               </div>
+
               <div class="col-md-4">
                 <nz-form-item>
                   <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="Please Enter Address!">
@@ -139,6 +144,35 @@
                   </nz-form-control>
                 </nz-form-item>
               </div>
+
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="mobTpl">
+                    <input formControlName="mobilenumber" nz-input id="mobilenumber" placeholder="Mobile Number" />
+                  </nz-form-control>
+                  <ng-template #mobTpl let-control>
+                    <ng-container *ngIf="control.hasError('required')">Please Enter Mobile Number!</ng-container>
+                    <ng-container *ngIf="control.hasError('minlength')">Mobile Number should be min of 8 characters</ng-container><br>
+                    <ng-container *ngIf="control.hasError('maxlength')">Mobile Number should be max of 12 characters</ng-container><br>
+                    <ng-container *ngIf="control.hasError('pattern')">Only numbers allowed</ng-container>
+                  </ng-template>
+                </nz-form-item>
+              </div>
+
+              <div class="col-md-4">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="tspTpl">
+                    <input formControlName="transactionpin" nz-input id="transactionpin" placeholder="Transaction Pin" />
+                    <ng-template #tspTpl let-control>
+                      <ng-container *ngIf="control.hasError('required')">Please Enter Transaction Pin!</ng-container>
+                      <ng-container *ngIf="control.hasError('minlength')">Transaction Pin should be min of 6 characters</ng-container><br>
+                      <ng-container *ngIf="control.hasError('maxlength')">Transaction Pin should be max of 15 characters</ng-container><br>
+                      <ng-container *ngIf="control.hasError('pattern')">Only numbers allowed</ng-container>
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+
             </div>
           </form>
         </div>

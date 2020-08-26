@@ -6,12 +6,12 @@
   <form [formGroup]="oncardForm">
     <div class="col-md-6">
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Currency :</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left">Currency</nz-form-label>
         <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="currencyCode">
-          <nz-select formControlName="currency" nzShowSearch nzAllowClear nzPlaceHolder="Select Currency">
-            <nz-option name="code" *ngFor="let crr of currencies" nzLabel="crr.currency_code"
-              [nzValue]="crr.currency_code"></nz-option>
-          </nz-select>
+          <select class="form-control" formControlName="currency">
+            <option hidden value="" disabled selected><span style="color: #786fa4">Select Currency</span></option>
+            <option *ngFor="let crr of currencies" value="{{crr.currency_code}}">{{crr.currency_code}}</option>
+          </select>
           <ng-template #currencyCode let-control>
             <ng-container *ngIf="control.hasError('required')">
               Required
@@ -23,7 +23,7 @@
 
     <div class="col-md-6">
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Name :</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left">Name</nz-form-label>
         <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="cardFullName">
           <input nz-input id="cardFullName" formControlName="cardFullName" placeholder="Enter FULL NAME (AS ON CARD)" />
           <ng-template #cardFullName let-control>
@@ -37,7 +37,7 @@
 
     <div class="col-md-6">
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Card Number :</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left">Card Number</nz-form-label>
         <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="cardNumber">
           <input nz-input id="cardNumber" formControlName="cardNumber" placeholder="Card Number" />
           <ng-template #cardNumber let-control>
@@ -60,7 +60,7 @@
 
     <div class="col-md-6">
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> CC & Exp :</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left">CC & Exp</nz-form-label>
         <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="expirationMonth">
           <input nz-input id="expirationMonth" formControlName="expirationMonth" placeholder="CC & Exp" />
           <ng-template #expirationMonth let-control>
@@ -74,7 +74,7 @@
 
     <div class="col-md-6">
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> CVV :</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left">CVV</nz-form-label>
         <nz-form-control nzHasFeedback [nzSm]="24" [nzXs]="24" [nzErrorTip]="cardCvv">
           <input nz-input maxlength="4" id="cardCvv" formControlName="cardCvv" placeholder="CVV" />
           <ng-template #cardCvv let-control>
@@ -87,7 +87,8 @@
     </div>
 
     <div class="modal-footer" style="margin-bottom: 17px; margin-right: 20px;">
-      <button type="button" (click)="confirmClick()">CONFIRM </button>
+      <button type="button" class="btn btn-primary" [disabled]="!oncardForm.valid" (click)="confirmClick()">CONFIRM
+      </button>
     </div>
   </form>
 </div>

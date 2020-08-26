@@ -8,3 +8,16 @@
 @import 'assets/styles/chartist/style';
 @import 'assets/styles/perfect-scrollbar/style';
 @import 'assets/styles/nestable/style';
+
+
+.topupbox {
+    border: 1px solid black;
+    margin: 1rem;
+    padding: 4px;
+}
+
+.antRow {
+    overflow-x: scroll;
+    height: 200px;
+    text-align: center;
+}

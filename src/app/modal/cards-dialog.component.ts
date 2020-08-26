@@ -3,6 +3,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { ApiProvider } from 'src/app/services/api-provider';
 import { Validators, FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
     selector: 'vex-cards-dialog',
     templateUrl: './cards-dialog.component.html',
@@ -19,6 +20,7 @@ export class CardsDialogComponent {
         private activeModal: NgbActiveModal,
         private storage: LocalStorageService,
         private apiProvider: ApiProvider,
+        private spinner: NgxSpinnerService,
         private formBuilder: FormBuilder) {
         this.oncardForm = this.formBuilder.group({
             cardFullName: [null, Validators.compose([
@@ -46,13 +48,14 @@ export class CardsDialogComponent {
         this.activeModal.close();
     }
     usercardetails() {
-
+        this.spinner.show();
         this.apiProvider.get('users/getcards/' + this.userDetails.id).subscribe(
             async resdata => {
                 this.cardslist = resdata.result;
                 this.getallcards();
-            }, async (error) => {
-
+                this.spinner.hide();
+            }, async () => {
+                this.spinner.hide();
             });
 
     }
@@ -67,7 +70,7 @@ export class CardsDialogComponent {
                 const fetchdata = {
                     transactionid: transactiontoken,
                 };
-
+                this.spinner.show();
                 this.apiProvider.postNodeUrl('getbyVaultID', fetchdata).subscribe(
                     async resdata => {
                         console.log(resdata.customer_vault);
@@ -93,10 +96,10 @@ export class CardsDialogComponent {
                             this.oncardForm.controls.cardFullName.setValue(resdata.customer_vault.customer.first_name
                                 + ' ' + resdata.customer_vault.customer.last_name);
                             console.log(this.allcardlist);
+                            this.spinner.hide();
                         }
-
-                    }, async (error) => {
-
+                    }, async () => {
+                        this.spinner.hide();
                     });
 
                 count++;
@@ -106,12 +109,13 @@ export class CardsDialogComponent {
     }
 
     async getCurrency() {
-
+        this.spinner.show();
         this.apiProvider.getWithoutAuth('configurations/currency').subscribe(
             async resdata => {
                 this.currencies = resdata.result;
-            }, async (error) => {
-
+                this.spinner.hide();
+            }, async () => {
+                this.spinner.hide();
             });
 
     }

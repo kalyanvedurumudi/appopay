@@ -56,7 +56,7 @@ export class AllCardsComponent implements OnInit {
     this.addCardForm.reset();
 
     this.countries = this.authService.getCountries();
-    if (!this.countries || (this.countries && this.countries.length)) {
+    if (!this.countries || (this.countries && !this.countries.length)) {
       this.authService.getCountry().subscribe(resdata => {
         this.countries = resdata.result;
         this.authService.setCountries(this.countries);

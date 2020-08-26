@@ -111,7 +111,7 @@ export class BaseCurrencyComponent implements OnInit {
     this.getAccountTypes();
     this.latestUserDetails();
     this.countries = this.authService.getCountries();
-    if (!this.countries || (this.countries && this.countries.length)) {
+    if (!this.countries || (this.countries && !this.countries.length)) {
       this.authService.getCountry().subscribe(resdata => {
         this.countries = resdata.result;
         this.authService.setCountries(this.countries);
@@ -334,7 +334,8 @@ export class BaseCurrencyComponent implements OnInit {
                   email: this.userDetails.email,
                   bankaccountnumber: this.onbankDepositForm.value.accountNumber,
                   depositdate: newdate,
-                  deposittype: 'CREDIT'
+                  deposittype: 'CREDIT',
+                  taxes: taxes
                 };
                 this.spinner.show();
                 this.apiProvider.post('cardidentifications/bankdeposit', amountransferdata).subscribe(

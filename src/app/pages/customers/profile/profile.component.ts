@@ -72,13 +72,19 @@ export class ProfileComponent implements OnInit {
         Validators.required
       ])],
       email: [null, Validators.compose([
-        Validators.required
+        Validators.required, Validators.email
+      ])],
+      mobilenumber: [null, Validators.compose([
+        Validators.required, Validators.minLength(8), Validators.maxLength(12), Validators.pattern("^[0-9]*$")
+      ])],
+      transactionpin: [null, Validators.compose([
+        Validators.required, Validators.minLength(6), Validators.maxLength(15), Validators.pattern("^[0-9]*$")
       ])]
     });
 
 
     this.countries = this.authService.getCountries();
-    if (!this.countries || (this.countries && this.countries.length)) {
+    if (!this.countries || (this.countries && !this.countries.length)) {
       this.authService.getCountry().subscribe(resdata => {
         this.countries = resdata.result;
         this.authService.setCountries(this.countries);
@@ -111,21 +117,14 @@ export class ProfileComponent implements OnInit {
     this.onPersonalDetailsForm.controls.dob.setValue(this.userObj.customerdetails.dob);
     this.onPersonalDetailsForm.controls.email.setValue(this.userObj.email);
     this.onPersonalDetailsForm.controls.country.setValue(this.userObj.customerdetails.countryid);
+    this.onPersonalDetailsForm.controls.mobilenumber.setValue(this.userObj.mobilenumber);
+    this.onPersonalDetailsForm.controls.transactionpin.setValue(this.userObj.transactionpin);
     this.enableStateDropdown();
   }
 
   enableStateDropdown() {
     const countryid = this.userObj.customerdetails.countryid;
-    this.filterdata = this.countries.filter(function (country) {
-      return country.id == countryid;
-    });
-    this.states = this.filterdata[0].states;
-    const stid = this.userObj.customerdetails.stateid;
-    const filterdata3 = this.states.filter(function (states) {
-      return states.id == stid;
-    });
-    this.statename = filterdata3[0].statename;
-    this.onPersonalDetailsForm.controls.state.setValue(this.userObj.customerdetails.stateid);
+    this.setState(countryid);
     this.spinner.hide();
   }
 
@@ -151,6 +150,26 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  setState(countryid: number): void {
+    if (!countryid) {
+      countryid = this.onPersonalDetailsForm.controls.country.value;
+    }
+    if (this.countries && this.countries.length > 0) {
+      this.filterdata = this.countries.filter(function (country) {
+        return country.id == countryid;
+      });
+      if (this.filterdata[0]) {
+        this.states = this.filterdata[0] && this.filterdata[0].states;
+        const stid = this.userObj.customerdetails.stateid;
+        const filterdata3 = this.states.filter(function (states) {
+          return states.id == stid;
+        });
+        this.statename = filterdata3[0].statename;
+      }
+      this.onPersonalDetailsForm.controls.state.setValue(this.userObj.customerdetails.stateid);
+    }
+  }
+
   updateUser() {
     const insertdata = {
       id: this.userObj.id,
@@ -159,8 +178,8 @@ export class ProfileComponent implements OnInit {
       username: this.userObj.username,
       password: this.userObj.password,
       email: this.onPersonalDetailsForm.value.email,
-      mobilenumber: this.userObj.mobilenumber,
-      transactionpin: this.userObj.transactionpin,
+      mobilenumber: this.onPersonalDetailsForm.value.mobilenumber || this.userObj.mobilenumber,
+      transactionpin: this.onPersonalDetailsForm.value.transactionpin || this.userObj.transactionpin,
       phonecode: this.userObj.phonecode,
       securityanswer: this.userObj.securityanswer,
       role: [

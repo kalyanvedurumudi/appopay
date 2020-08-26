@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <div class="modal-header">
   <h4 class="modal-title" id="modal-basic-title">Please Choose Account</h4>
 </div>
@@ -18,7 +19,7 @@
         <td class="py-6 border-b">{{acc.accountnumber}}</td>
         <td class="py-6 border-b">{{acc.currentbalance}}</td>
         <td class="py-6 border-b">{{getCurrencyName(acc.currencyid)}}</td>
-        <td class="py-6 border-b"> <button color="primary" (click)="confirmClick(acc)" >Select</button>
+        <td class="py-6 border-b"> <button class="btn btn-primary" (click)="confirmClick(acc)" >Select</button>
         </td>
       </tr>
     </tbody>

@@ -188,11 +188,14 @@ export class CardbaseCurrencyComponent implements OnInit {
       });
 
   }
-  getCurrencyName(cc) {
-    const filterdata = this.currencies.filter(function (currency) {
-      return currency.id == cc;
-    });
-    return filterdata[0].currency_code;
+  getCurrencyName(cc): string {
+    if (this.currencies && this.currencies.length > 0) {
+      const filterdata = this.currencies.filter(function (currency) {
+        return currency.id == cc;
+      });
+      return filterdata[0].currency_code;
+    }
+    return '';
   }
 
   addFund() {
@@ -303,7 +306,8 @@ export class CardbaseCurrencyComponent implements OnInit {
                   fees: processingfees,
                   areacode: this.userDetails.phonecode,
                   fundamount: this.onCardbasecurrencyForm.value.amounttoCredit,
-                  cardtpe: cardtype
+                  cardtpe: cardtype,
+                  taxes: taxes
                 };
                 this.spinner.show();
                 this.apiProvider.post('wallet/addfund', amountransferdata).subscribe(

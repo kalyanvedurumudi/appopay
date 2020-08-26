@@ -54,6 +54,7 @@ export class TopupAirtimeComponent implements OnInit {
   countries: Array<any>;
   topupamount = null;
   topupform: any;
+  valueForm: any;
   carriername = null;
   fraccount = null;
   currencycode = null;
@@ -63,9 +64,6 @@ export class TopupAirtimeComponent implements OnInit {
   cardexp = null;
   cardcvv = null;
   cardfullname = null;
-  public bankCtrl: FormControl = new FormControl();
-  public bankFilterCtrl: FormControl = new FormControl();
-  public filteredBanks: ReplaySubject<Bank[]> = new ReplaySubject<Bank[]>(1);
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
 
@@ -81,6 +79,11 @@ export class TopupAirtimeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.valueForm = this.formBuilder.group({
+      topUp:[null, Validators.compose([
+        Validators.required, Validators.pattern('^[0-9]*$')
+      ])]
+    });
     this.topupform = this.formBuilder.group({
       selectCode: [null, Validators.compose([
         Validators.required
@@ -103,16 +106,19 @@ export class TopupAirtimeComponent implements OnInit {
     this._onDestroy.next();
     this._onDestroy.complete();
   }
-  async getCurrency() {
 
+  async getCurrency() {
+    this.spinner.show();
     this.apiProvider.getWithoutAuth('configurations/currency').subscribe(
       async resdata => {
         this.currencies = resdata.result;
-      }, async (error) => {
-
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
       });
 
   }
+
   resetform() {
     this.topupform.reset();
     this.productamts = [];
@@ -122,68 +128,27 @@ export class TopupAirtimeComponent implements OnInit {
     const mobileno = this.userObj.mobilenumber;
     const areacode = this.userObj.phonecode;
     const usertype = this.userObj.usertype;
-
+    this.spinner.show();
     this.apiProvider.get('users/findbyMobile/' + mobileno + '/' + areacode + '/' + usertype).subscribe(
       async resdata => {
         this.accounts = resdata.result.customerdetails.customeraccount;
-      }, async (error) => {
-
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
       });
 
   }
   async getCountry() {
-
+    this.spinner.show();
     this.apiProvider.get('configurations/approvedcountries/TOPUP').subscribe(
       async resdata => {
         this.countries = resdata.result;
-        this.filteredBanks.next(this.countries.slice());
-        console.log(this.filteredBanks);
-
-        this.bankFilterCtrl.valueChanges
-          .pipe(takeUntil(this._onDestroy))
-          .subscribe(() => {
-            this.filterBanks();
-          });
-
-      }, async (error) => {
-
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
       });
 
   }
-
-  protected setInitialValue() {
-    this.filteredBanks
-      .pipe(take(1), takeUntil(this._onDestroy))
-      .subscribe(() => {
-        // setting the compareWith property to a comparison function
-        // triggers initializing the selection according to the initial value of
-        // the form control (i.e. _initializeSelection())
-        // this needs to be done after the filteredBanks are loaded initially
-        // and after the mat-option elements are available
-
-        // this.singleSelect.compareWith = (a: Bank, b: Bank) => a && b && a.areacode === b.areacode;
-      });
-  }
-
-  protected filterBanks() {
-    if (!this.countries) {
-      return;
-    }
-    // get the search keyword
-    let search = this.bankFilterCtrl.value;
-    if (!search) {
-      this.filteredBanks.next(this.countries.slice());
-      return;
-    } else {
-      search = search.toLowerCase();
-    }
-    // filter the banks
-    this.filteredBanks.next(
-      this.countries.filter(
-        bank => bank.countryname.toLowerCase().indexOf(search) > -1)
-    );
-  }
-
 
   getCurrencyName(cc) {
     const filterdata = this.currencies.filter(function (currency) {
@@ -193,10 +158,11 @@ export class TopupAirtimeComponent implements OnInit {
   }
 
   getTopupCarriers() {
-    const countryname = this.bankCtrl.value.areacode;
+    // const countryname = this.bankCtrl.value.areacode;
     const payload: any = {
-      countrycode: this.bankCtrl.value.areacode
+      countrycode: this.topupform.value.selectCode.areacode
     };
+    this.spinner.show();
     this.apiProvider.posttopup('getProducts', payload).subscribe(
       async resdata => {
         const carrresult = resdata.Products;
@@ -208,12 +174,14 @@ export class TopupAirtimeComponent implements OnInit {
           this.notification.warning('Warning', 'Service is not available for the selected country');
         }
         console.log(this.carriers);
-      }, async (error) => {
+        this.spinner.hide();
+      }, async () => {
+        this.spinner.hide();
       });
 
   }
 
-  getproductdetails(carrierid) {
+  getproductdetails() {
     const carrid = this.topupform.value.carrier;
     const productdetails = this.carriers.filter(function (carriers) {
       return carriers.CarrierId == carrid;
@@ -270,19 +238,29 @@ export class TopupAirtimeComponent implements OnInit {
   }
 
   async getexchangeratesCard(fromcurrency: any, amount: any, destcurrency: any) {
-
+    this.spinner.show();
     this.apiProvider.get('configurations/currencyconversions/' + destcurrency).subscribe(
       async resdata => {
-        const filterdata3 = resdata.result.filter(function (currenices) {
+        let filterdata3 = resdata.result.filter(function (currenices) {
           return currenices.exchangecurrency == fromcurrency;
         });
-        this.exchangerate = filterdata3[0].conversionrate;
-        console.log(this.exchangerate);
-        const newamount = (this.exchangerate * amount).toFixed(2);
-        this.startpaymentprocess(newamount);
-
-      }, async (error) => {
+        if (!(filterdata3 && filterdata3.length > 0)) {
+          filterdata3 = resdata.result.filter(function (currenices) {
+            return currenices.exchangecurrency == 'USD';
+          });
+        }
+        if (filterdata3 && filterdata3.length > 0) {
+          this.exchangerate = filterdata3[0].conversionrate;
+          console.log(this.exchangerate);
+          const newamount = (this.exchangerate * amount).toFixed(2);
+          this.startpaymentprocess(newamount);
+        } else {
+          this.notification.error('Error', 'Selected currencies did not match');
+        }
+        this.spinner.hide();
+      }, async () => {
         this.notification.error('Error', 'Something went wrong while processing your request .Please try after sometime');
+        this.spinner.hide();
       });
 
 
@@ -291,30 +269,47 @@ export class TopupAirtimeComponent implements OnInit {
 
 
   async getexchangerates(fromcurrency: any, filterdata: any, amount: any, destcurrency: any) {
-
+    this.spinner.show();
     this.apiProvider.get('configurations/currencyconversions/' + destcurrency).subscribe(
       async resdata => {
-        const filterdata3 = resdata.result.filter(function (currenices) {
+        let filterdata3 = resdata.result.filter(function (currenices) {
           return currenices.exchangecurrency == fromcurrency;
         });
-        this.exchangerate = filterdata3[0].conversionrate;
-        console.log(this.exchangerate);
-        const newamount = (this.exchangerate * amount).toFixed(2);
-        console.log(filterdata);
-        if (filterdata.currentbalance < newamount) {
-          this.notification.warning('Warning', 'Your account doesnt have enough balance to buy topup');
-        } else {
-          this.startpaymentprocess(newamount);
+        
+        if (!(filterdata3 && filterdata3.length > 0)) {
+          filterdata3 = resdata.result.filter(function (currenices) {
+            return currenices.exchangecurrency == 'USD';
+          });
         }
+
+        if (filterdata3 && filterdata3.length > 0) {
+          this.exchangerate = filterdata3[0].conversionrate;
+          console.log(this.exchangerate);
+          const newamount = (this.exchangerate * amount).toFixed(2);
+          console.log(filterdata);
+          if (filterdata.currentbalance < newamount) {
+            this.notification.warning('Warning', 'Your account doesnt have enough balance to buy topup');
+          } else {
+            this.startpaymentprocess(newamount);
+          }
+        } else {
+          this.notification.error('Error', 'Selected currencies did not match');          
+        }
+        this.spinner.hide();
       }, async () => {
         this.notification.error('Error', 'Something went wrong while processing your request .Please try after sometime');
+        this.spinner.hide();
       });
-
-
   }
 
   choosePayment(amount) {
-    const dialogRef = this.modalService.open(ConfirmationPaymentDialogComponent, { size: 'lg' });
+    if (!amount) {
+      amount = {
+        DestAmt: this.valueForm.get('topUp').value,
+        DestCurr: this.productamts[0].DestCurr
+      }
+    }
+    const dialogRef = this.modalService.open(ConfirmationPaymentDialogComponent, { size: 'sm' });
     dialogRef.result.then(sresult => {
       if (!sresult) {
         const dialogRefAcc = this.modalService.open(CardsDialogComponent, { size: 'lg' });
@@ -328,7 +323,6 @@ export class TopupAirtimeComponent implements OnInit {
           this.makepaymentCard(amount);
         }, () => {
         });
-
       } else {
         const dialogRefAcc = this.modalService.open(AccountsDialogComponent, { size: 'lg' });
         dialogRefAcc.result.then(sresultAcc => {
@@ -351,6 +345,7 @@ export class TopupAirtimeComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         const datatransactionpin = result.value;
+        this.spinner.show();
         this.apiProvider.get('configurations/comissiontype/WALLET-TOPUP').subscribe(
           async comdata => {
             const bankcomission = comdata.result.bankcomission;
@@ -366,6 +361,7 @@ export class TopupAirtimeComponent implements OnInit {
             processingfees = (parseFloat(processingfees) + flatprocessingcomission).toFixed(2);
             const flatfees = (flatbankcomission + flatprocessingcomission).toFixed(2);
             finalamount = finalamount + parseFloat(flatfees);
+            this.spinner.hide();
 
             const dialogRef = this.modalService.open(ConfirmationDialogComponent, { size: 'sm' });
             dialogRef.componentInstance.message = 'You are about to pay ' + finalamount + ' ' + this.frcurrency + ' for purchase of topup . Please confirm ?  ';
@@ -387,7 +383,7 @@ export class TopupAirtimeComponent implements OnInit {
                   carrier: this.carriername,
                   senderareacode: this.userObj.phonecode,
                   recievermobilernumber: this.topupform.value.mobileNumber,
-                  recieverareacode: this.bankCtrl.value.areacode,
+                  recieverareacode: this.topupform.value.selectCode,
                   fullName: this.cardfullname,
                   ccnumber: this.cardnumber,
                   cvv: this.cardcvv,
@@ -395,6 +391,7 @@ export class TopupAirtimeComponent implements OnInit {
                   payamount: finalamount
                 };
                 if (this.cardnumber == null) {
+                  this.spinner.show();
                   this.apiProvider.post('wallet/topup', amountransferdata).subscribe(
                     async resdata => {
                       if (resdata.result == 'INVALID_PIN') {
@@ -416,11 +413,13 @@ export class TopupAirtimeComponent implements OnInit {
                         this.notification.error('Error', resdata.result);
 
                       }
+                      this.spinner.hide();
                     }, async () => {
                       this.notification.error('Error', 'Failed to buy topup amount ,Please try after sometime');
-
+                      this.spinner.hide();
                     });
                 } else {
+                  this.spinner.show();
                   this.apiProvider.post('wallet/topupcard', amountransferdata).subscribe(
                     async resdata => {
                       if (resdata.result == 'INVALID_PIN') {
@@ -438,8 +437,10 @@ export class TopupAirtimeComponent implements OnInit {
                       } else {
                         this.notification.error('Error', resdata.result);
                       }
+                      this.spinner.hide();
                     }, async (error) => {
                       this.notification.error('Error', 'Failed to buy topup amount ,Please try after sometime');
+                      this.spinner.hide();
                     });
                 }
               }
