@@ -1,7 +1,7 @@
 <div>
   <nz-tabset class="air-tabs-bordered" [nzSelectedIndex]="0">
     <nz-tab nzTitle="Notifications">
-      <div class="text-gray-6">
+      <div class="notificationScroll">
         <ul class="list-unstyled">
           <li class="mb-3" *ngFor="let notif of notifications">
             <div class="head">
@@ -17,7 +17,7 @@
       </div>
     </nz-tab>
     <nz-tab nzTitle="Transactions">
-      <div class="py-2 pb-4">
+      <div class="notificationScroll">
         <ul class="list-unstyled">
           <li class="mb-3" *ngFor="let transHistory of wallethistory">
             <div class="head">
@@ -47,9 +47,6 @@
           </li>
         </ul>
       </div>
-    </nz-tab>
-    <nz-tab nzTitle="Events">
-      <div class="py-2 pb-4">No Events</div>
     </nz-tab>
   </nz-tabset>
 </div>

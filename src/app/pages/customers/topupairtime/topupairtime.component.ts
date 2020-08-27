@@ -361,6 +361,15 @@ export class TopupAirtimeComponent implements OnInit {
             processingfees = (parseFloat(processingfees) + flatprocessingcomission).toFixed(2);
             const flatfees = (flatbankcomission + flatprocessingcomission).toFixed(2);
             finalamount = finalamount + parseFloat(flatfees);
+            const taxpercentage = comdata.result.taxpercentage;
+            let taxes = 0;
+            if (comdata.result.taxon == 'FEES') {
+              //apply tax on fees
+              taxes = flatfees * taxpercentage / 100
+            } else {
+              taxes = finalamount * taxpercentage / 100
+            }
+            finalamount = finalamount + taxes;
             this.spinner.hide();
 
             const dialogRef = this.modalService.open(ConfirmationDialogComponent, { size: 'sm' });
@@ -383,12 +392,13 @@ export class TopupAirtimeComponent implements OnInit {
                   carrier: this.carriername,
                   senderareacode: this.userObj.phonecode,
                   recievermobilernumber: this.topupform.value.mobileNumber,
-                  recieverareacode: this.topupform.value.selectCode,
+                  recieverareacode: this.topupform.value.selectCode.areacode,
                   fullName: this.cardfullname,
                   ccnumber: this.cardnumber,
                   cvv: this.cardcvv,
                   ccexp: this.cardexp,
-                  payamount: finalamount
+                  payamount: finalamount,
+                  taxes: taxes
                 };
                 if (this.cardnumber == null) {
                   this.spinner.show();

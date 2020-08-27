@@ -21,3 +21,8 @@
     height: 200px;
     text-align: center;
 }
+
+.notificationScroll {
+    max-height: 300px;
+    overflow-y: scroll;
+}

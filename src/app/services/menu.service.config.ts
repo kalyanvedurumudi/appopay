@@ -113,12 +113,12 @@ export const getMenuData: any[] = [
         url: '/customers/claimrequest',
       },
       {
-        title: 'Bank BaseCurrency',
+        title: 'Bank',
         key: 'basecurrency',
         url: '/customers/basecurrency',
       },
       {
-        title: 'Card BaseCurrency',
+        title: 'Card',
         key: 'cardbasecurrency',
         url: '/customers/cardbasecurrency',
       },
