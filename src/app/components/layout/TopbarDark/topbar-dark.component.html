@@ -1,7 +1,7 @@
 <div class="topbarDark">
   <a href="javascript: void(0);" class="logo d-none d-md-block">
-    <img src="assets/images/appopay.png"style="height:45px!important;"  alt="Air UI" />
- 
+    <img src="assets/images/appopay.png" style="height:45px!important;" alt="Air UI" />
+
   </a>
   <div class="mr-3 d-block">
     <air-topbar-dark-menu-dashboards></air-topbar-dark-menu-dashboards>
@@ -16,7 +16,9 @@
     <air-topbar-dark-language-switcher></air-topbar-dark-language-switcher>
   </div>
   <div class="mr-4 d-none d-md-block">
-    <air-topbar-dark-actions></air-topbar-dark-actions>
+    <nz-badge [nzCount]="apiProvider.getNotificationCount() | async">
+      <air-topbar-dark-actions></air-topbar-dark-actions>
+    </nz-badge>
   </div>
   <div class="d-none d-md-block">
     <air-topbar-dark-user-menu></air-topbar-dark-user-menu>

@@ -1,19 +1,17 @@
 <div>
-  <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu" (nzVisibleChange)="badgeCountIncrease()">
-    <nz-badge [nzCount]="badgeCount">
-      <nz-avatar nzIcon="user" [nzShape]="'square'" [nzSize]="'large'" class="avatar"></nz-avatar>
-    </nz-badge>
+  <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
+    <nz-avatar nzIcon="user" [nzShape]="'square'" [nzSize]="'large'" class="avatar"></nz-avatar>
   </div>
   <nz-dropdown-menu #menu="nzDropdownMenu">
     <ul nz-menu>
       <li nz-menu-item>
         <strong>{{ 'topBar.profileMenu.hello' | translate }}, {{userName}}</strong>
-        <div>
+        <!-- <div>
           <strong class="mr-1">
             {{ 'topBar.profileMenu.billingPlan' | translate }}:
           </strong>
           {{billingPlan}}
-        </div>
+        </div> -->
         <div>
           <strong>
             {{ 'topBar.profileMenu.role' | translate }}::

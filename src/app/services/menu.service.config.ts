@@ -136,11 +136,11 @@ export const getMenuData: any[] = [
     key: 'payments',
     icon: 'fe fe-shopping-cart',
     children: [
-      {
-        title: 'Pay Bills',
-        key: 'payBills',
-        url: '/customers/paybills',
-      },
+      // {
+      //   title: 'Pay Bills',
+      //   key: 'payBills',
+      //   url: '/customers/paybills',
+      // },
       {
         title: 'Topup Airtime',
         key: 'topupAirtime',
@@ -157,16 +157,16 @@ export const getMenuData: any[] = [
     key: 'transfers',
     icon: 'fe fe-shopping-cart',
     children: [
-      {
-        title: 'E-Transfers',
-        key: 'etransfers',
-        url: '/customers/etransfers',
-      },
-      {
-        title: 'Bank Deposits',
-        key: 'bankDeposits',
-        url: '/customers/bankdeposits',
-      },
+      // {
+      //   title: 'E-Transfers',
+      //   key: 'etransfers',
+      //   url: '/customers/etransfers',
+      // },
+      // {
+      //   title: 'Bank Deposits',
+      //   key: 'bankDeposits',
+      //   url: '/customers/bankdeposits',
+      // },
 
       {
         title: 'Intra Account Transfers',
@@ -174,11 +174,11 @@ export const getMenuData: any[] = [
         url: '/customers/intraaccounttransfers',
       },
 
-      {
-        title: 'Account Transfers',
-        key: 'accountTransfers',
-        url: '/customers/accounttransfers',
-      },
+      // {
+      //   title: 'Account Transfers',
+      //   key: 'accountTransfers',
+      //   url: '/customers/accounttransfers',
+      // },
     ],
   },
 

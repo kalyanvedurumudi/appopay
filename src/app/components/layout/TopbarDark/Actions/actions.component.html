@@ -1,7 +1,9 @@
 <div>
   <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menuDark">
-    <i class="icon fe fe-menu mr-2"></i>
-    {{ 'topBar.actions' | translate }}
+      <span class="d-none d-xl-inline">
+        {{ 'topBar.actions' | translate }}
+      </span>
+      <i nz-icon nzType="bell" nzTheme="outline"></i>
   </div>
   <nz-dropdown-menu #menuDark="nzDropdownMenu">
     <div class="card air__utils__shadow width-350 mb-0 darkDropdown">

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { HttpInterceptorService } from './http-interceptor.service';
@@ -12,24 +12,32 @@ export class ApiProvider {
     url = null;
     cashsendurl = null;
     public BaseUrl: any = 'https://appopay.com/api/';
-   // public BaseUrl: any = 'http://localhost:8080/api/';
+    // public BaseUrl: any = 'http://localhost:8080/api/';
     public gatewayurl: any = 'http://localhost:8080/';
     public coopavanzaurl: any = 'https://cooptavanza.com/fineract-provider/api/v1';
     public coopplus: any = 'https://co-opplus.com/';
     public topup: any = 'https://appopay.com/v2/';
 
-     public nodeurl: any = 'https://appopay.com/v2/';
+    public nodeurl: any = 'https://appopay.com/v2/';
     //public nodeurl: any = 'http://localhost:3000/v2/';
     public CashsendBaseUrl: any = 'https://cashsends.com/api/';
     //public CashsendBaseUrl: any = 'http://localhost:8080/api/';
 
     public offerliaBaseUrl: any = 'https://appopay.com/v3/';
 
+    notificationCount$ = new BehaviorSubject<number>(0);
+
     constructor(
         public http: HttpInterceptorService,
-        private storage: LocalStorageService) {
+        private storage: LocalStorageService) { }
 
 
+    setNotificationCount(count: number): any {
+        this.notificationCount$.next(count);
+    }
+
+    getNotificationCount(): Observable<any> {
+      return this.notificationCount$.asObservable();
     }
 
     setUrl(endpoint): any {

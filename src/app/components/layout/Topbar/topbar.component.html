@@ -12,7 +12,9 @@
     <air-topbar-language-switcher></air-topbar-language-switcher>
   </div>
   <div class="mr-4 d-none d-sm-block">
-    <air-topbar-actions></air-topbar-actions>
+    <nz-badge [nzCount]="apiProvider.getNotificationCount() | async">
+      <air-topbar-actions></air-topbar-actions>
+    </nz-badge>
   </div>
   <div class="">
     <air-topbar-user-menu></air-topbar-user-menu>

@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router
     ) {
-      // email: ['admin@mediatec.org', [Validators.required, Validators.minLength(4)]],
-      // password: ['mediatec', [Validators.required]],
+      // email: ['admin@Appopay.org', [Validators.required, Validators.minLength(4)]],
+      // password: ['Appopay', [Validators.required]],
 
     this.loginForm = this.fb.group({
       mobilenumber: [null, Validators.compose([

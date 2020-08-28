@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
-import { AuthService } from 'src/app/services/auth.service'
+import { AuthService } from 'src/app/services/auth.service';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'air-topbar-user-menu',
@@ -7,24 +8,23 @@ import { AuthService } from 'src/app/services/auth.service'
   styleUrls: ['./user-menu.component.scss'],
 })
 export class TopbarUserMenuComponent {
-  badgeCount: number = 7
-  userName: string
-  billingPlan: string
-  email: string
-  phone: string
-  role: string
+  badgeCount: number = 7;
+  userName: string;
+  billingPlan: string;
+  email: string;
+  phone: string;
+  role: string;
+  userDetails: any;
 
-  constructor(public authService: AuthService) {
-    const userInfo = JSON.parse(localStorage.getItem('user'))
-    this.userName = userInfo ? userInfo.displayName : 'Anonymous'
+  constructor(public authService: AuthService,
+    private storage: LocalStorageService) {
+    this.userDetails = this.storage.retrieve('userDetails');
+
+    this.userName = this.userDetails ? this.userDetails.firstName + ' ' + this.userDetails.lastName : 'Anonymous'
     this.billingPlan = 'Professional'
-    this.email = userInfo ? userInfo.email : ''
-    this.phone = userInfo ? userInfo.phoneNumber : '-'
-    this.role = 'admin'
-  }
-
-  badgeCountIncrease() {
-    this.badgeCount = this.badgeCount + 1
+    this.email = this.userDetails ? this.userDetails.email : '';
+    this.phone = this.userDetails ? this.userDetails.mobilenumber : '';
+    this.role = this.userDetails ?this.userDetails.usertype : 'User';
   }
 
   logout() {

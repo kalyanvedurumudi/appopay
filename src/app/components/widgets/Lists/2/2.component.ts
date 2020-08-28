@@ -15,6 +15,7 @@ export class AirList2Component implements OnInit {
   currentbalance: any;
   accountnumber: any;
   wallethistory: any[];
+  count = 0;
 
   constructor(
     private apiProvider: ApiProvider,
@@ -46,6 +47,8 @@ export class AirList2Component implements OnInit {
       async resdata => {
         this.notificationsCount = resdata.result.length;
         this.notifications = resdata.result;
+        this.count += this.notifications.length;
+        this.apiProvider.setNotificationCount(this.count);
       }, async (error) => {
       });
   }
@@ -74,6 +77,8 @@ export class AirList2Component implements OnInit {
           };
           this.wallethistory.push(historydata);
         });
+        this.count += this.wallethistory.length;
+        this.apiProvider.setNotificationCount(this.count);
       }, async () => {
       });
   }
