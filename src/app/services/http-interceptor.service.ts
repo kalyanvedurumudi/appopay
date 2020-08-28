@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { LocalStorageService } from 'ngx-webstorage';
 import { NzNotificationService } from 'ng-zorro-antd';
 
@@ -27,6 +27,15 @@ export class HttpInterceptorService extends Http {
 
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
         return super.request(url, options).pipe(
+            tap((res) => {
+                if (res) {
+                    const body = JSON.parse(res['_body']);
+                    if (body && body.result === 'INVALID_PIN') {
+                        this.notification.error('Error', 'Please enter valid pin');
+                    }
+                }
+                return res;
+            }),
             catchError(this.handleError)
         );
     }
