@@ -157,11 +157,11 @@ export const getMenuData: any[] = [
     key: 'transfers',
     icon: 'fe fe-shopping-cart',
     children: [
-      // {
-      //   title: 'E-Transfers',
-      //   key: 'etransfers',
-      //   url: '/customers/etransfers',
-      // },
+      {
+        title: 'E-Transfers',
+        key: 'etransfers',
+        url: '/customers/etransfers',
+      },
       // {
       //   title: 'Bank Deposits',
       //   key: 'bankDeposits',

@@ -1,222 +1,227 @@
-
+<ngx-spinner></ngx-spinner>
 <div>
-   <div class="subbar">
-  <ul class="breadcrumbList mr-4">
-    <li class="breadcrumbItem">
-      <a href="#" class="breadcrumbLink">
-       E-TRANSFERS
-      </a>
-    </li>
-    <li class="breadcrumbItem">
-      <a href="#" class="breadcrumbLink breadcrumbLink__current">
-      E-TRANSFERS
-      </a>
-    </li>
-  </ul>
+  <div class="subbar">
+    <ul class="breadcrumbList mr-4">
+      <li class="breadcrumbItem">
+        <a href="#" class="breadcrumbLink">
+          E-TRANSFERS
+        </a>
+      </li>
+      <li class="breadcrumbItem">
+        <a href="#" class="breadcrumbLink breadcrumbLink__current">
+          E-TRANSFERS
+        </a>
+      </li>
+    </ul>
+  </div>
 
+  <br>
 
-
- 
-</div>
-<br>
-  
-       <nz-tabset>
-      <nz-tab nzTitle="SMS TRANSFERS ">
-	  
-    <h4 class="mb-4">
+  <nz-tabset>
+    <nz-tab nzTitle="SMS TRANSFERS ">
+      <h4 class="mb-4">
         <strong>Receiver Information</strong>
       </h4>
-     <form nz-form [nzLayout]="'vertical'" [formGroup]="eTransferForm" (ngSubmit)="submitForm(eTransferForm.value)">
+      <form nz-form [nzLayout]="'vertical'" [formGroup]="smsForm">
         <div class="row">
-               <div class="col-md-6">
+          <div class="col-md-6">
             <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Code :</nz-form-label>
-                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="codeTpl">
-               <nz-select nzShowSearch nzAllowClear formControlName="code" nzPlaceHolder="Please Select Code" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-	  <ng-template #codeTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> Code :</nz-form-label>
+              <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="codeTpl">
+                <nz-select formControlName="selectCode" nzShowSearch nzAllowClear nzPlaceHolder="Select Code">
+                  <nz-option name="code" *ngFor="let cntry of countries"
+                    nzLabel="(+{{cntry.areacode}}) {{cntry.countryname}}" [nzValue]="cntry.areacode"></nz-option>
+                </nz-select>
+                <ng-template #codeTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
 
-
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
-          </div>
-		  
-		       <div class="col-md-6">
-         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Mobile Number :</nz-form-label>
-          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="mobuleNumberTpl">
-            <input nz-input id="mobileNumber" formControlName="mobileNumber" placeholder="Enter Mobile Number "/>
-			  <ng-template #mobuleNumberTpl let-control>
-          
-            <ng-container *ngIf="control.hasError('required')">
-            Required
-            </ng-container>
-			  <ng-container *ngIf="control.hasError('pattern')">
-              Please enter a valid number
-            </ng-container>
-			  <ng-container *ngIf="control.hasError('minlength')">
-             Mobile number has to be min 8 digits
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-        
-		      <div class="col-md-6">
-         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Security Question :</nz-form-label>
-          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="securityQuestionTpl">
-            <input nz-input id="securityQuestion" formControlName="securityQuestion" placeholder="Enter Security Question"/>
-			  <ng-template #securityQuestionTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		  
-		  
-		      <div class="col-md-6">
-         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Security Answer : </nz-form-label>
-          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="securityAnswerTpl">
-            <input nz-input id="securityAnswer" formControlName="securityAnswer" placeholder="Enter Security Answer"/>
-			  <ng-template #securityAnswerTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		      <div class="col-md-6">
-         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">First Name :</nz-form-label>
-          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="firstNameTpl">
-            <input nz-input id="firstName" formControlName="firstName" placeholder="Enter First Name"/>
-			  <ng-template #firstNameTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		  
-		      <div class="col-md-6">
-         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Last Name :</nz-form-label>
-          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="lastNameTpl">
-            <input nz-input id="lastName" formControlName="lastName" placeholder="Enter Security Answer"/>
-			  <ng-template #lastNameTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
-          </div>
-		  
-		     <div class="col-md-6">
+          <div class="col-md-6">
             <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> From Account :</nz-form-label>
-                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="fromAccountTpl">
-               <nz-select nzShowSearch nzAllowClear formControlName="fromAccount" nzPlaceHolder="Please Select From Account " >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-	  <ng-template #fromAccountTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-
-
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Mobile Number :</nz-form-label>
+              <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="mobuleNumberTpl">
+                <input nz-input id="mobileNumber" formControlName="mobileNumber" placeholder="Enter Mobile Number " />
+                <ng-template #mobuleNumberTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                  <ng-container *ngIf="control.hasError('pattern')">
+                    Please enter a valid number
+                  </ng-container>
+                  <ng-container *ngIf="control.hasError('minlength')">
+                    Mobile number has to be min 8 digits
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
           </div>
-              <div class="col-md-6">
+
+          <div class="col-md-6">
             <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> To Currency :</nz-form-label>
-                    <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="currencyTpl">
-               <nz-select nzShowSearch nzAllowClear formControlName="currency" nzPlaceHolder="Please Select Currency" >
-      <nz-option nzLabel="Sequential" nzValue="sequential"></nz-option>
-      <nz-option nzLabel="Simultanious" nzValue="simultanious"></nz-option>
- 
-    </nz-select>
-	  <ng-template #currencyTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-
-
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-	
-		   </nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Security Question :
+              </nz-form-label>
+              <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="securityQuestionTpl">
+                <input nz-input id="securityQuestion" formControlName="securityQuestion"
+                  placeholder="Enter Security Question" />
+                <ng-template #securityQuestionTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
           </div>
-		
-		      <div class="col-md-6">
-         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Amount To Pay :</nz-form-label>
-          <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="amountPaysTpl">
-            <input nz-input id="amountPays" formControlName="amountPays" placeholder="Enter Amount To Pay"/>
-			  <ng-template #amountPaysTpl let-control>
-           
-            <ng-container *ngIf="control.hasError('required')">
-              Required 
-            </ng-container>
-          </ng-template>
-          </nz-form-control>
-        </nz-form-item>
+
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left"> Security Answer :
+              </nz-form-label>
+              <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="securityAnswerTpl">
+                <input nz-input id="securityAnswer" formControlName="securityAnswer"
+                  placeholder="Enter Security Answer" />
+                <ng-template #securityAnswerTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
           </div>
-		  
+
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">First Name :</nz-form-label>
+              <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="firstNameTpl">
+                <input nz-input id="firstName" formControlName="firstName" placeholder="Enter First Name" />
+                <ng-template #firstNameTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Last Name :</nz-form-label>
+              <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="lastNameTpl">
+                <input nz-input id="lastName" formControlName="lastName" placeholder="Enter Last Name" />
+                <ng-template #lastNameTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> From Account :</nz-form-label>
+              <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="fromAccountTpl">
+                <nz-select formControlName="fromAccount" nzShowSearch nzAllowClear nzPlaceHolder="From Account"
+                  (ngModelChange)="getConversionAmount()">
+                  <nz-option name="code" *ngFor="let acc of accounts"
+                    nzLabel="{{acc.accountnumber}}- {{getCurrencyName(acc.currencyid)}}" [nzValue]="acc.id"></nz-option>
+                </nz-select>
+                <ng-template #fromAccountTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" class="text-left"> To Currency :</nz-form-label>
+              <nz-form-control nzHasFeedback [nzSm]="18" [nzXs]="24" [nzErrorTip]="currencyCode">
+                <nz-select formControlName="currency" nzShowSearch nzAllowClear nzPlaceHolder="Select Currency"
+                (ngModelChange) ="getConversionAmount()">
+                  <nz-option name="code" *ngFor="let crr of currencies"
+                    nzLabel="{{crr.currency_code}}" [nzValue]="crr.currency_code"></nz-option>
+                </nz-select>
+                <ng-template #currencyCode let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Amount To Pay :</nz-form-label><nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="amountTranferedTpl">
+                <input nz-input id="debitDate" formControlName="amounttoTransfer" placeholder="Enter Amount To Pay"
+                  (focusout)="getTransferedAmount()" />
+                <ng-template #amountTranferedTpl let-control>
+                    <ng-container *ngIf="control.hasError('required')">
+                        Required
+                      </ng-container>
+                      <ng-container *ngIf="control.hasError('pattern')">
+                        Please enter a valid number
+                      </ng-container>
+                      <ng-container *ngIf="control.hasError('minlength')">
+                          Amount has to be minimum of 1 digits
+                      </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div class="col-md-6">
+            <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Conversion Rate :
+              </nz-form-label>
+              <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="conversionRate">
+                <input nz-input id="debitDate" formControlName="conversionRate" placeholder="Amount To Be Transfered"/>
+                <ng-template #conversionRate let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                    Required
+                  </ng-container>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div class="col-md-6">
+              <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="full-name" class="text-left">Amount To Be Credited :
+                </nz-form-label>
+                <nz-form-control [nzSm]="18" [nzXs]="24" [nzErrorTip]="amounttoCredit">
+                  <input nz-input id="debitDate" formControlName="amounttoCredit" placeholder="Amount To Be Transfered" />
+                  <ng-template #amounttoCredit let-control>
+                    <ng-container *ngIf="control.hasError('required')">
+                      Required
+                    </ng-container>
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+
         </div>
-		    <nz-form-item>
+        <nz-form-item>
           <nz-form-control>
-              <button type="submit" class="btn btn-primary" (click)="resetForm($event)">
-             RESET
+            <button type="submit" class="btn btn-primary" (click)="resetForm()">
+              RESET
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="submit" class="btn btn-primary" >
-             SUBMIT
+            <button type="submit" class="btn btn-primary" [disabled]="!smsForm.valid" (click)="transferAmount()">
+              SUBMIT
             </button>
           </nz-form-control>
         </nz-form-item>
       </form>
-  
-      </nz-tab>
-	        <nz-tab nzTitle="EMAIL TRANSFERS ">
-	  
-  
-    <p>Email Transfers</p>
-  
- 
-      </nz-tab>
-	   
-	        
-
-    </nz-tabset>
-	
- 
-  
+    </nz-tab>
+    <nz-tab nzTitle="EMAIL TRANSFERS ">
+      <p>Email Transfers</p>
+    </nz-tab>
+  </nz-tabset>
 </div>
-	  
-   
