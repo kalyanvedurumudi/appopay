@@ -84,7 +84,7 @@ export class EtransfersComponent implements OnInit {
     this.latestUserDetails();
   }
 
-  resetform() {
+  resetForm() {
     this.smsForm.reset();
   }
 
