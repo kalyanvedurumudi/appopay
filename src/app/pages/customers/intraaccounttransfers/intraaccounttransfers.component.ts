@@ -153,27 +153,30 @@ export class IntraaccountTransfersComponent implements OnInit {
       + this.onChangeMobileForm.value.mobileNumber;
     if (usermobile == enteredmobile) {
       this.notification.warning('Warning', 'You cannot search your own registered mobile number');
-
     } else {
       const areacode = this.onChangeMobileForm.value.selectCode;
+      this.spinner.show();
       this.apiProvider.get('users/findbyMobile/' + mobileno + '/' + areacode + '/CUSTOMER').subscribe(
         async resdata => {
           console.log(resdata)
-          this.recieverUserObj = resdata.result;
-          this.firstName = this.recieverUserObj.firstName;
-          this.lastName = this.recieverUserObj.lastName;
-          this.recieveraccounts = [];
-          this.recieveraccounts = resdata.result.customerdetails.customeraccount;
-          if (this.recieveraccounts.length > 0) {
-            this.showtransfer = true;
+          if (resdata.result) {
+            this.recieverUserObj = resdata.result;
+            this.firstName = this.recieverUserObj.firstName;
+            this.lastName = this.recieverUserObj.lastName;
+            this.recieveraccounts = [];
+            this.recieveraccounts = resdata.result.customerdetails.customeraccount;
+            if (this.recieveraccounts.length > 0) {
+              this.showtransfer = true;
+            } else {
+              this.showtransfer = false;
+            }
           } else {
-            this.showtransfer = false;
+            this.notification.warning('Warning', 'No users found with the given data');
           }
-
-
-        }, async (error) => {
+          this.spinner.hide();
+        }, async () => {
           this.notification.warning('Warning', 'Some thing went wrong please try again');
-
+          this.spinner.hide();
         });
     }
 

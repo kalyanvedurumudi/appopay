@@ -162,12 +162,11 @@ export const getMenuData: any[] = [
         key: 'etransfers',
         url: '/customers/etransfers',
       },
-      // {
-      //   title: 'Bank Deposits',
-      //   key: 'bankDeposits',
-      //   url: '/customers/bankdeposits',
-      // },
-
+      {
+        title: 'Bank Deposits',
+        key: 'bankDeposits',
+        url: '/customers/bankdeposits',
+      },
       {
         title: 'Intra Account Transfers',
         key: 'intraaccountTransfers',
