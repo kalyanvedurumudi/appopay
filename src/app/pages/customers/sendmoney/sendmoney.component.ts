@@ -311,12 +311,12 @@ export class SendMoneyComponent implements OnInit {
 		this.countrycode = this.sendMoneyForm.value.countryid;
 		this.getRemittancepurpose();
 		// this.sendMoneyForm.controls.rcountryid.setValue(this.sendMoneyForm.value.countryid);
-		// this.sendMoneyForm.controls.stateid.setValue(null);
-		// this.sendMoneyForm.controls.cityid.setValue(null);
+		this.sendMoneyForm.controls.stateid.setValue(null);
+		this.sendMoneyForm.controls.cityid.setValue(null);
 		this.sendMoneyForm.controls.paymentmode.setValue(null);
 		this.sendMoneyForm.controls.senderamount.setValue(null);
 		this.sendMoneyForm.controls.receiveramount.setValue(null);
-		this.sendMoneyForm.controls.recievecurrency.setValue(null);
+		// this.sendMoneyForm.controls.recievecurrency.setValue(null);
 		this.payers = [];
 		this.payerbranches = [];
 		this.finaltax = 0;
@@ -350,142 +350,152 @@ export class SendMoneyComponent implements OnInit {
 	}
 
 	getCity() {
-		// this.sendMoneyForm.controls.rstateid.setValue(this.sendMoneyForm.value.stateid);
-		this.sendMoneyForm.controls.cityid.setValue(null);
-		this.sendMoneyForm.controls.paymentmode.setValue(null);
-		this.sendMoneyForm.controls.senderamount.setValue(null);
-		this.sendMoneyForm.controls.receiveramount.setValue(null);
-		this.sendMoneyForm.controls.recievecurrency.setValue(null);
-		this.payers = [];
-		this.payerbranches = [];
-		this.finaltax = 0;
-		this.finalfees = 0;
-		this.finalrate = {};
-		this.cities = [];
-		const paramdata = this.sendMoneyForm.value.countryid + '|' + this.sendMoneyForm.value.stateid;
-		const fetchdata: any = {
-			size: 2,
-			params: paramdata,
-			type: 'CITY',
-			basecode: this.countrycode
+		if (this.sendMoneyForm && this.sendMoneyForm.value && this.sendMoneyForm.value.stateid) {
 
-		};
-		this.apiProvider.postCashSends('configuration/transfastmasters', fetchdata).subscribe(
-			async resdata => {
-				const result = JSON.parse(resdata.result.result);
-				this.cities = result.Cities;
-			}, async () => {
-			});
-	}
-
-	getPaymentMode() {
-		this.sendMoneyForm.controls.paymentmode.setValue(null);
-		this.sendMoneyForm.controls.senderamount.setValue(null);
-		this.sendMoneyForm.controls.receiveramount.setValue(null);
-		this.sendMoneyForm.controls.recievecurrency.setValue(null);
-		this.payers = [];
-		this.payerbranches = [];
-		this.finaltax = 0;
-		this.finalfees = 0;
-		this.finalrate = {};
-		if (!this.hastowns) {
-			this.showbranchdetails = false;
-			this.sendMoneyForm.controls.rcityid.setValue(this.sendMoneyForm.value.cityid);
-			const paramdata = this.sendMoneyForm.value.countryid + '|' + this.sendMoneyForm.value.cityid;
+			// this.sendMoneyForm.controls.rstateid.setValue(this.sendMoneyForm.value.stateid);
+			this.sendMoneyForm.controls.cityid.setValue(null);
+			this.sendMoneyForm.controls.paymentmode.setValue(null);
+			this.sendMoneyForm.controls.senderamount.setValue(null);
+			this.sendMoneyForm.controls.receiveramount.setValue(null);
+			// this.sendMoneyForm.controls.recievecurrency.setValue(null);
+			this.payers = [];
+			this.payerbranches = [];
+			this.finaltax = 0;
+			this.finalfees = 0;
+			this.finalrate = {};
+			this.cities = [];
+			const paramdata = this.sendMoneyForm.value.countryid + '|' + this.sendMoneyForm.value.stateid;
 			const fetchdata: any = {
 				size: 2,
 				params: paramdata,
-				type: 'PAYMENT_MODES',
+				type: 'CITY',
 				basecode: this.countrycode
 
 			};
-			this.paymentmodes = [];
 			this.apiProvider.postCashSends('configuration/transfastmasters', fetchdata).subscribe(
 				async resdata => {
 					const result = JSON.parse(resdata.result.result);
-					this.paymentmodes = result.PaymentModes;
+					this.cities = result.Cities;
 				}, async () => {
 				});
-		} else {
-			this.gettowns();
+		}
+	}
+
+	getPaymentMode() {
+		if (this.sendMoneyForm && this.sendMoneyForm.value && this.sendMoneyForm.value.cityid) {
+			// this.sendMoneyForm.controls.paymentmode.setValue(null);
+			this.sendMoneyForm.controls.senderamount.setValue(null);
+			this.sendMoneyForm.controls.receiveramount.setValue(null);
+			// this.sendMoneyForm.controls.recievecurrency.setValue(null);
+			this.payers = [];
+			this.payerbranches = [];
+			this.finaltax = 0;
+			this.finalfees = 0;
+			this.finalrate = {};
+			if (!this.hastowns) {
+				this.showbranchdetails = false;
+				// this.sendMoneyForm.controls.rcityid.setValue(this.sendMoneyForm.value.cityid);
+				const paramdata = this.sendMoneyForm.value.countryid + '|' + this.sendMoneyForm.value.cityid;
+				const fetchdata: any = {
+					size: 2,
+					params: paramdata,
+					type: 'PAYMENT_MODES',
+					basecode: this.countrycode
+
+				};
+				this.paymentmodes = [];
+				this.apiProvider.postCashSends('configuration/transfastmasters', fetchdata).subscribe(
+					async resdata => {
+						const result = JSON.parse(resdata.result.result);
+						this.paymentmodes = result.PaymentModes;
+					}, async () => {
+					});
+			} else {
+				this.gettowns();
+			}
 		}
 	}
 
 	getrecieverCurrencyCode() {
-		this.sendMoneyForm.controls.senderamount.setValue(null);
-		this.sendMoneyForm.controls.receiveramount.setValue(null);
-		this.finaltax = 0;
-		this.finalfees = 0;
-		this.finalrate = {};
-		this.payers = [];
-		this.payerbranches = [];
-		const paramdata = this.sendMoneyForm.value.countryid + '|' + this.sendMoneyForm.value.stateid + '|' +
-			+ this.sendMoneyForm.value.cityid + '|' + this.sendMoneyForm.value.paymentmode;
+		if (this.sendMoneyForm && this.sendMoneyForm.value && this.sendMoneyForm.value.paymentmode) {
+
+			this.sendMoneyForm.controls.senderamount.setValue(null);
+			this.sendMoneyForm.controls.receiveramount.setValue(null);
+			this.finaltax = 0;
+			this.finalfees = 0;
+			this.finalrate = {};
+			this.payers = [];
+			this.payerbranches = [];
+			const paramdata = this.sendMoneyForm.value.countryid + '|' + this.sendMoneyForm.value.stateid + '|' +
+				+ this.sendMoneyForm.value.cityid + '|' + this.sendMoneyForm.value.paymentmode;
 
 
-		if (this.sendMoneyForm.value.paymentmode == 'C') {
-			this.showbankdeposit = true;
-			this.getBank();
-		} else {
-			this.showbankdeposit = false;
-			this.sendMoneyForm.controls.bankname.setValue(null);
-			this.banks = [];
-		}
-
-		const fetchdata: any = {
-			size: 2,
-			params: paramdata,
-			type: 'RECIEVER_CURRENCY',
-			basecode: this.countrycode
-		};
-
-		this.currencies = [];
-
-		this.apiProvider.postCashSends('configuration/transfastmasters', fetchdata).subscribe(
-			async resdata => {
-				const result = JSON.parse(resdata.result.result);
-				this.currencies = result.Currencies;
-			}, async () => {
-			});
-	}
-
-	getPayer() {
-		this.sendMoneyForm.controls.senderamount.setValue(null);
-		this.sendMoneyForm.controls.receiveramount.setValue(null);
-		this.finaltax = 0;
-		this.finalfees = 0;
-		this.finalrate = {};
-		this.accountnumber = this.sendMoneyForm.value.sendcurrency.split('|')[1];
-		const accountnumber = this.sendMoneyForm.value.sendcurrency.split('|')[1];
-		const filterdata = this.accounts.filter(function (accounts) {
-			return accounts.accountnumber == accountnumber;
-		});
-
-		this.creditlimit = filterdata[0].currentbalance;
-		if (!this.hastowns) {
-			const paramdata = this.sendMoneyForm.value.countryid + '|' + this.sendMoneyForm.value.cityid + '|'
-				+ this.sendMoneyForm.value.paymentmode + '|' + this.sendMoneyForm.value.recievecurrency + '|'
-				+ this.sendMoneyForm.value.sendcurrency.split('|')[0];
+			if (this.sendMoneyForm.value.paymentmode == 'C') {
+				this.showbankdeposit = true;
+				this.getBank();
+			} else {
+				this.showbankdeposit = false;
+				this.sendMoneyForm.controls.bankname.setValue(null);
+				this.banks = [];
+			}
 
 			const fetchdata: any = {
 				size: 2,
 				params: paramdata,
-				type: 'PAYER',
+				type: 'RECIEVER_CURRENCY',
 				basecode: this.countrycode
 			};
 
-			this.payers = [];
-			this.payerbranches = [];
+			this.currencies = [];
+
 			this.apiProvider.postCashSends('configuration/transfastmasters', fetchdata).subscribe(
 				async resdata => {
 					const result = JSON.parse(resdata.result.result);
-					this.payers = result.MasterPayerResults;
-					console.log(this.payers);
-					// this.paymentmodes =
+					this.currencies = result.Currencies;
 				}, async () => {
 				});
-		} else {
-			this.getPayerbyTowns();
+		}
+	}
+
+	getPayer() {
+		if (this.sendMoneyForm && this.sendMoneyForm.value && this.sendMoneyForm.value.sendcurrency && this.sendMoneyForm.value.recievecurrency) {
+			this.sendMoneyForm.controls.senderamount.setValue(null);
+			this.sendMoneyForm.controls.receiveramount.setValue(null);
+			this.finaltax = 0;
+			this.finalfees = 0;
+			this.finalrate = {};
+			this.accountnumber = this.sendMoneyForm.value.sendcurrency.split('|')[1];
+			const accountnumber = this.sendMoneyForm.value.sendcurrency.split('|')[1];
+			const filterdata = this.accounts.filter(function (accounts) {
+				return accounts.accountnumber == accountnumber;
+			});
+
+			this.creditlimit = filterdata[0].currentbalance;
+			if (!this.hastowns) {
+				const paramdata = this.sendMoneyForm.value.countryid + '|' + this.sendMoneyForm.value.cityid + '|'
+					+ this.sendMoneyForm.value.paymentmode + '|' + this.sendMoneyForm.value.recievecurrency + '|'
+					+ this.sendMoneyForm.value.sendcurrency.split('|')[0];
+
+				const fetchdata: any = {
+					size: 2,
+					params: paramdata,
+					type: 'PAYER',
+					basecode: this.countrycode
+				};
+
+				this.payers = [];
+				this.payerbranches = [];
+				this.apiProvider.postCashSends('configuration/transfastmasters', fetchdata).subscribe(
+					async resdata => {
+						const result = JSON.parse(resdata.result.result);
+						this.payers = result && result.MasterPayerResults;
+						console.log(this.payers);
+						// this.paymentmodes =
+					}, async () => {
+					});
+			} else {
+				this.getPayerbyTowns();
+			}
 		}
 	}
 
@@ -495,7 +505,7 @@ export class SendMoneyComponent implements OnInit {
 		this.finaltax = 0;
 		this.finalfees = 0;
 		this.finalrate = {};
-		this.sendMoneyForm.controls.rtownid.setValue(this.sendMoneyForm.value.townid);
+		// this.sendMoneyForm.controls.rtownid.setValue(this.sendMoneyForm.value.townid);
 		const paramdata = this.sendMoneyForm.value.countryid + '|' + this.sendMoneyForm.value.cityid + '|'
 			+ this.sendMoneyForm.value.paymentmode + '|' + this.sendMoneyForm.value.sendcurrency.split('|')[0] + '|'
 			+ this.sendMoneyForm.value.recievecurrency + '|' + this.sendMoneyForm.value.townid;
@@ -510,7 +520,7 @@ export class SendMoneyComponent implements OnInit {
 		this.apiProvider.postCashSends('configuration/transfastmasters', fetchdata).subscribe(
 			async resdata => {
 				const result = JSON.parse(resdata.result.result);
-				this.payers = result.MasterPayerResults;
+				this.payers = result && result.MasterPayerResults;
 				console.log(this.payers);
 				// this.paymentmodes =
 			}, async () => {
@@ -524,13 +534,14 @@ export class SendMoneyComponent implements OnInit {
 	}
 
 	getpayermodesTown() {
+
 		this.sendMoneyForm.controls.senderamount.setValue(null);
 		this.sendMoneyForm.controls.receiveramount.setValue(null);
 		this.finaltax = 0;
 		this.finalfees = 0;
 		this.finalrate = {};
 		this.showbranchdetails = false;
-		this.sendMoneyForm.controls.rcityid.setValue(this.sendMoneyForm.value.cityid);
+		// this.sendMoneyForm.controls.rcityid.setValue(this.sendMoneyForm.value.cityid);
 		const paramdata = this.sendMoneyForm.value.countryid + '|' + this.sendMoneyForm.value.cityid;
 		const fetchdata: any = {
 			size: 2,
@@ -599,7 +610,9 @@ export class SendMoneyComponent implements OnInit {
 		const filterdata = this.payers.filter(function (payer) {
 			return payer.PayerInternalCode == payercode;
 		});
-		this.payerbranches = filterdata[0].PayerDetailsResults;
+		if (filterdata && filterdata.length > 0) {
+			this.payerbranches = filterdata[0].PayerDetailsResults;
+		}
 	}
 
 	branchdetails() {
@@ -695,7 +708,7 @@ export class SendMoneyComponent implements OnInit {
 		this.sendMoneyForm.controls.recievecurrency.setValue(null);
 		this.payers = [];
 		this.payerbranches = [];
-		this.sendMoneyForm.controls.cityid.setValue(this.sendMoneyForm.value.rcityid);
+		// this.sendMoneyForm.controls.cityid.setValue(this.sendMoneyForm.value.rcityid);
 		const paramdata = this.sendMoneyForm.value.countryid + '|' +
 			this.sendMoneyForm.value.cityid;
 		const fetchdata: any = {
@@ -723,7 +736,7 @@ export class SendMoneyComponent implements OnInit {
 		this.sendMoneyForm.controls.recievecurrency.setValue(null);
 		this.payers = [];
 		this.payerbranches = [];
-		this.sendMoneyForm.controls.townid.setValue(this.sendMoneyForm.value.rtownid);
+		// this.sendMoneyForm.controls.townid.setValue(this.sendMoneyForm.value.rtownid);
 		const paramdata = this.sendMoneyForm.value.countryid + '|' +
 			this.sendMoneyForm.value.cityid;
 		const fetchdata: any = {

@@ -75,7 +75,7 @@
               <div class="col-md-6">
                 <nz-form-item>
                   <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="CountryTpl">
-                    <nz-select formControlName="countryid" nzShowSearch nzAllowClear nzPlaceHolder="Select Currency"
+                    <nz-select formControlName="countryid" nzShowSearch nzAllowClear nzPlaceHolder="Select Country"
                       (ngModelChange)="getStates()">
                       <nz-option name="code" *ngFor="let ct of countries" nzLabel="{{ct.Name}}" [nzValue]="ct.IsoCode">
                       </nz-option>
@@ -121,11 +121,11 @@
                 </nz-form-item>
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-6" *ngIf="hastowns">
                 <nz-form-item>
                   <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="paymentModeTpl">
                     <nz-select formControlName="townid" (ngModelChange)="getpayermodesTown()" nzShowSearch nzAllowClear
-                      nzPlaceHolder=" Select Payment Mode of Delivery">
+                      nzPlaceHolder="Select Town">
                       <nz-option *ngFor="let tw of towns" nzLabel="{{tw.Name}}" [nzValue]="tw.Id"></nz-option>
                     </nz-select>
                     <ng-template #paymentModeTpl let-control>
@@ -140,10 +140,27 @@
               <div class="col-md-6">
                 <nz-form-item>
                   <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="payerssenderCurrencyTpl">
+                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select payment mode"
+                      formControlName="paymentmode" (ngModelChange)="getrecieverCurrencyCode()">
+                      <nz-option *ngFor="let pm of paymentmodes" nzLabel="{{pm.Name}}"
+                        [nzValue]="pm.Id"></nz-option>
+                    </nz-select>
+                    <ng-template #payerssenderCurrencyTpl let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Required
+                      </ng-container>
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+
+              <div class="col-md-6">
+                <nz-form-item>
+                  <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="payerssenderCurrencyTpl">
                     <nz-select nzShowSearch nzAllowClear nzPlaceHolder=" Select Sender Currency"
                       formControlName="sendcurrency" (ngModelChange)="getPayer()">
                       <nz-option *ngFor="let cr of accounts" nzLabel="{{cr.displayname}}"
-                        [nzValue]="cr.currencycode || cr.accountnumber"></nz-option>
+                        [nzValue]="cr.currencycode + '|' + cr.accountnumber"></nz-option>
                     </nz-select>
                     <ng-template #payerssenderCurrencyTpl let-control>
                       <ng-container *ngIf="control.hasError('required')">
