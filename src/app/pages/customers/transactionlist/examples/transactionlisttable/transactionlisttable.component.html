@@ -1,95 +1,55 @@
-   <div class="row">
-   <h4 class="ml-4 mr-10 mb-10">
-        <strong>Account :( <span>CS1000000000017 </span> - <span>USD 998.68</span>)</strong>
-      </h4>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <div class="form-group form-inline">
-   <input class="form-control ml-2" type="text" name="searchTerm" placeholder="search" />
-     </div> 
+<div class="row">
+  <h4 class="ml-4 mr-10 mb-10">
+    <strong>Account :( <span>{{latestRec?.accountnumber}}</span> - <span>USD {{latestRec?.pendingbalance}}</span>)</strong>
+  </h4>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="form-group form-inline">
+    <input class="form-control ml-2" type="text" name="searchTerm" placeholder="search" (input)="search($event.target.value)"/>
   </div>
+</div>
 <div class="table-operations">
   <!--<button nz-button (click)="sort('age', 'descend')">Sort age</button>
   <button nz-button (click)="resetFilters()">Clear filters</button>
   <button nz-button (click)="resetSortAndFilters()">Clear filters and sorters</button>-->
- 
+
 </div>
-<nz-table #filterTable [nzData]="listOfDisplayData"  class="air__utils__scrollTable mb-4"
-          [nzScroll]="{x: '100%'}">
+<nz-table #filterTable [nzData]="listOfDisplayData" class="air__utils__scrollTable mb-4" [nzScroll]="{x: '100%'}">
   <thead>
-  <tr>
-    <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.name"
-      (nzSortChange)="sort('name', $event)"
-      [nzFilters]="listOfFilterName"
-      (nzFilterChange)="search($event, listOfSearchAddress)"
-    >
-      TRANSACTION ID
-    </th>
-    <th nzShowSort [(nzSort)]="mapOfSort.age" (nzSortChange)="sort('age', $event)">DATE</th>
-    <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      TRANSACTION AMOUNT
-    </th>
-	  <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      TRANSACTION TYPE
-    </th>
-		  <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      TRANSACTION STATUS
-    </th>
-			  <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      BALANCE
-    </th>
-			  <th
-      nzShowSort
-      nzShowFilter
-      [(nzSort)]="mapOfSort.address"
-      (nzSortChange)="sort('address', $event)"
-      [nzFilters]="listOfFilterAddress"
-      (nzFilterChange)="search(listOfSearchName, $event)"
-    >
-      DESCRIPTION
-    </th>
-  </tr>
+    <tr>
+      <th nzShowSort [(nzSort)]="mapOfSort.transactionid" (nzSortChange)="sort('transactionid', $event)">
+        TRANSACTION ID
+      </th>
+      <th nzShowSort [(nzSort)]="mapOfSort.transactiondate" (nzSortChange)="sort('transactiondate', $event)">DATE</th>
+      <th nzShowSort [(nzSort)]="mapOfSort.transactionamount"
+        (nzSortChange)="sort('transactionamount', $event)">
+        TRANSACTION AMOUNT
+      </th>
+      <th nzShowSort [(nzSort)]="mapOfSort.transactiontype"
+        (nzSortChange)="sort('transactiontype', $event)">
+        TRANSACTION TYPE
+      </th>
+      <th nzShowSort [(nzSort)]="mapOfSort.transactionstatus"
+        (nzSortChange)="sort('transactionstatus', $event)">
+        TRANSACTION STATUS
+      </th>
+      <th nzShowSort [(nzSort)]="mapOfSort.pendingbalance" (nzSortChange)="sort('pendingbalance', $event)">
+        BALANCE
+      </th>
+      <th nzShowSort [(nzSort)]="mapOfSort.transactiondescription"
+        (nzSortChange)="sort('transactiondescription', $event)">
+        DESCRIPTION
+      </th>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of filterTable.data">
-    <td>{{ data.name }}</td>
-    <td>{{ data.age }}</td>
-    <td>{{ data.address }}</td>
-	    <td>{{ data.name }}</td>
-    <td>{{ data.age }}</td>
-    <td>{{ data.address }}</td>
-	    <td>{{ data.name }}</td>
-  
-  </tr>
+    <tr *ngFor="let data of filterTable.data">
+      <td>{{ data.transactionid }}</td>
+      <td>{{ data.transactiondate | date : 'MM/dd/yyyy' }}</td>
+      <td>{{ data.transactionamount }}</td>
+      <td>{{ data.transactiontype }}</td>
+      <td>{{ data.transactionstatus }}</td>
+      <td>{{ data.pendingbalance }}</td>
+      <td>{{ data.transactiondescription }}</td>
+    </tr>
   </tbody>
 </nz-table>
